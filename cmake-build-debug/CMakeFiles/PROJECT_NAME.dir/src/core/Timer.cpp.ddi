@@ -1,0 +1,11 @@
+{
+"rules": [
+{
+"primary-output": "CMakeFiles/PROJECT_NAME.dir/src/core/Timer.cpp.o",
+"requires": [
+]
+}
+],
+"version": 0,
+"revision": 0
+}

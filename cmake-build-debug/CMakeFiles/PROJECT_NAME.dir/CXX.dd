@@ -1,0 +1,15 @@
+ninja_dyndep_version = 1.0
+build CMakeFiles/PROJECT_NAME.dir/src/main.cpp.obj: dyndep
+
+build CMakeFiles/PROJECT_NAME.dir/src/core/Vector2D.cpp.obj: dyndep
+
+build CMakeFiles/PROJECT_NAME.dir/src/core/Timer.cpp.obj: dyndep
+
+build CMakeFiles/PROJECT_NAME.dir/src/entities/Entity.cpp.obj: dyndep
+
+build CMakeFiles/PROJECT_NAME.dir/src/entities/Character.cpp.obj: dyndep
+
+build CMakeFiles/PROJECT_NAME.dir/src/input/InputHandler.cpp.obj: dyndep
+
+build CMakeFiles/PROJECT_NAME.dir/src/Game.cpp.obj: dyndep
+

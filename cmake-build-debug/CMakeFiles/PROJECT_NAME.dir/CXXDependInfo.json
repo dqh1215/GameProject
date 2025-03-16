@@ -1,0 +1,23 @@
+{
+	"bmi-installation" : null,
+	"compiler-frontend-variant" : "GNU",
+	"compiler-id" : "GNU",
+	"compiler-simulate-id" : "",
+	"config" : "Debug",
+	"cxx-modules" : {},
+	"dir-cur-bld" : "D:/GameProject/cmake-build-debug",
+	"dir-cur-src" : "D:/GameProject",
+	"dir-top-bld" : "D:/GameProject/cmake-build-debug",
+	"dir-top-src" : "D:/GameProject",
+	"exports" : [],
+	"forward-modules-from-target-dirs" : [],
+	"include-dirs" : 
+	[
+		"D:\\GameProject\\SDL2\\x86_64-w64-mingw32\\include\\SDL2",
+		"D:\\GameProject\\SDL2\\SDL2_image\\x86_64-w64-mingw32\\include\\SDL2",
+		"D:\\GameProject\\SDL2\\SDL2_ttf\\x86_64-w64-mingw32\\include\\SDL2"
+	],
+	"language" : "CXX",
+	"linked-target-dirs" : [],
+	"module-dir" : "D:/GameProject/cmake-build-debug/CMakeFiles/PROJECT_NAME.dir"
+}
