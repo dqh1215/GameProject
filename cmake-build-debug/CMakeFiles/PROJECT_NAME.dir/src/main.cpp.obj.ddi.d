@@ -504,4 +504,10 @@ CMakeFiles\PROJECT_NAME.dir\src\main.cpp.obj.ddi: \
  D:/GameProject/src/core/Timer.h D:/GameProject/src/entities/Character.h \
  D:/GameProject/src/entities/Entity.h D:/GameProject/src/core/Vector2D.h \
  D:/GameProject/src/input/InputHandler.h \
- D:/GameProject/src/entities/Character.h
+ D:/GameProject/src/entities/Character.h \
+ D:/GameProject/src/graphics/TextureManager.h \
+ D:/GameProject/SDL2/SDL2_image/x86_64-w64-mingw32/include/SDL2/SDL_image.h \
+ D:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2/SDL.h \
+ D:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2/SDL_version.h \
+ D:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2/begin_code.h \
+ D:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2/close_code.h

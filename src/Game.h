@@ -10,6 +10,7 @@
 #include "core/Timer.h"
 #include "entities/Character.h"
 #include "input/InputHandler.h"
+#include "graphics/TextureManager.h"
 using namespace std;
 
 
@@ -26,6 +27,7 @@ private:
     void update();
     void render();
     void handleEvents();
+    bool loadAssets();
 
     SDL_Window* window;
     SDL_Renderer* renderer;

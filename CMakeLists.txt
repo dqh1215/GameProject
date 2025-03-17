@@ -16,7 +16,9 @@ add_executable(${PROJECT_NAME} src/main.cpp
         src/input/InputHandler.cpp
         src/input/InputHandler.h
         src/Game.cpp
-        src/Game.h)
+        src/Game.h
+        src/graphics/TextureManager.cpp
+        src/graphics/TextureManager.h)
 
 # --- SDL2 SETUP ---
 set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/modules)

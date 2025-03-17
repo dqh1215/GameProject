@@ -48,16 +48,44 @@ bool Game::init(const std::string& title, int width, int height, bool fullscreen
     }
 
 
-    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+    SDL_SetRenderDrawColor(renderer, 0,0,0, 255);
+
+
+    if (!TextureManager::Instance()->init()) {
+        SDL_Log("Texture manager could not be initialized");
+        return false;
+    } else {
+        SDL_Log("Texture manager initialized Successful");
+    }
+
 
     // nhan vat se duoc khoi tao mac dinh o chinh giua man hinh
-    player = new Character(screenWidth / 2.0f, screenHeight / 2.0f, 40);
+    const int playerWidth = 64;  // Kich thước sprite
+    const int playerHeight = 64;
+    player = new Character(screenWidth / 2.0f, screenHeight / 2.0f, playerWidth, playerHeight);
+
+    // Load assets
+    if (!loadAssets()) {
+        SDL_Log("Failed to load assets");
+        return false;
+    }
 
     // khoi tao timer de tinh thoi gian
     timer.start();
 
     this->running = true;
     return this->running;
+}
+
+
+bool Game::loadAssets() {
+    // Load texture cho nhan vat
+    if (!player->loadTexture("../assets/entities/player.png", "player", renderer)) {
+        SDL_Log("Failed to load player");
+        return false;
+    }
+    SDL_Log("Loaded player successful");
+    return true;
 }
 
 // Game Loop
@@ -95,6 +123,8 @@ void Game::clean() {
         delete player;
         player = nullptr;
     }
+
+    TextureManager::Instance()->clean();
 
     if (this->renderer) {
         SDL_DestroyRenderer(renderer);

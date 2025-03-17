@@ -13,3 +13,5 @@ build CMakeFiles/PROJECT_NAME.dir/src/input/InputHandler.cpp.obj: dyndep
 
 build CMakeFiles/PROJECT_NAME.dir/src/Game.cpp.obj: dyndep
 
+build CMakeFiles/PROJECT_NAME.dir/src/graphics/TextureManager.cpp.obj: dyndep
+
