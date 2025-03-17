@@ -22,6 +22,7 @@ public:
     bool init(const string& title, int width = 0, int height = 0, bool fullscreen = true);
     void run();
     void clean();
+    bool loadTextureBackground(const string& filePath, const string& id, SDL_Renderer* renderer);
 
 private:
     void update();

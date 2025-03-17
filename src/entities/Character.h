@@ -17,6 +17,7 @@ public:
     void setTarget(float x, float y);
     bool isMoving() const;
 
+    bool loadTextureWalking(const string& filePath, const string& id, SDL_Renderer* renderer);
     bool loadTexture(const string& filePath, const string& id, SDL_Renderer* renderer);
 private:
     Vector2D target;

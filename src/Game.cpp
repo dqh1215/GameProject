@@ -48,9 +48,6 @@ bool Game::init(const std::string& title, int width, int height, bool fullscreen
     }
 
 
-    SDL_SetRenderDrawColor(renderer, 0,0,0, 255);
-
-
     if (!TextureManager::Instance()->init()) {
         SDL_Log("Texture manager could not be initialized");
         return false;
@@ -79,8 +76,13 @@ bool Game::init(const std::string& title, int width, int height, bool fullscreen
 
 
 bool Game::loadAssets() {
-    // Load texture cho nhan vat
+    // Load texture cho nhan vat luc dung im
     if (!player->loadTexture("../assets/entities/player.png", "player", renderer)) {
+        SDL_Log("Failed to load player");
+        return false;
+    }
+    // Load texture cho nhan vat luc di chuyen
+    if (!player->loadTextureWalking("../assets/entities/player_walking.png", "playerWalking", renderer)) {
         SDL_Log("Failed to load player");
         return false;
     }
@@ -107,8 +109,7 @@ void Game::update() {
 }
 
 void Game::render() {
-    // Xóa màn hình với màu đen
-    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+    SDL_SetRenderDrawColor(renderer, 102,102,201,0);
     SDL_RenderClear(renderer);
 
     // render nhan vat
