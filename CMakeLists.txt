@@ -18,7 +18,11 @@ add_executable(${PROJECT_NAME} src/main.cpp
         src/Game.cpp
         src/Game.h
         src/graphics/TextureManager.cpp
-        src/graphics/TextureManager.h)
+        src/graphics/TextureManager.h
+        src/entities/Bullet.cpp
+        src/entities/Bullet.h
+        src/entities/Enemy.cpp
+        src/entities/Enemy.h)
 
 # --- SDL2 SETUP ---
 set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/modules)

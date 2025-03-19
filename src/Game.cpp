@@ -7,13 +7,15 @@
 using namespace std;
 
 Game::Game() : window(nullptr), renderer(nullptr), player(nullptr), running(false),
-               screenWidth(0), screenHeight(0) {}
+               screenWidth(0), screenHeight(0), gameOverState(false), nextEnemySpawn(0.0f) {
+    rng.seed(std::random_device()());
+}
 
 Game::~Game() {
     clean();
 }
 
-bool Game::init(const std::string& title, int width, int height, bool fullscreen) {
+bool Game::init(const string& title, int width, int height, bool fullscreen) {
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
         SDL_Log("SDL_Init Error: %s", SDL_GetError());
         return false;
@@ -69,27 +71,48 @@ bool Game::init(const std::string& title, int width, int height, bool fullscreen
 
     // khoi tao timer de tinh thoi gian
     timer.start();
+    enemySpawnTimer.start();
+
+    // enemy se duoc spawn tu 2 den 4 giay
+    uniform_real_distribution<float> dist(2.0f, 4.0f);
+    nextEnemySpawn = dist(rng);
 
     this->running = true;
+    this->gameOverState = false;
     return this->running;
 }
 
 
 bool Game::loadAssets() {
-    // Load texture cho nhan vat luc dung im
+    if (!loadTextureBackground("../assets/background/background.png", "background", renderer)) {
+        SDL_Log("Failed to load background");
+    } else {
+        SDL_Log("Loaded background successful");
+    }
+
+    // Load texture cho nhan vat
     if (!player->loadTexture("../assets/entities/player.png", "player", renderer)) {
         SDL_Log("Failed to load player");
         return false;
+    } else {
+        SDL_Log("Loaded player successful");
     }
-    // Load texture cho nhan vat luc di chuyen
-    if (!player->loadTextureWalking("../assets/entities/player_walking.png", "playerWalking", renderer)) {
-        SDL_Log("Failed to load player");
+    string enemyRandomFilePath = "../assets/entities/enemy1.png";
+    if (!TextureManager::Instance()->load(enemyRandomFilePath , "enemy", renderer)) {
+        SDL_Log("Failed to load enemy texture");
         return false;
     }
-    SDL_Log("Loaded player successful");
+    SDL_Log("Loaded enemy texture successful");
     return true;
 }
 
+bool Game::loadTextureBackground(const string& filePath, const string& id, SDL_Renderer* renderer) {
+    if (TextureManager::Instance()->load(filePath, id, renderer)) {
+        backgroundTextureID = id;
+        return true;
+    }
+    return false;
+}
 // Game Loop
 void Game::run() {
     while (running) {
@@ -105,18 +128,121 @@ void Game::handleEvents() {
 }
 
 void Game::update() {
+    if (gameOverState) return;
+    // update player
     player->update(timer.getDeltaTime());
+
+    // spawn enemy
+    enemySpawnTimer.tick();
+    if (enemySpawnTimer.getElapsedTime() >= nextEnemySpawn) {
+        spawnEnemy();
+        enemySpawnTimer.start();
+
+        // Set next spawn time (2-4 seconds)
+        uniform_real_distribution<float> dist(2.0f, 4.0f);
+        nextEnemySpawn = dist(rng);
+    }
+
+    // Update enemies
+    for (auto& enemy : enemies) {
+        if (enemy->isActive()) {
+            enemy->update(timer.getDeltaTime());
+            enemy->setTarget(player->getPosition().x, player->getPosition().y);
+            // Check collision with player
+            if (checkCollision(player->getRect(), enemy->getRect())) {
+                gameOver();
+                return;
+            }
+        }
+    }
 }
 
 void Game::render() {
     SDL_SetRenderDrawColor(renderer, 102,102,201,0);
     SDL_RenderClear(renderer);
-
+    // render background
+    if (!backgroundTextureID.empty()) {
+        TextureManager::Instance()->draw(backgroundTextureID, 0, 0, screenWidth, screenHeight, renderer);
+    }
     // render nhan vat
     player->render(renderer);
 
+    // render enemies
+    for (auto& enemy : enemies) {
+        if (enemy->isActive()) {
+            enemy->render(renderer);
+        }
+    }
+
+    // Game over state
+    if (gameOverState) {
+        TextureManager::Instance()->clearFromTextureMap(backgroundTextureID);
+    }
+
     // hien thi hinh anh
     SDL_RenderPresent(renderer);
+}
+
+void Game::spawnEnemy() {
+    // Find an inactive enemy or create a new one if there's space
+    Enemy* enemy = nullptr;
+    for (auto& e : enemies) {
+        if (!e->isActive()) {
+            enemy = e;
+            break;
+        }
+    }
+
+    if (enemy == nullptr) {
+        enemy = new Enemy(0, 0, 64, 64);
+        enemy->loadTexture("../assets/entities/enemy" + to_string(rand() % 3 + 1) + ".png", "enemy", renderer);
+        enemies.push_back(enemy);
+    }
+
+    if (enemy) {
+        // Randomly choose a side to spawn from
+        std::uniform_int_distribution<int> sideDist(0, 3);
+        int side = sideDist(rng);
+
+        float x = 0, y = 0;
+
+        // Determine spawn position based on side
+        switch(side) {
+            case 0: // Top
+                x = std::uniform_real_distribution<float>(0.0f, static_cast<float>(screenWidth))(rng);
+                y = -50.0f;
+                break;
+            case 1: // Right
+                x = screenWidth + 50.0f;
+                y = std::uniform_real_distribution<float>(0.0f, static_cast<float>(screenHeight))(rng);
+                break;
+            case 2: // Bottom
+                x = std::uniform_real_distribution<float>(0.0f, static_cast<float>(screenWidth))(rng);
+                y = screenHeight + 50.0f;
+                break;
+            case 3: // Left
+                x = -50.0f;
+                y = std::uniform_real_distribution<float>(0.0f, static_cast<float>(screenHeight))(rng);
+                break;
+        }
+
+        enemy->setPosition(x, y);
+        enemy->setActive(true);
+    }
+}
+
+bool Game::checkCollision(const SDL_Rect& a, const SDL_Rect& b) {
+    // Check if two rectangles overlap
+    return (a.x < b.x + b.w - 20 &&
+            a.x + a.w - 20 > b.x &&
+            a.y < b.y + b.h - 20 &&
+            a.y + a.h - 20 > b.y);
+}
+
+void Game::gameOver() {
+    SDL_Log("Game Over!");
+    gameOverState = true;
+
 }
 
 void Game::clean() {

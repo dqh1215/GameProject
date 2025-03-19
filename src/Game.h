@@ -9,6 +9,7 @@
 #include <bits/stdc++.h>
 #include "core/Timer.h"
 #include "entities/Character.h"
+#include "entities/Enemy.h"
 #include "input/InputHandler.h"
 #include "graphics/TextureManager.h"
 using namespace std;
@@ -23,23 +24,30 @@ public:
     void run();
     void clean();
     bool loadTextureBackground(const string& filePath, const string& id, SDL_Renderer* renderer);
-
 private:
     void update();
     void render();
     void handleEvents();
     bool loadAssets();
+    void spawnEnemy();
+    bool checkCollision(const SDL_Rect& a, const SDL_Rect& b);
+    void gameOver();
 
+    string backgroundTextureID;
     SDL_Window* window;
     SDL_Renderer* renderer;
 
     Timer timer;
+    Timer enemySpawnTimer;
     Character* player;
     InputHandler inputHandler;
-
+    vector<Enemy*> enemies;
     bool running;
     int screenWidth;
     int screenHeight;
+    bool gameOverState;
+    float nextEnemySpawn;
+    mt19937 rng;
 };
 
 #endif //GAME_H

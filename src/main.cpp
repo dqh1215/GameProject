@@ -10,8 +10,10 @@ int main(int argc, char* argv[]) {
         SDL_Log("Failed to initialize SDL");
         return 0;
     }
+    SDL_Log("minhtranglavocuadinhquanghuy");
 
     game.run();
 
+    game.clean();
     return 0;
 }

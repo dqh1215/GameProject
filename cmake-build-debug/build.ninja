@@ -185,7 +185,41 @@ build CMakeFiles/PROJECT_NAME.dir/src/graphics/TextureManager.cpp.obj: CXX_COMPI
   OBJECT_FILE_DIR = CMakeFiles\PROJECT_NAME.dir\src\graphics
   dyndep = CMakeFiles/PROJECT_NAME.dir/CXX.dd
 
-build CMakeFiles/PROJECT_NAME.dir/CXX.dd | D$:/GameProject/cmake-build-debug/CMakeFiles/PROJECT_NAME.dir/CXXModules.json CMakeFiles/PROJECT_NAME.dir/src/main.cpp.obj.modmap CMakeFiles/PROJECT_NAME.dir/src/core/Vector2D.cpp.obj.modmap CMakeFiles/PROJECT_NAME.dir/src/core/Timer.cpp.obj.modmap CMakeFiles/PROJECT_NAME.dir/src/entities/Entity.cpp.obj.modmap CMakeFiles/PROJECT_NAME.dir/src/entities/Character.cpp.obj.modmap CMakeFiles/PROJECT_NAME.dir/src/input/InputHandler.cpp.obj.modmap CMakeFiles/PROJECT_NAME.dir/src/Game.cpp.obj.modmap CMakeFiles/PROJECT_NAME.dir/src/graphics/TextureManager.cpp.obj.modmap: CXX_DYNDEP__PROJECT_NAME_Debug CMakeFiles/PROJECT_NAME.dir/src/main.cpp.obj.ddi CMakeFiles/PROJECT_NAME.dir/src/core/Vector2D.cpp.obj.ddi CMakeFiles/PROJECT_NAME.dir/src/core/Timer.cpp.obj.ddi CMakeFiles/PROJECT_NAME.dir/src/entities/Entity.cpp.obj.ddi CMakeFiles/PROJECT_NAME.dir/src/entities/Character.cpp.obj.ddi CMakeFiles/PROJECT_NAME.dir/src/input/InputHandler.cpp.obj.ddi CMakeFiles/PROJECT_NAME.dir/src/Game.cpp.obj.ddi CMakeFiles/PROJECT_NAME.dir/src/graphics/TextureManager.cpp.obj.ddi | D$:/GameProject/cmake-build-debug/CMakeFiles/PROJECT_NAME.dir/CXXDependInfo.json
+build CMakeFiles/PROJECT_NAME.dir/src/entities/Bullet.cpp.obj.ddi: CXX_SCAN__PROJECT_NAME_Debug D$:/GameProject/src/entities/Bullet.cpp || cmake_object_order_depends_target_PROJECT_NAME
+  DEP_FILE = CMakeFiles\PROJECT_NAME.dir\src\entities\Bullet.cpp.obj.ddi.d
+  DYNDEP_INTERMEDIATE_FILE = CMakeFiles\PROJECT_NAME.dir\src\entities\Bullet.cpp.obj.ddi
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  INCLUDES = -ID:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_image/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_ttf/x86_64-w64-mingw32/include/SDL2
+  OBJ_FILE = CMakeFiles\PROJECT_NAME.dir\src\entities\Bullet.cpp.obj
+  PREPROCESSED_OUTPUT_FILE = CMakeFiles\PROJECT_NAME.dir\src\entities\Bullet.cpp.obj.ddi.i
+
+build CMakeFiles/PROJECT_NAME.dir/src/entities/Bullet.cpp.obj: CXX_COMPILER__PROJECT_NAME_scanned_Debug D$:/GameProject/src/entities/Bullet.cpp | CMakeFiles/PROJECT_NAME.dir/src/entities/Bullet.cpp.obj.modmap || cmake_object_order_depends_target_PROJECT_NAME CMakeFiles/PROJECT_NAME.dir/CXX.dd
+  DEP_FILE = CMakeFiles\PROJECT_NAME.dir\src\entities\Bullet.cpp.obj.d
+  DYNDEP_MODULE_MAP_FILE = CMakeFiles\PROJECT_NAME.dir\src\entities\Bullet.cpp.obj.modmap
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  INCLUDES = -ID:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_image/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_ttf/x86_64-w64-mingw32/include/SDL2
+  OBJECT_DIR = CMakeFiles\PROJECT_NAME.dir
+  OBJECT_FILE_DIR = CMakeFiles\PROJECT_NAME.dir\src\entities
+  dyndep = CMakeFiles/PROJECT_NAME.dir/CXX.dd
+
+build CMakeFiles/PROJECT_NAME.dir/src/entities/Enemy.cpp.obj.ddi: CXX_SCAN__PROJECT_NAME_Debug D$:/GameProject/src/entities/Enemy.cpp || cmake_object_order_depends_target_PROJECT_NAME
+  DEP_FILE = CMakeFiles\PROJECT_NAME.dir\src\entities\Enemy.cpp.obj.ddi.d
+  DYNDEP_INTERMEDIATE_FILE = CMakeFiles\PROJECT_NAME.dir\src\entities\Enemy.cpp.obj.ddi
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  INCLUDES = -ID:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_image/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_ttf/x86_64-w64-mingw32/include/SDL2
+  OBJ_FILE = CMakeFiles\PROJECT_NAME.dir\src\entities\Enemy.cpp.obj
+  PREPROCESSED_OUTPUT_FILE = CMakeFiles\PROJECT_NAME.dir\src\entities\Enemy.cpp.obj.ddi.i
+
+build CMakeFiles/PROJECT_NAME.dir/src/entities/Enemy.cpp.obj: CXX_COMPILER__PROJECT_NAME_scanned_Debug D$:/GameProject/src/entities/Enemy.cpp | CMakeFiles/PROJECT_NAME.dir/src/entities/Enemy.cpp.obj.modmap || cmake_object_order_depends_target_PROJECT_NAME CMakeFiles/PROJECT_NAME.dir/CXX.dd
+  DEP_FILE = CMakeFiles\PROJECT_NAME.dir\src\entities\Enemy.cpp.obj.d
+  DYNDEP_MODULE_MAP_FILE = CMakeFiles\PROJECT_NAME.dir\src\entities\Enemy.cpp.obj.modmap
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  INCLUDES = -ID:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_image/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_ttf/x86_64-w64-mingw32/include/SDL2
+  OBJECT_DIR = CMakeFiles\PROJECT_NAME.dir
+  OBJECT_FILE_DIR = CMakeFiles\PROJECT_NAME.dir\src\entities
+  dyndep = CMakeFiles/PROJECT_NAME.dir/CXX.dd
+
+build CMakeFiles/PROJECT_NAME.dir/CXX.dd | D$:/GameProject/cmake-build-debug/CMakeFiles/PROJECT_NAME.dir/CXXModules.json CMakeFiles/PROJECT_NAME.dir/src/main.cpp.obj.modmap CMakeFiles/PROJECT_NAME.dir/src/core/Vector2D.cpp.obj.modmap CMakeFiles/PROJECT_NAME.dir/src/core/Timer.cpp.obj.modmap CMakeFiles/PROJECT_NAME.dir/src/entities/Entity.cpp.obj.modmap CMakeFiles/PROJECT_NAME.dir/src/entities/Character.cpp.obj.modmap CMakeFiles/PROJECT_NAME.dir/src/input/InputHandler.cpp.obj.modmap CMakeFiles/PROJECT_NAME.dir/src/Game.cpp.obj.modmap CMakeFiles/PROJECT_NAME.dir/src/graphics/TextureManager.cpp.obj.modmap CMakeFiles/PROJECT_NAME.dir/src/entities/Bullet.cpp.obj.modmap CMakeFiles/PROJECT_NAME.dir/src/entities/Enemy.cpp.obj.modmap: CXX_DYNDEP__PROJECT_NAME_Debug CMakeFiles/PROJECT_NAME.dir/src/main.cpp.obj.ddi CMakeFiles/PROJECT_NAME.dir/src/core/Vector2D.cpp.obj.ddi CMakeFiles/PROJECT_NAME.dir/src/core/Timer.cpp.obj.ddi CMakeFiles/PROJECT_NAME.dir/src/entities/Entity.cpp.obj.ddi CMakeFiles/PROJECT_NAME.dir/src/entities/Character.cpp.obj.ddi CMakeFiles/PROJECT_NAME.dir/src/input/InputHandler.cpp.obj.ddi CMakeFiles/PROJECT_NAME.dir/src/Game.cpp.obj.ddi CMakeFiles/PROJECT_NAME.dir/src/graphics/TextureManager.cpp.obj.ddi CMakeFiles/PROJECT_NAME.dir/src/entities/Bullet.cpp.obj.ddi CMakeFiles/PROJECT_NAME.dir/src/entities/Enemy.cpp.obj.ddi | D$:/GameProject/cmake-build-debug/CMakeFiles/PROJECT_NAME.dir/CXXDependInfo.json
 
 
 # =============================================================================
@@ -195,7 +229,7 @@ build CMakeFiles/PROJECT_NAME.dir/CXX.dd | D$:/GameProject/cmake-build-debug/CMa
 #############################################
 # Link the executable PROJECT_NAME.exe
 
-build PROJECT_NAME.exe: CXX_EXECUTABLE_LINKER__PROJECT_NAME_Debug CMakeFiles/PROJECT_NAME.dir/src/main.cpp.obj CMakeFiles/PROJECT_NAME.dir/src/core/Vector2D.cpp.obj CMakeFiles/PROJECT_NAME.dir/src/core/Timer.cpp.obj CMakeFiles/PROJECT_NAME.dir/src/entities/Entity.cpp.obj CMakeFiles/PROJECT_NAME.dir/src/entities/Character.cpp.obj CMakeFiles/PROJECT_NAME.dir/src/input/InputHandler.cpp.obj CMakeFiles/PROJECT_NAME.dir/src/Game.cpp.obj CMakeFiles/PROJECT_NAME.dir/src/graphics/TextureManager.cpp.obj | C$:/mingw64/bin/libSDL2main.a C$:/mingw64/bin/libSDL2.dll.a D$:/GameProject/SDL2/SDL2_image/x86_64-w64-mingw32/lib/libSDL2_image.dll.a D$:/GameProject/SDL2/SDL2_ttf/x86_64-w64-mingw32/lib/libSDL2_ttf.dll.a
+build PROJECT_NAME.exe: CXX_EXECUTABLE_LINKER__PROJECT_NAME_Debug CMakeFiles/PROJECT_NAME.dir/src/main.cpp.obj CMakeFiles/PROJECT_NAME.dir/src/core/Vector2D.cpp.obj CMakeFiles/PROJECT_NAME.dir/src/core/Timer.cpp.obj CMakeFiles/PROJECT_NAME.dir/src/entities/Entity.cpp.obj CMakeFiles/PROJECT_NAME.dir/src/entities/Character.cpp.obj CMakeFiles/PROJECT_NAME.dir/src/input/InputHandler.cpp.obj CMakeFiles/PROJECT_NAME.dir/src/Game.cpp.obj CMakeFiles/PROJECT_NAME.dir/src/graphics/TextureManager.cpp.obj CMakeFiles/PROJECT_NAME.dir/src/entities/Bullet.cpp.obj CMakeFiles/PROJECT_NAME.dir/src/entities/Enemy.cpp.obj | C$:/mingw64/bin/libSDL2main.a C$:/mingw64/bin/libSDL2.dll.a D$:/GameProject/SDL2/SDL2_image/x86_64-w64-mingw32/lib/libSDL2_image.dll.a D$:/GameProject/SDL2/SDL2_ttf/x86_64-w64-mingw32/lib/libSDL2_ttf.dll.a
   FLAGS = -g
   LINK_LIBRARIES = -lmingw32  -mwindows  C:/mingw64/bin/libSDL2main.a  C:/mingw64/bin/libSDL2.dll.a  D:/GameProject/SDL2/SDL2_image/x86_64-w64-mingw32/lib/libSDL2_image.dll.a  D:/GameProject/SDL2/SDL2_ttf/x86_64-w64-mingw32/lib/libSDL2_ttf.dll.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\PROJECT_NAME.dir

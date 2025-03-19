@@ -17,6 +17,8 @@ public:
     void setTarget(float x, float y);
     bool isMoving() const;
 
+    Vector2D& getPosition();
+
     bool loadTextureWalking(const string& filePath, const string& id, SDL_Renderer* renderer);
     bool loadTexture(const string& filePath, const string& id, SDL_Renderer* renderer);
 private:
@@ -29,7 +31,6 @@ private:
     int currentFrame;
     int currentRow;
     SDL_RendererFlip flip;
-    Vector2D lastDirection;
 };
 
 

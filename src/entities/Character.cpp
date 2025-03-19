@@ -11,26 +11,26 @@ Character::Character(float x, float y, int width, int height)
     : Entity(x, y, width, height),
     target(x, y),
     moving(false),
-    speed(200.0f),
+    speed(250.0f),
     textureID(""),
     frameWidth(width),
     frameHeight(height),
     currentFrame(0),
     currentRow(0),
-    flip(SDL_FLIP_NONE),
-    lastDirection(0, 1) // mac dinh la huong xuong
-{}
+    flip(SDL_FLIP_NONE){}
 
 void Character::update(float deltaTime) {
     if (!moving) {
         currentFrame = int(SDL_GetTicks() / 100) % 4;
+        currentRow = 0;
     }
     else {
         Vector2D direction = target - position;
         float distance = direction.length();
+        currentRow = 1;
 
         // dung lai khi den vi tri can den
-        if (distance < 2.0f) {
+        if (distance < 1.0f) {
             position = target;
             moving = false;
             updateRect();
@@ -41,54 +41,33 @@ void Character::update(float deltaTime) {
         Vector2D directionNormalized = direction.normalize();
         position += directionNormalized * speed * deltaTime;
 
-        currentFrame = int(SDL_GetTicks() / 100) % 4;
+        currentFrame = int(SDL_GetTicks() / 100) % 6;
 
-        if (distance > 0) {
-            lastDirection = directionNormalized;
-        }
 
         // Xác định hướng nhìn dựa vào hướng di chuyển
-        if (abs(directionNormalized.x) > abs(directionNormalized.y)) {
-            // Di chuyen sang ngang
-            currentRow = 0;
-            if (directionNormalized.x > 0) {
-                flip = SDL_FLIP_NONE; // khong flip khi di sang phai
-            } else {
-                flip = SDL_FLIP_HORIZONTAL; // flip ngang khi di sang trai
-            }
-        } else {
-            // Di chuyen doc len xuong
-            currentRow = 0;
-            // Không flip khi di chuyển lên/xuống
-            flip = (lastDirection.x > 0) ? SDL_FLIP_NONE : SDL_FLIP_HORIZONTAL;
+        if (directionNormalized.x > 0) {
+            flip = SDL_FLIP_NONE;
+        } else if (directionNormalized.x < 0) {
+            flip = SDL_FLIP_HORIZONTAL;
         }
         updateRect();
     }
 
 }
 
+Vector2D& Character::getPosition() {
+    return position;
+}
 void Character::render(SDL_Renderer* renderer) {
-    // Ve texture voi fram hien tai va flip thich hop
-    if (this->isMoving()) {
-        TextureManager::Instance()->drawFrame(
-        "playerWalking",
-        rect.x, rect.y,
-        frameWidth, frameHeight,
-        currentRow, currentFrame,
-        renderer,
-        flip
-        );
-    } else {
-        TextureManager::Instance()->drawFrame(
-        "player",
-        rect.x, rect.y,
-        frameWidth, frameHeight,
-        currentRow, currentFrame,
-        renderer,
-        flip
-        );
-    }
-
+    // Ve texture voi frame hien tai va flip thich hop
+    TextureManager::Instance()->drawFrame(
+    "player",
+    rect.x, rect.y,
+    frameWidth, frameHeight,
+    currentRow, currentFrame,
+    renderer,
+    flip
+    );
 }
 
 void Character::setTarget(float x, float y) {
