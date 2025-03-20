@@ -10,7 +10,7 @@ Bullet::Bullet(float x, float y, int width, int height)
       direction(0, 0),
       speed(500.0f),
       textureID(""),
-      active(true),
+      active(false),
       lifetime(0.0f),
       maxLifetime(2.0f),
       flip(SDL_FLIP_NONE)

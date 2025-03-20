@@ -6,7 +6,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-Game::Game() : window(nullptr), renderer(nullptr), player(nullptr), running(false),
+Game::Game() : window(nullptr), renderer(nullptr), player(nullptr), running(false), bullet(nullptr),
                screenWidth(0), screenHeight(0), gameOverState(false), nextEnemySpawn(0.0f), mouseX(0), mouseY(0) {
     rng.seed(std::random_device()());
 }
@@ -149,8 +149,10 @@ void Game::renderCooldowns() {
 }
 
 void Game::shootProjectile(const Vector2D &startPos, const Vector2D &direction) {
-    bullet = new Bullet(0, 0, 9, 13);
-    bullet->loadTexture("../assets/entities/bullet.png", "bullet", renderer);
+    if (bullet == nullptr) {
+        bullet = new Bullet(0, 0, 199, 199);
+        bullet->loadTexture("../assets/entities/bullet.png", "bullet", renderer);
+    }
     bullet->fire(startPos, direction);
 }
 
@@ -203,14 +205,14 @@ void Game::update() {
     }
 
     // if (bullet->isActive()) {
-    //     bullet->update(timer.getDeltaTime());
-    //     for (auto& enemy : enemies) {
-    //         if (enemy->isActive() && checkCollision(enemy->getRect(), bullet->getRect())) {
-    //             bullet->setActive(false);
-    //             enemy->setActive(false);
-    //             break;
-    //         }
-    //     }
+        bullet->update(timer.getDeltaTime());
+        // for (auto& enemy : enemies) {
+        //     if (enemy->isActive() && checkCollision(enemy->getRect(), bullet->getRect())) {
+        //         bullet->setActive(false);
+        //         enemy->setActive(false);
+        //         break;
+        //     }
+        // }
     // }
 }
 
@@ -231,9 +233,9 @@ void Game::render() {
         }
     }
 
-    // if (bullet->isActive()) {
-    //     bullet->render(renderer);
-    // }
+    if (bullet != nullptr && bullet->isActive()) {
+        bullet->render(renderer);
+    }
 
     renderCooldowns();
     // Game over state
@@ -313,7 +315,10 @@ void Game::clean() {
         player = nullptr;
     }
 
-    delete bullet;
+    if (this->bullet) {
+        delete bullet;
+        bullet = nullptr;
+    }
 
     TextureManager::Instance()->clean();
 

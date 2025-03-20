@@ -4,7 +4,7 @@
 
 #include "InputHandler.h"
 #include "../Game.h"
-InputHandler::InputHandler() : mouseButtonDown(false) {}
+InputHandler::InputHandler() : mouseButtonDown(false), QKeyDown(false), EKeyDown(false) {}
 
 void InputHandler::handleEvents(bool& running, Character& character, Game& game) {
     SDL_Event event;
@@ -30,6 +30,7 @@ void InputHandler::handleEvents(bool& running, Character& character, Game& game)
 
                     game.shootProjectile(playerPos, direction);
                 }
+
             }
             break;
 
