@@ -43,37 +43,39 @@ bool TextureManager::load(const string &fileName, const string &id, SDL_Renderer
     return true;
 }
 
-void TextureManager::draw(const string &id, int x, int y, int width, int height,
+void TextureManager::draw(const string &id, int x, int y, int displayWidth, int displayHeight,
+                             int frameWidth, int frameHeight,
                           SDL_Renderer *renderer, SDL_RendererFlip flip) {
     SDL_Rect srcRect;
     SDL_Rect destRect;
 
     srcRect.x = 0;
     srcRect.y = 0;
-    srcRect.w = width;
-    destRect.w = width;
-    srcRect.h = height;
-    destRect.h = height;
+    destRect.w = displayWidth;
+    destRect.h = displayHeight;
+    srcRect.w = frameWidth;
+    srcRect.h = frameHeight;
     destRect.x = x;
     destRect.y = y;
 
     SDL_RenderCopyEx(renderer, textureMap[id], &srcRect, &destRect, 0, nullptr, flip);
 }
 
-void TextureManager::drawFrame(const string& id, int x, int y, int width, int height,
-                               int currentRow, int currentFrame, SDL_Renderer* renderer,
-                               SDL_RendererFlip flip) {
+void TextureManager::drawFrame(const string& id, int x, int y, int displayWidth, int displayHeight,
+                             int currentRow, int currentFrame, int frameWidth, int frameHeight,
+                             SDL_Renderer* renderer, SDL_RendererFlip flip) {
     SDL_Rect srcRect;
     SDL_Rect destRect;
 
-    srcRect.x = width * currentFrame;
-    srcRect.y = height * currentRow;
-    srcRect.w = width;
-    destRect.w = width;
-    srcRect.h = height;
-    destRect.h = height;
+    srcRect.x = frameWidth * currentFrame;
+    srcRect.y = frameHeight * currentRow;
+    srcRect.w = frameWidth;
+    srcRect.h = frameHeight;
+
     destRect.x = x;
     destRect.y = y;
+    destRect.w = displayWidth;
+    destRect.h = displayHeight;
 
     SDL_RenderCopyEx(renderer, textureMap[id], &srcRect, &destRect, 0, nullptr, flip);
 }

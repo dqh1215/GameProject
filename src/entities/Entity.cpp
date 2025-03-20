@@ -4,10 +4,12 @@
 
 #include "Entity.h"
 
-Entity::Entity(float x, float y, int width, int height)
-    : position(x, y), velocity(0, 0) {
-    rect.w = width;
-    rect.h = height;
+Entity::Entity(float x, float y, int pWidth, int pHeight, int vWidth, int vHeight)
+    : position(x, y), velocity(0, 0),
+      physicalWidth(pWidth), physicalHeight(pHeight),
+      visualWidth(vWidth), visualHeight(vHeight) {
+    rect.w = physicalWidth;
+    rect.h = physicalHeight;
     updateRect();
 }
 

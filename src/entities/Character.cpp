@@ -9,7 +9,7 @@
 using namespace std;
 
 Character::Character(float x, float y, int width, int height)
-    : Entity(x, y, width, height),
+    : Entity(x, y, width, height, 64, 64),
     target(x, y),
     moving(false),
     speed(250.0f),
@@ -73,12 +73,13 @@ Vector2D& Character::getPosition() {
 void Character::render(SDL_Renderer* renderer) {
     // Ve texture voi frame hien tai va flip thich hop
     TextureManager::Instance()->drawFrame(
-    "player",
-    rect.x, rect.y,
-    frameWidth, frameHeight,
-    currentRow, currentFrame,
-    renderer,
-    flip
+        textureID,
+        rect.x, rect.y,
+        visualWidth, visualHeight,       // Display size
+        currentRow, currentFrame,
+        frameWidth, frameHeight,         // Source frame size
+        renderer,
+        flip
     );
 }
 

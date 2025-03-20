@@ -14,26 +14,33 @@ void InputHandler::handleEvents(bool& running, Character& character, Game& game)
         switch (event.type) {
             case SDL_QUIT:
                 running = false;
-            break;
+                break;
 
             case SDL_KEYDOWN:
                 if (event.key.keysym.sym == SDLK_ESCAPE) {
                     running = false;
                 }
-            else if (event.key.keysym.sym == SDLK_q && !QKeyDown) {
-                QKeyDown = true;
-                if (character.canShoot()) {
-                    character.shoot(mouseX, mouseY);
+                else if (event.key.keysym.sym == SDLK_q && !QKeyDown) {
+                    QKeyDown = true;
+                    if (character.canShoot()) {
+                        character.shoot(mouseX, mouseY);
 
-                    Vector2D playerPos = character.getPosition();
-                    Vector2D direction(mouseX - playerPos.x, mouseY - playerPos.y);
+                        Vector2D playerPos = character.getPosition();
+                        Vector2D direction(mouseX - playerPos.x, mouseY - playerPos.y);
 
-                    game.shootProjectile(playerPos, direction);
+                        game.shootProjectile(playerPos, direction);
+                    }
                 }
+                break;
 
-            }
-            break;
-
+            case SDL_KEYUP:
+                if (event.key.keysym.sym == SDLK_q) {
+                    QKeyDown = false;
+                }
+                else if (event.key.keysym.sym == SDLK_e) {
+                    EKeyDown = false;
+                }
+                break;
             case SDL_MOUSEBUTTONDOWN:
                 if (event.button.button == SDL_BUTTON_RIGHT) {
                     character.setTarget(event.button.x, event.button.y);

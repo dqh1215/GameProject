@@ -150,10 +150,17 @@ void Game::renderCooldowns() {
 
 void Game::shootProjectile(const Vector2D &startPos, const Vector2D &direction) {
     if (bullet == nullptr) {
-        bullet = new Bullet(0, 0, 199, 199);
-        bullet->loadTexture("../assets/entities/bullet.png", "bullet", renderer);
+        bullet = new Bullet(0, 0, 251, 144);
+        if (!bullet->loadTexture("../assets/entities/bullet.png", "bullet", renderer)) {
+            SDL_Log("Failed to load bullet texture");
+            delete bullet;
+            bullet = nullptr;
+            return;
+        }
     }
-    bullet->fire(startPos, direction);
+    if(bullet != nullptr){
+        bullet->fire(startPos, direction);
+    }
 }
 
 void Game::teleportPlayer(float x, float y) {
@@ -204,16 +211,16 @@ void Game::update() {
         }
     }
 
-    // if (bullet->isActive()) {
+    if (bullet != nullptr && bullet->isActive()) {
         bullet->update(timer.getDeltaTime());
-        // for (auto& enemy : enemies) {
-        //     if (enemy->isActive() && checkCollision(enemy->getRect(), bullet->getRect())) {
-        //         bullet->setActive(false);
-        //         enemy->setActive(false);
-        //         break;
-        //     }
-        // }
-    // }
+        for (auto& enemy : enemies) {
+            if (enemy->isActive() && checkCollision(enemy->getRect(), bullet->getRect())) {
+                bullet->setActive(false);
+                enemy->setActive(false);
+                break;
+            }
+        }
+    }
 }
 
 void Game::render() {
@@ -221,7 +228,7 @@ void Game::render() {
     SDL_RenderClear(renderer);
     // render background
     if (!backgroundTextureID.empty()) {
-        TextureManager::Instance()->draw(backgroundTextureID, 0, 0, screenWidth, screenHeight, renderer);
+        TextureManager::Instance()->draw(backgroundTextureID, 0, 0, screenWidth, screenHeight,screenWidth, screenHeight, renderer);
     }
     // render nhan vat
     player->render(renderer);

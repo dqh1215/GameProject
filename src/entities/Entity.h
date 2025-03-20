@@ -14,7 +14,7 @@ using namespace std;
 
 class Entity {
 public:
-    Entity(float x, float y, int width, int height);
+    Entity(float x, float y, int pWidth, int pHeight, int vWidth, int vHeight);
     virtual ~Entity() = default;
 
     virtual void update(float deltaTime) = 0;
@@ -27,6 +27,10 @@ public:
     SDL_Rect getRect() const;
 
 protected:
+    int physicalWidth;
+    int physicalHeight;
+    int visualWidth;
+    int visualHeight;
     Vector2D position;
     Vector2D velocity;
     SDL_Rect rect;

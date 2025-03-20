@@ -21,11 +21,11 @@ public:
 
     bool init();
     bool load(const string& fileName, const string& id, SDL_Renderer* renderer);
-    void draw(const string& id, int x, int y, int width, int height,
-              SDL_Renderer* renderer, SDL_RendererFlip flip = SDL_FLIP_NONE);
-    void drawFrame(const string& id, int x, int y, int width, int height,
-                  int currentRow, int currentFrame, SDL_Renderer* renderer,
-                  SDL_RendererFlip flip = SDL_FLIP_NONE);
+    void draw(const string &id, int x, int y, int displayWidth, int displayHeight, int frameWidth, int frameHeight,
+                          SDL_Renderer *renderer, SDL_RendererFlip flip = SDL_FLIP_NONE);
+    void drawFrame(const string& id, int x, int y, int displayWidth, int displayHeight,
+                             int currentRow, int currentFrame, int frameWidth, int frameHeight,
+                             SDL_Renderer* renderer, SDL_RendererFlip flip = SDL_FLIP_NONE);
     void clearFromTextureMap(const string& id);
     void clean();
 private:

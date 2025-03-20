@@ -8,7 +8,7 @@
 using namespace std;
 
 Enemy::Enemy(float x, float y, int width, int height)
-    : Entity(x, y, width, height),
+    : Entity(x, y, width, height, 64, 64),
     target(0, 0),
     active(true),
     speed(150.0f),
@@ -47,8 +47,9 @@ void Enemy::render(SDL_Renderer* renderer) {
     TextureManager::Instance()->drawFrame(
         textureID,
         rect.x, rect.y,
-        frameWidth, frameHeight,
+        visualWidth, visualHeight,       // Display size
         currentRow, currentFrame,
+        frameWidth, frameHeight,         // Source frame size
         renderer,
         flip
     );
