@@ -7,7 +7,7 @@
 using namespace std;
 
 Game::Game() : window(nullptr), renderer(nullptr), player(nullptr), running(false),
-               screenWidth(0), screenHeight(0), gameOverState(false), nextEnemySpawn(0.0f) {
+               screenWidth(0), screenHeight(0), gameOverState(false), nextEnemySpawn(0.0f), mouseX(0), mouseY(0) {
     rng.seed(std::random_device()());
 }
 
@@ -97,12 +97,27 @@ bool Game::loadAssets() {
     } else {
         SDL_Log("Loaded player successful");
     }
+
+    // Load texture cho enemy
     string enemyRandomFilePath = "../assets/entities/enemy1.png";
     if (!TextureManager::Instance()->load(enemyRandomFilePath , "enemy", renderer)) {
         SDL_Log("Failed to load enemy texture");
         return false;
     }
     SDL_Log("Loaded enemy texture successful");
+
+    if (!TextureManager::Instance()->load("../assets/entities/enemy1.png", "enemy", renderer)) {
+        SDL_Log("Failed to load enemy texture");
+        return false;
+    }
+    SDL_Log("Loaded enemy texture successful");
+
+    // Load texture cho bullet
+    if (!TextureManager::Instance()->load("../assets/entities/bullet.png", "bullet", renderer)) {
+        SDL_Log("Failed to load bullet texture");
+        return false;
+    }
+    SDL_Log("Loaded bullet texture successful");
     return true;
 }
 
@@ -113,6 +128,36 @@ bool Game::loadTextureBackground(const string& filePath, const string& id, SDL_R
     }
     return false;
 }
+
+void Game::renderCooldowns() {
+    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+    SDL_Rect shootCooldownRect = {20, 20, 30, 30};
+
+    if (player->canShoot()) {
+        SDL_RenderFillRect(renderer, &shootCooldownRect);
+    } else {
+        SDL_RenderDrawRect(renderer, &shootCooldownRect);
+    }
+
+    SDL_Rect teleportCooldownRect = {60, 20, 30, 30};
+
+    if (player->canTeleport()) {
+        SDL_RenderFillRect(renderer, &teleportCooldownRect);
+    } else {
+        SDL_RenderDrawRect(renderer, &teleportCooldownRect);
+    }
+}
+
+void Game::shootProjectile(const Vector2D &startPos, const Vector2D &direction) {
+    bullet = new Bullet(0, 0, 9, 13);
+    bullet->loadTexture("../assets/entities/bullet.png", "bullet", renderer);
+    bullet->fire(startPos, direction);
+}
+
+void Game::teleportPlayer(float x, float y) {
+    player->teleport(x, y);
+}
+
 // Game Loop
 void Game::run() {
     while (running) {
@@ -124,7 +169,8 @@ void Game::run() {
 }
 
 void Game::handleEvents() {
-    this->inputHandler.handleEvents(this->running, *this->player);
+    SDL_GetMouseState(&mouseX, &mouseY);
+    this->inputHandler.handleEvents(this->running, *this->player, *this);
 }
 
 void Game::update() {
@@ -155,6 +201,17 @@ void Game::update() {
             }
         }
     }
+
+    // if (bullet->isActive()) {
+    //     bullet->update(timer.getDeltaTime());
+    //     for (auto& enemy : enemies) {
+    //         if (enemy->isActive() && checkCollision(enemy->getRect(), bullet->getRect())) {
+    //             bullet->setActive(false);
+    //             enemy->setActive(false);
+    //             break;
+    //         }
+    //     }
+    // }
 }
 
 void Game::render() {
@@ -174,6 +231,11 @@ void Game::render() {
         }
     }
 
+    // if (bullet->isActive()) {
+    //     bullet->render(renderer);
+    // }
+
+    renderCooldowns();
     // Game over state
     if (gameOverState) {
         TextureManager::Instance()->clearFromTextureMap(backgroundTextureID);
@@ -250,6 +312,8 @@ void Game::clean() {
         delete player;
         player = nullptr;
     }
+
+    delete bullet;
 
     TextureManager::Instance()->clean();
 

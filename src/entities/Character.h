@@ -19,7 +19,13 @@ public:
 
     Vector2D& getPosition();
 
-    bool loadTextureWalking(const string& filePath, const string& id, SDL_Renderer* renderer);
+    // Các chiêu thức mới
+    void shoot(float mouseX, float mouseY);
+    void teleport(float mouseX, float mouseY);
+
+    // Thêm cooldown cho các chiêu thức
+    bool canShoot() const;
+    bool canTeleport() const;
     bool loadTexture(const string& filePath, const string& id, SDL_Renderer* renderer);
 private:
     Vector2D target;
@@ -31,6 +37,12 @@ private:
     int currentFrame;
     int currentRow;
     SDL_RendererFlip flip;
+
+    float shootCooldown;
+    float shootTimer;
+    float teleportCooldown;
+    float teleportTimer;
+    float teleportDistance;
 };
 
 

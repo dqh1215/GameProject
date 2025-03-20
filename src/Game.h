@@ -8,6 +8,7 @@
 #include <SDL2/SDL.h>
 #include <bits/stdc++.h>
 #include "core/Timer.h"
+#include "entities/Bullet.h"
 #include "entities/Character.h"
 #include "entities/Enemy.h"
 #include "input/InputHandler.h"
@@ -24,6 +25,8 @@ public:
     void run();
     void clean();
     bool loadTextureBackground(const string& filePath, const string& id, SDL_Renderer* renderer);
+    void shootProjectile(const Vector2D& startPos, const Vector2D& direction);
+    void teleportPlayer(float x, float y);
 private:
     void update();
     void render();
@@ -32,6 +35,8 @@ private:
     void spawnEnemy();
     bool checkCollision(const SDL_Rect& a, const SDL_Rect& b);
     void gameOver();
+    void renderCooldowns();
+
 
     string backgroundTextureID;
     SDL_Window* window;
@@ -42,11 +47,14 @@ private:
     Character* player;
     InputHandler inputHandler;
     vector<Enemy*> enemies;
+    Bullet* bullet;
+
     bool running;
     int screenWidth;
     int screenHeight;
     bool gameOverState;
     float nextEnemySpawn;
+    int mouseX, mouseY;
     mt19937 rng;
 };
 

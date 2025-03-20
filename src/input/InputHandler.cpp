@@ -3,11 +3,13 @@
 //
 
 #include "InputHandler.h"
-
+#include "../Game.h"
 InputHandler::InputHandler() : mouseButtonDown(false) {}
 
-void InputHandler::handleEvents(bool& running, Character& character) {
+void InputHandler::handleEvents(bool& running, Character& character, Game& game) {
     SDL_Event event;
+    int mouseX, mouseY;
+    SDL_GetMouseState(&mouseX, &mouseY);
     while (SDL_PollEvent(&event)) {
         switch (event.type) {
             case SDL_QUIT:
@@ -18,6 +20,17 @@ void InputHandler::handleEvents(bool& running, Character& character) {
                 if (event.key.keysym.sym == SDLK_ESCAPE) {
                     running = false;
                 }
+            else if (event.key.keysym.sym == SDLK_q && !QKeyDown) {
+                QKeyDown = true;
+                if (character.canShoot()) {
+                    character.shoot(mouseX, mouseY);
+
+                    Vector2D playerPos = character.getPosition();
+                    Vector2D direction(mouseX - playerPos.x, mouseY - playerPos.y);
+
+                    game.shootProjectile(playerPos, direction);
+                }
+            }
             break;
 
             case SDL_MOUSEBUTTONDOWN:

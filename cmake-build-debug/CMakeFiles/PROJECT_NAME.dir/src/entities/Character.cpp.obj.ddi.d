@@ -504,6 +504,7 @@ CMakeFiles\PROJECT_NAME.dir\src\entities\Character.cpp.obj.ddi: \
  C:/mingw64/include/c++/14.2.0/barrier \
  C:/mingw64/include/c++/14.2.0/latch \
  C:/mingw64/include/c++/14.2.0/syncstream \
+ D:/GameProject/src/entities/Bullet.h \
  D:/GameProject/src/graphics/TextureManager.h \
  D:/GameProject/SDL2/SDL2_image/x86_64-w64-mingw32/include/SDL2/SDL_image.h \
  D:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2/SDL.h \

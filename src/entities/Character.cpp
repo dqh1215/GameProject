@@ -3,6 +3,7 @@
 //
 
 #include "Character.h"
+#include "Bullet.h"
 #include <bits/stdc++.h>
 #include "../graphics/TextureManager.h"
 using namespace std;
@@ -17,9 +18,20 @@ Character::Character(float x, float y, int width, int height)
     frameHeight(height),
     currentFrame(0),
     currentRow(0),
-    flip(SDL_FLIP_NONE){}
+    flip(SDL_FLIP_NONE),
+    shootCooldown(2.0f),
+    shootTimer(0.0f),
+    teleportCooldown(3.0f),
+    teleportTimer(0.0f),
+    teleportDistance(300.0f) {}
 
 void Character::update(float deltaTime) {
+    if (shootTimer > 0) {
+        shootTimer -= deltaTime;
+    }
+    if (teleportTimer > 0) {
+        teleportTimer -= deltaTime;
+    }
     if (!moving) {
         currentFrame = int(SDL_GetTicks() / 100) % 4;
         currentRow = 0;
@@ -80,13 +92,6 @@ bool Character::isMoving() const {
     return moving;
 }
 
-bool Character::loadTextureWalking(const string& filePath, const string& id, SDL_Renderer* renderer) {
-    if (TextureManager::Instance()->load(filePath, id, renderer)) {
-        textureID = id;
-        return true;
-    }
-    return false;
-}
 
 bool Character::loadTexture(const string& filePath, const string& id, SDL_Renderer* renderer) {
     if (TextureManager::Instance()->load(filePath, id, renderer)) {
@@ -94,4 +99,46 @@ bool Character::loadTexture(const string& filePath, const string& id, SDL_Render
         return true;
     }
     return false;
+}
+
+void Character::shoot(float mouseX, float mouseY) {
+    if (this->canShoot()) {
+        Vector2D mousePos(mouseX, mouseY);
+        Vector2D direction = mousePos - position;
+        if (direction.x > 0) {
+            flip = SDL_FLIP_NONE;
+        } else {
+            flip = SDL_FLIP_HORIZONTAL;
+        }
+        shootTimer = shootCooldown;
+    }
+}
+
+void Character::teleport(float mouseX, float mouseY) {
+    if (this->canTeleport()) {
+        Vector2D mousePos(mouseX, mouseY);
+        Vector2D direction = mousePos - position;
+        float distance = direction.length();
+
+        if (distance > teleportDistance) {
+            Vector2D normalizedDirection = direction.normalize();
+            mousePos = position + (normalizedDirection * teleportDistance);
+        }
+
+        position = mousePos;
+        updateRect();
+
+        moving = false;
+        target = position;
+
+        teleportTimer = teleportCooldown;
+    }
+}
+
+bool Character::canShoot() const {
+    return shootTimer <= 0.0f;
+}
+
+bool Character::canTeleport() const {
+    return teleportTimer <= 0.0f;
 }

@@ -501,8 +501,9 @@ CMakeFiles\PROJECT_NAME.dir\src\main.cpp.obj.ddi: \
  C:/mingw64/include/c++/14.2.0/barrier \
  C:/mingw64/include/c++/14.2.0/latch \
  C:/mingw64/include/c++/14.2.0/syncstream D:/GameProject/src/Game.h \
- D:/GameProject/src/core/Timer.h D:/GameProject/src/entities/Character.h \
+ D:/GameProject/src/core/Timer.h D:/GameProject/src/entities/Bullet.h \
  D:/GameProject/src/entities/Entity.h D:/GameProject/src/core/Vector2D.h \
+ D:/GameProject/src/entities/Character.h \
  D:/GameProject/src/entities/Enemy.h \
  D:/GameProject/src/entities/Character.h \
  D:/GameProject/src/input/InputHandler.h \
