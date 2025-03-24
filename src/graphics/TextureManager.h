@@ -28,6 +28,9 @@ public:
                              SDL_Renderer* renderer, SDL_RendererFlip flip = SDL_FLIP_NONE);
     void clearFromTextureMap(const string& id);
     void clean();
+    SDL_Texture* getTexture(const string& id) {
+        return textureMap[id];
+    }
 private:
     TextureManager() {}
     ~TextureManager() {}

@@ -32,6 +32,7 @@ private:
     int frameHeight;
     bool active;
     float lifetime;
+    float angle;
     float maxLifetime;
     SDL_RendererFlip flip;
 };

@@ -13,6 +13,7 @@ Bullet::Bullet(float x, float y, int width, int height)
       speed(800.0f),
       textureID(""),
       active(false),
+      angle(0),
       lifetime(0.0f),
       maxLifetime(0.75f),
       flip(SDL_FLIP_NONE)
@@ -34,11 +35,26 @@ void Bullet::update(float deltaTime) {
 
 void Bullet::render(SDL_Renderer* renderer) {
     if (!active) return;
+    SDL_Rect srcRect;
+    SDL_Rect destRect;
 
-    TextureManager::Instance()->draw(
-        textureID,
-        rect.x, rect.y, width, height, frameWidth, frameHeight,
+    srcRect.x = 0;
+    srcRect.y = 0;
+    srcRect.w = frameWidth;
+    srcRect.h = frameHeight;
+
+    destRect.x = rect.x;
+    destRect.y = rect.y;
+    destRect.w = width;
+    destRect.h = height;
+
+    SDL_RenderCopyEx(
         renderer,
+        TextureManager::Instance()->getTexture(textureID),
+        &srcRect,
+        &destRect,
+        angle,
+        nullptr,
         flip
     );
 }
@@ -58,12 +74,6 @@ void Bullet::fire(const Vector2D& startPosition, const Vector2D& direction) {
     position = startPosition;
 
     this->direction = direction.normalize();
-
-    if (this->direction.x < 0) {
-        flip = SDL_FLIP_HORIZONTAL;
-    } else {
-        flip = SDL_FLIP_NONE;
-    }
-
+    this->angle = atan2(this->direction.y, this->direction.x) * (180.0 / M_PI);
     updateRect();
 }
