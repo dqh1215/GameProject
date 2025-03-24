@@ -30,6 +30,11 @@ void InputHandler::handleEvents(bool& running, Character& character, Game& game)
 
                         game.shootProjectile(playerPos, direction);
                     }
+                }  else if (event.key.keysym.sym == SDLK_e && !EKeyDown) {
+                    EKeyDown = true;
+                    if (character.canTeleport()) {
+                        character.teleport(mouseX, mouseY);
+                    }
                 }
                 break;
 

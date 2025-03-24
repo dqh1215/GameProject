@@ -9,7 +9,7 @@
 using namespace std;
 
 Character::Character(float x, float y, int width, int height)
-    : Entity(x, y, width, height, 64, 64),
+    : Entity(x, y, 100, 100, width, height),
     target(x, y),
     moving(false),
     speed(250.0f),
@@ -23,7 +23,7 @@ Character::Character(float x, float y, int width, int height)
     shootTimer(0.0f),
     teleportCooldown(3.0f),
     teleportTimer(0.0f),
-    teleportDistance(300.0f) {}
+    teleportDistance(100.0f) {}
 
 void Character::update(float deltaTime) {
     if (shootTimer > 0) {

@@ -6,13 +6,13 @@
 #include "../graphics/TextureManager.h"
 
 Bullet::Bullet(float x, float y, int width, int height)
-    : Entity(x, y, 32, 32, width, height),
+    : Entity(x, y, 50, 50, width, height),
       direction(0, 0),
-      speed(500.0f),
+      speed(800.0f),
       textureID(""),
       active(false),
       lifetime(0.0f),
-      maxLifetime(2.0f),
+      maxLifetime(0.75f),
       flip(SDL_FLIP_NONE)
 {}
 

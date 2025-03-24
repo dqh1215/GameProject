@@ -8,7 +8,7 @@
 using namespace std;
 
 Enemy::Enemy(float x, float y, int width, int height)
-    : Entity(x, y, width, height, 64, 64),
+    : Entity(x, y, width, height, 100, 100),
     target(0, 0),
     active(true),
     speed(150.0f),
