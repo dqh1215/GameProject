@@ -6,7 +6,9 @@
 #include "../graphics/TextureManager.h"
 
 Bullet::Bullet(float x, float y, int width, int height)
-    : Entity(x, y, 50, 50, width, height),
+    : Entity(x, y, width, height),
+      frameWidth(251),
+      frameHeight(144),
       direction(0, 0),
       speed(800.0f),
       textureID(""),
@@ -35,7 +37,7 @@ void Bullet::render(SDL_Renderer* renderer) {
 
     TextureManager::Instance()->draw(
         textureID,
-        rect.x, rect.y, physicalWidth, physicalHeight, visualWidth, visualHeight,
+        rect.x, rect.y, width, height, frameWidth, frameHeight,
         renderer,
         flip
     );

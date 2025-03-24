@@ -4,12 +4,11 @@
 
 #include "Entity.h"
 
-Entity::Entity(float x, float y, int pWidth, int pHeight, int vWidth, int vHeight)
+Entity::Entity(float x, float y, int width, int height)
     : position(x, y), velocity(0, 0),
-      physicalWidth(pWidth), physicalHeight(pHeight),
-      visualWidth(vWidth), visualHeight(vHeight) {
-    rect.w = physicalWidth;
-    rect.h = physicalHeight;
+      width(width), height(height) {
+    rect.w = width;
+    rect.h = height;
     updateRect();
 }
 
@@ -33,6 +32,8 @@ SDL_Rect Entity::getRect() const {
 }
 
 void Entity::updateRect() {
-    rect.x = static_cast<int>(position.x - rect.w / 2);
-    rect.y = static_cast<int>(position.y - rect.h / 2);
+    rect.x = static_cast<int>(position.x - width / 2);
+    rect.y = static_cast<int>(position.y - height / 2);
+    rect.w = width;
+    rect.h = height;
 }

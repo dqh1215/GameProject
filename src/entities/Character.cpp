@@ -9,13 +9,13 @@
 using namespace std;
 
 Character::Character(float x, float y, int width, int height)
-    : Entity(x, y, 100, 100, width, height),
+    : Entity(x, y, width, height),
     target(x, y),
     moving(false),
     speed(250.0f),
     textureID(""),
-    frameWidth(width),
-    frameHeight(height),
+    frameWidth(64),
+    frameHeight(64),
     currentFrame(0),
     currentRow(0),
     flip(SDL_FLIP_NONE),
@@ -75,9 +75,9 @@ void Character::render(SDL_Renderer* renderer) {
     TextureManager::Instance()->drawFrame(
         textureID,
         rect.x, rect.y,
-        visualWidth, visualHeight,       // Display size
+        width, height,
         currentRow, currentFrame,
-        frameWidth, frameHeight,         // Source frame size
+        frameWidth, frameHeight,
         renderer,
         flip
     );

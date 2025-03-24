@@ -59,8 +59,8 @@ bool Game::init(const string& title, int width, int height, bool fullscreen) {
 
 
     // nhan vat se duoc khoi tao mac dinh o chinh giua man hinh
-    const int playerWidth = 64;  // Kich thước sprite
-    const int playerHeight = 64;
+    const int playerWidth = 86;
+    const int playerHeight = 86;
     player = new Character(screenWidth / 2.0f, screenHeight / 2.0f, playerWidth, playerHeight);
 
     // Load assets
@@ -150,7 +150,7 @@ void Game::renderCooldowns() {
 
 void Game::shootProjectile(const Vector2D &startPos, const Vector2D &direction) {
     if (bullet == nullptr) {
-        bullet = new Bullet(0, 0, 251, 144);
+        bullet = new Bullet(0, 0, 32, 32);
         if (!bullet->loadTexture("../assets/entities/bullet.png", "bullet", renderer)) {
             SDL_Log("Failed to load bullet texture");
             delete bullet;
@@ -158,8 +158,10 @@ void Game::shootProjectile(const Vector2D &startPos, const Vector2D &direction) 
             return;
         }
     }
+    Vector2D bulletStartPos = startPos;
+
     if(bullet != nullptr){
-        bullet->fire(startPos, direction);
+        bullet->fire(bulletStartPos, direction);
     }
 }
 
@@ -265,7 +267,7 @@ void Game::spawnEnemy() {
     }
 
     if (enemy == nullptr) {
-        enemy = new Enemy(0, 0, 64, 64);
+        enemy = new Enemy(0, 0, 86, 86);
         enemy->loadTexture("../assets/entities/enemy" + to_string(rand() % 3 + 1) + ".png", "enemy", renderer);
         enemies.push_back(enemy);
     }

@@ -28,6 +28,8 @@ private:
     Vector2D direction;
     float speed;
     string textureID;
+    int frameWidth;
+    int frameHeight;
     bool active;
     float lifetime;
     float maxLifetime;
