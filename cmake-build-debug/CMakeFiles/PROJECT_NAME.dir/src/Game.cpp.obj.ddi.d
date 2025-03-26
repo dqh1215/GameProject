@@ -512,7 +512,7 @@ CMakeFiles\PROJECT_NAME.dir\src\Game.cpp.obj.ddi: \
  D:/GameProject/src/entities/Enemy.h \
  D:/GameProject/src/entities/Character.h \
  D:/GameProject/src/input/InputHandler.h \
- D:/GameProject/src/entities/Character.h D:/GameProject/src/Game.h \
+ D:/GameProject/src/entities/Character.h \
  D:/GameProject/src/graphics/TextureManager.h \
  D:/GameProject/SDL2/SDL2_image/x86_64-w64-mingw32/include/SDL2/SDL_image.h \
  D:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2/SDL_version.h

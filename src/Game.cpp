@@ -25,7 +25,7 @@ bool Game::init(const string& title, int width, int height, bool fullscreen) {
         SDL_Log("SDL_Init Successful");
     }
 
-    if (TTF_Init() < -1) {
+    if (TTF_Init() == -1) {
         SDL_Log("SDL_ttf could not initialize! SDL_ttf Error: %s", TTF_GetError());
         return false;
     } else {
@@ -66,10 +66,10 @@ bool Game::init(const string& title, int width, int height, bool fullscreen) {
     }
 
     textColor = {255, 255, 255, 255};
-    resumeButtonTexture = "../assets/buttons/resume.png";
-    restartButtonTexture = "../assets/buttons/restart.png";
-    quitButtonTexture = "../assets/buttons/quit.png";
-    startButtonTexture = "../assets/buttons/start.png";
+    resumeButtonTexture = "../assets/entities/resume.png";
+    restartButtonTexture = "../assets/entities/restart.png";
+    quitButtonTexture = "../assets/entities/home.png";
+    startButtonTexture = "../assets/entities/home_play.png";
 
 
     if (!TextureManager::Instance()->init()) {
@@ -105,7 +105,7 @@ bool Game::init(const string& title, int width, int height, bool fullscreen) {
 }
 
 void Game::renderScore() {
-    string scoreText = "High Score" + to_string(score);
+    string scoreText = "High Score " + to_string(score) + "!";
 
 
     SDL_Surface* scoreSurface = TTF_RenderText_Solid(scoreFont, scoreText.c_str(), textColor);
@@ -145,8 +145,8 @@ void Game::renderMainMenu() {
 
 
     if (TextureManager::Instance()->load(startButtonTexture, "start_button", renderer)) {
-        int buttonWidth = 200;
-        int buttonHeight = 100;
+        int buttonWidth = 160;
+        int buttonHeight = 83;
         SDL_Rect buttonRect = {
             (screenWidth - buttonWidth) / 2,
             (screenHeight - buttonHeight) / 2,
@@ -169,8 +169,8 @@ void Game::renderPauseMenu() {
     SDL_Rect overlayRect = {0, 0, screenWidth, screenHeight};
     SDL_RenderFillRect(renderer, &overlayRect);
 
-    int buttonWidth = 200;
-    int buttonHeight = 100;
+    int buttonWidth = 80;
+    int buttonHeight = 83;
     int spacing = 20;
 
     // Resume button
@@ -216,6 +216,7 @@ void Game::renderPauseMenu() {
 bool Game::loadAssets() {
     if (!loadTextureBackground("../assets/background/background.png", "background", renderer)) {
         SDL_Log("Failed to load background");
+        return false;
     } else {
         SDL_Log("Loaded background successful");
     }
@@ -359,6 +360,9 @@ void Game::resetGame() {
     // Reset score
     score = 0;
 
+    // reset direction
+    player->setTarget(player->getPosition().x, player->getPosition().y);
+
     // Reset timers
     timer.start();
     enemySpawnTimer.start();
@@ -452,54 +456,54 @@ void Game::update() {
         case GameState::PLAYING:
             if (gameOverState) return;
 
-        // Update player
-        player->update(timer.getDeltaTime());
+            // Update player
+            player->update(timer.getDeltaTime());
 
-        // Spawn enemy
-        enemySpawnTimer.tick();
-        if (enemySpawnTimer.getElapsedTime() >= nextEnemySpawn) {
-            spawnEnemy();
-            enemySpawnTimer.start();
+            // Spawn enemy
+            enemySpawnTimer.tick();
+            if (enemySpawnTimer.getElapsedTime() >= nextEnemySpawn) {
+                spawnEnemy();
+                enemySpawnTimer.start();
 
-            // Set next spawn time (2-4 seconds)
-            uniform_real_distribution<float> dist(2.0f, 4.0f);
-            nextEnemySpawn = dist(rng);
-        }
-
-        // Update enemies
-        for (auto& enemy : enemies) {
-            if (enemy->isActive()) {
-                enemy->update(timer.getDeltaTime());
-                enemy->setTarget(player->getPosition().x, player->getPosition().y);
-                // Check collision with player
-                if (checkCollision(player->getRect(), enemy->getRect())) {
-                    gameOver();
-                    return;
-                }
+                // Set next spawn time (2-4 seconds)
+                uniform_real_distribution<float> dist(2.0f, 4.0f);
+                nextEnemySpawn = dist(rng);
             }
-        }
 
-        // Update bullet and check enemy collisions
-        if (bullet != nullptr && bullet->isActive()) {
-            bullet->update(timer.getDeltaTime());
+            // Update enemies
             for (auto& enemy : enemies) {
-                if (enemy->isActive() && checkCollision(enemy->getRect(), bullet->getRect())) {
-                    bullet->setActive(false);
-                    enemy->setActive(false);
-                    score++;
-                    break;
+                if (enemy->isActive()) {
+                    enemy->update(timer.getDeltaTime());
+                    enemy->setTarget(player->getPosition().x, player->getPosition().y);
+                    // Check collision with player
+                    if (checkCollision(player->getRect(), enemy->getRect())) {
+                        gameOver();
+                        return;
+                    }
                 }
             }
-        }
-        break;
+
+            // Update bullet and check enemy collisions
+            if (bullet != nullptr && bullet->isActive()) {
+                bullet->update(timer.getDeltaTime());
+                for (auto& enemy : enemies) {
+                    if (enemy->isActive() && checkCollision(enemy->getRect(), bullet->getRect())) {
+                        bullet->setActive(false);
+                        enemy->setActive(false);
+                        score++;
+                        break;
+                    }
+                }
+            }
+            break;
 
         case GameState::MAIN_MENU:
             handleMainMenuEvents();
-        break;
+            break;
 
         case GameState::PAUSED:
             handlePauseMenuEvents();
-        break;
+            break;
 
         default:
             break;
@@ -631,6 +635,7 @@ bool Game::checkCollision(const SDL_Rect& a, const SDL_Rect& b) {
 void Game::gameOver() {
     SDL_Log("Game Over!");
     gameOverState = true;
+    currentState = GameState::GAME_OVER;
 
 }
 

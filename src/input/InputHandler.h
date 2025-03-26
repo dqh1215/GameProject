@@ -8,8 +8,7 @@
 
 #include <SDL2/SDL.h>
 #include "../entities/Character.h"
-#include "../Game.h"
-
+enum class GameState;
 class Game;
 class InputHandler {
 public:
