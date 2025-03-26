@@ -8,6 +8,7 @@
 #include <SDL2/SDL.h>
 #include <bits/stdc++.h>
 #include "core/Timer.h"
+#include <SDL_ttf.h>
 #include "entities/Bullet.h"
 #include "entities/Character.h"
 #include "entities/Enemy.h"
@@ -15,6 +16,12 @@
 #include "graphics/TextureManager.h"
 using namespace std;
 
+enum class GameState {
+    MAIN_MENU,
+    PLAYING,
+    PAUSED,
+    GAME_OVER
+};
 
 class Game {
 public:
@@ -36,7 +43,12 @@ private:
     bool checkCollision(const SDL_Rect& a, const SDL_Rect& b);
     void gameOver();
     void renderCooldowns();
-
+    void renderScore();
+    void renderPauseMenu();
+    void renderMainMenu();
+    void handleMainMenuEvents();
+    void handlePauseMenuEvents();
+    void resetGame();
 
     string backgroundTextureID;
     SDL_Window* window;
@@ -49,10 +61,22 @@ private:
     vector<Enemy*> enemies;
     Bullet* bullet;
 
+    TTF_Font* scoreFont;
+    TTF_Font* menuFont;
+    SDL_Color textColor;
+
+    GameState currentState;
+    int score;
+
+    string resumeButtonTexture;
+    string restartButtonTexture;
+    string quitButtonTexture;
+    string startButtonTexture;
+
     bool running;
+    bool gameOverState;
     int screenWidth;
     int screenHeight;
-    bool gameOverState;
     float nextEnemySpawn;
     int mouseX, mouseY;
     mt19937 rng;

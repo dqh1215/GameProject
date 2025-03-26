@@ -10,7 +10,7 @@
 
 class Enemy : public Entity {
 public:
-    Enemy(float x, float y, int width, int height);
+    Enemy(float x, float y, int width, int height, int currentRow);
 
     void update(float deltaTime) override;
     void render(SDL_Renderer* renderer) override;

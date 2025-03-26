@@ -7,7 +7,7 @@
 #include "../graphics/TextureManager.h"
 using namespace std;
 
-Enemy::Enemy(float x, float y, int width, int height)
+Enemy::Enemy(float x, float y, int width, int height, int currentRow)
     : Entity(x, y, width, height),
     target(0, 0),
     active(true),
@@ -16,7 +16,7 @@ Enemy::Enemy(float x, float y, int width, int height)
     frameWidth(64),
     frameHeight(64),
     currentFrame(0),
-    currentRow(0),
+    currentRow(currentRow),
     flip(SDL_FLIP_NONE) {}
 
 void Enemy::update(float deltaTime) {
