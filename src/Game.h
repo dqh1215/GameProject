@@ -46,6 +46,8 @@ private:
     void renderScore();
     void renderPauseMenu();
     void renderMainMenu();
+    void renderGameOver();
+    void handleGameOverEvents();
     void handleMainMenuEvents();
     void handlePauseMenuEvents();
     void resetGame();
