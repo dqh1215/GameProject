@@ -10,7 +10,7 @@
 
 class Enemy : public Entity {
 public:
-    Enemy(float x, float y, int width, int height, int currentRow);
+    Enemy(float x, float y, int width, int height);
 
     void update(float deltaTime) override;
     void render(SDL_Renderer* renderer) override;
@@ -28,7 +28,6 @@ private:
     int frameHeight;
     int currentFrame;
     int currentRow;
-    SDL_RendererFlip flip;
 };
 
 

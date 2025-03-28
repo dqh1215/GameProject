@@ -7,17 +7,15 @@
 #include "../graphics/TextureManager.h"
 using namespace std;
 
-Enemy::Enemy(float x, float y, int width, int height, int currentRow)
+Enemy::Enemy(float x, float y, int width, int height)
     : Entity(x, y, width, height),
     target(0, 0),
     active(true),
     speed(150.0f),
     textureID(""),
-    frameWidth(64),
-    frameHeight(64),
-    currentFrame(0),
-    currentRow(currentRow),
-    flip(SDL_FLIP_NONE) {}
+    frameWidth(128),
+    frameHeight(128),
+    currentFrame(0) {}
 
 void Enemy::update(float deltaTime) {
     if (!active) {
@@ -30,14 +28,28 @@ void Enemy::update(float deltaTime) {
     Vector2D directionNormalized = direction.normalize();
     position += directionNormalized * speed * deltaTime;
 
-    currentFrame = int(SDL_GetTicks() / 100) % 8;
+    currentFrame = int(SDL_GetTicks() / 40) % 25;
 
     // Xác định hướng nhìn dựa vào hướng di chuyển
-    if (directionNormalized.x > 0) {
-        flip = SDL_FLIP_NONE;
-    } else if (directionNormalized.x < 0) {
-        flip = SDL_FLIP_HORIZONTAL;
+    currentRow = 0;
+    if (position.x < target.x && position.y < target.y) {
+        currentRow = 5;
+    } else if (position.x < target.x && position.y > target.y && position.y < target.y + 128) {
+        currentRow = 0;
+    } else if (position.x < target.x && position.y > target.y + 128) {
+        currentRow = 2;
+    } else if (position.x > target.x && position.y < target.y && position.x < target.x + 128) {
+        currentRow = 4;
+    } else if (position.x > target.x + 128 && position.y < target.y) {
+        currentRow = 6;
+    } else if (position.x > target.x + 128 && position.y > target.y && position.y < target.y + 128) {
+        currentRow = 7;
+    } else if (position.x > target.x + 128 && position.y > target.y + 128) {
+        currentRow = 3;
+    } else if (position.x > target.x && position.x < target.x + 128 && position.y > target.y + 128) {
+        currentRow = 1;
     }
+
     updateRect();
 }
 
@@ -51,7 +63,7 @@ void Enemy::render(SDL_Renderer* renderer) {
         currentRow, currentFrame,
         frameWidth, frameHeight,
         renderer,
-        flip
+        SDL_FLIP_NONE
     );
 
 }

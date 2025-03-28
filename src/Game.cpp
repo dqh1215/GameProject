@@ -81,8 +81,8 @@ bool Game::init(const string& title, int width, int height, bool fullscreen) {
 
 
     // nhan vat se duoc khoi tao mac dinh o chinh giua man hinh
-    const int playerWidth = 86;
-    const int playerHeight = 86;
+    const int playerWidth = 128;
+    const int playerHeight = 128;
     player = new Character(screenWidth / 2.0f, screenHeight / 2.0f, playerWidth, playerHeight);
 
     // Load assets
@@ -138,7 +138,7 @@ void Game::renderScore() {
 
 void Game::renderGameOver() {
 
-    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+    SDL_SetRenderDrawColor(renderer, 50, 50, 50, 1);
     SDL_RenderClear(renderer);
 
 
@@ -199,7 +199,7 @@ void Game::handleGameOverEvents() {
 
 void Game::renderMainMenu() {
 
-    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+    SDL_SetRenderDrawColor(renderer, 50, 50, 50, 1);
     SDL_RenderClear(renderer);
 
 
@@ -224,7 +224,7 @@ void Game::renderMainMenu() {
 }
 
 void Game::renderPauseMenu() {
-    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 128);
+    SDL_SetRenderDrawColor(renderer, 50, 50, 50, 1);
     SDL_Rect overlayRect = {0, 0, screenWidth, screenHeight};
     SDL_RenderFillRect(renderer, &overlayRect);
 
@@ -574,9 +574,7 @@ void Game::update() {
 }
 
 void Game::render() {
-    SDL_SetRenderDrawColor(renderer, 102,102,201,0);
-    SDL_RenderClear(renderer);
-    // render background
+
     SDL_SetRenderDrawColor(renderer, 102,102,201,0);
     SDL_RenderClear(renderer);
 
@@ -652,7 +650,7 @@ void Game::spawnEnemy() {
 
     if (enemy == nullptr) {
 
-        enemy = new Enemy(0, 0, 86, 86, rand() % 10);
+        enemy = new Enemy(0, 0, 200, 200);
         enemy->loadTexture("../assets/entities/enemy.png", "enemy", renderer);
         enemies.push_back(enemy);
     }
