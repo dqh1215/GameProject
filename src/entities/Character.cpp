@@ -14,8 +14,8 @@ Character::Character(float x, float y, int width, int height)
     moving(false),
     speed(250.0f),
     textureID(""),
-    frameWidth(64),
-    frameHeight(64),
+    frameWidth(320),
+    frameHeight(320),
     currentFrame(0),
     currentRow(0),
     flip(SDL_FLIP_NONE),
@@ -33,13 +33,13 @@ void Character::update(float deltaTime) {
         teleportTimer -= deltaTime;
     }
     if (!moving) {
-        currentFrame = int(SDL_GetTicks() / 100) % 4;
+        currentFrame = int(SDL_GetTicks() / 15) % 51;
         currentRow = 0;
     }
     else {
         Vector2D direction = target - position;
         float distance = direction.length();
-        currentRow = 1;
+        currentRow = 0;
 
         // dung lai khi den vi tri can den
         if (distance < 1.0f) {
@@ -53,7 +53,7 @@ void Character::update(float deltaTime) {
         Vector2D directionNormalized = direction.normalize();
         position += directionNormalized * speed * deltaTime;
 
-        currentFrame = int(SDL_GetTicks() / 100) % 6;
+        currentFrame = int(SDL_GetTicks() / 15) % 51;
 
 
         // Xác định hướng nhìn dựa vào hướng di chuyển

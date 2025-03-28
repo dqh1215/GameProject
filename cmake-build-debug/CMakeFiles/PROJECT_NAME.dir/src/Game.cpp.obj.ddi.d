@@ -502,6 +502,10 @@ CMakeFiles\PROJECT_NAME.dir\src\Game.cpp.obj.ddi: \
  C:/mingw64/include/c++/14.2.0/barrier \
  C:/mingw64/include/c++/14.2.0/latch \
  C:/mingw64/include/c++/14.2.0/syncstream D:/GameProject/src/core/Timer.h \
+ D:/GameProject/SDL2/SDL2_ttf/x86_64-w64-mingw32/include/SDL2/SDL_ttf.h \
+ D:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2/SDL.h \
+ D:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2/begin_code.h \
+ D:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2/close_code.h \
  D:/GameProject/src/entities/Bullet.h \
  D:/GameProject/src/entities/Entity.h D:/GameProject/src/core/Vector2D.h \
  D:/GameProject/src/entities/Character.h \
@@ -511,7 +515,4 @@ CMakeFiles\PROJECT_NAME.dir\src\Game.cpp.obj.ddi: \
  D:/GameProject/src/entities/Character.h \
  D:/GameProject/src/graphics/TextureManager.h \
  D:/GameProject/SDL2/SDL2_image/x86_64-w64-mingw32/include/SDL2/SDL_image.h \
- D:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2/SDL.h \
- D:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2/SDL_version.h \
- D:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2/begin_code.h \
- D:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2/close_code.h
+ D:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2/SDL_version.h

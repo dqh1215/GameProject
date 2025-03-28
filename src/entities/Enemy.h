@@ -28,7 +28,6 @@ private:
     int frameHeight;
     int currentFrame;
     int currentRow;
-    SDL_RendererFlip flip;
 };
 
 
