@@ -202,6 +202,8 @@ void Game::renderMainMenu() {
     SDL_SetRenderDrawColor(renderer, 50, 50, 50, 1);
     SDL_RenderClear(renderer);
 
+    TextureManager::Instance()->load("../assets/entities/home_background.png", "home_background", renderer);
+    TextureManager::Instance()->draw("home_background", 0, 0, 1600, 900, 1600, 900, renderer);
 
     if (TextureManager::Instance()->load(startButtonTexture, "start_button", renderer)) {
         int buttonWidth = 160;
@@ -472,6 +474,7 @@ void Game::shootProjectile(const Vector2D &startPos, const Vector2D &direction) 
 
     if(bullet != nullptr){
         bullet->fire(bulletStartPos, direction);
+
     }
 }
 
@@ -586,7 +589,7 @@ void Game::render() {
         case GameState::PLAYING:
             // Render background
                 if (!backgroundTextureID.empty()) {
-                    TextureManager::Instance()->draw(backgroundTextureID, 0, 0, screenWidth, screenHeight,screenWidth, screenHeight, renderer);
+                    TextureManager::Instance()->draw(backgroundTextureID, 0, 0, screenWidth, screenHeight,1024, 577, renderer);
                 }
 
         // Render player

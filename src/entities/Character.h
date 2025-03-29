@@ -38,6 +38,7 @@ private:
     int currentRow;
     SDL_RendererFlip flip;
 
+    float angle;
     float shootCooldown;
     float shootTimer;
     float teleportCooldown;

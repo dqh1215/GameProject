@@ -42,7 +42,7 @@ void Character::update(float deltaTime) {
         currentRow = 0;
 
         // dung lai khi den vi tri can den
-        if (distance < 1.0f) {
+        if (distance < 2.0f) {
             position = target;
             moving = false;
             updateRect();
@@ -54,14 +54,9 @@ void Character::update(float deltaTime) {
         position += directionNormalized * speed * deltaTime;
 
         currentFrame = int(SDL_GetTicks() / 15) % 51;
+        angle = atan2(directionNormalized.y, directionNormalized.x) * (180.0 / M_PI);
 
 
-        // Xác định hướng nhìn dựa vào hướng di chuyển
-        if (directionNormalized.x > 0) {
-            flip = SDL_FLIP_NONE;
-        } else if (directionNormalized.x < 0) {
-            flip = SDL_FLIP_HORIZONTAL;
-        }
         updateRect();
     }
 
@@ -79,7 +74,8 @@ void Character::render(SDL_Renderer* renderer) {
         currentRow, currentFrame,
         frameWidth, frameHeight,
         renderer,
-        flip
+        flip,
+        angle - 105.0f
     );
 }
 
@@ -106,11 +102,9 @@ void Character::shoot(float mouseX, float mouseY) {
     if (this->canShoot()) {
         Vector2D mousePos(mouseX, mouseY);
         Vector2D direction = mousePos - position;
-        if (direction.x > 0) {
-            flip = SDL_FLIP_NONE;
-        } else {
-            flip = SDL_FLIP_HORIZONTAL;
-        }
+        Vector2D directionNormalized = direction.normalize();
+        angle = atan2(directionNormalized.y, directionNormalized.x) * (180.0 / M_PI);
+        moving = false;
         shootTimer = shootCooldown;
     }
 }
@@ -127,6 +121,8 @@ void Character::teleport(float mouseX, float mouseY) {
         }
 
         position = mousePos;
+        Vector2D directionNormalized = direction.normalize();
+        angle = atan2(directionNormalized.y, directionNormalized.x) * (180.0 / M_PI);
         updateRect();
 
         moving = false;
