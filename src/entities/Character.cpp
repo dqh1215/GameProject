@@ -14,9 +14,9 @@ Character::Character(float x, float y, int width, int height)
     moving(false),
     speed(250.0f),
     textureID(""),
-    frameWidth(320),
-    frameHeight(320),
-    currentFrame(0),
+    frameWidth(64),
+    frameHeight(64),
+    currentColumn(0),
     currentRow(0),
     flip(SDL_FLIP_NONE),
     shootCooldown(2.0f),
@@ -33,29 +33,43 @@ void Character::update(float deltaTime) {
         teleportTimer -= deltaTime;
     }
     if (!moving) {
-        currentFrame = int(SDL_GetTicks() / 15) % 51;
-        currentRow = 0;
+        currentColumn = 0;
     }
     else {
         Vector2D direction = target - position;
         float distance = direction.length();
-        currentRow = 0;
 
         // dung lai khi den vi tri can den
         if (distance < 2.0f) {
             position = target;
+            currentColumn = 0;
             moving = false;
             updateRect();
             return;
         }
 
-        // di chuyen den vi tri can den theo huong la vector direction
         Vector2D directionNormalized = direction.normalize();
         position += directionNormalized * speed * deltaTime;
 
-        currentFrame = int(SDL_GetTicks() / 15) % 51;
-        angle = atan2(directionNormalized.y, directionNormalized.x) * (180.0 / M_PI);
+        currentColumn = int(SDL_GetTicks() / 200) % 3 + 2;
 
+        if (position.x <= target.x && position.y <= target.y) { // NW
+            currentRow = 1;
+        } else if (position.x <= target.x && position.y >= target.y && position.y <= target.y + 64) { // W
+            currentRow = 2;
+        } else if (position.x <= target.x && position.y >= target.y + 64) { // SW
+            currentRow = 3;
+        } else if (position.x >= target.x && position.y <= target.y && position.x <= target.x + 64) { // N
+            currentRow = 0;
+        } else if (position.x >= target.x + 64 && position.y <= target.y) { // NE
+            currentRow = 7;
+        } else if (position.x >= target.x + 64 && position.y >= target.y && position.y <= target.y + 64) { // E
+            currentRow = 6;
+        } else if (position.x >= target.x + 64 && position.y >= target.y + 64) { // SE
+            currentRow = 5;
+        } else if (position.x >= target.x && position.x <= target.x + 64 && position.y >= target.y + 64) { // S
+            currentRow = 4;
+        }
 
         updateRect();
     }
@@ -71,11 +85,11 @@ void Character::render(SDL_Renderer* renderer) {
         textureID,
         rect.x, rect.y,
         width, height,
-        currentRow, currentFrame,
+        currentColumn, currentRow,
         frameWidth, frameHeight,
         renderer,
         flip,
-        angle - 105.0f
+        0
     );
 }
 
@@ -101,10 +115,9 @@ bool Character::loadTexture(const string& filePath, const string& id, SDL_Render
 void Character::shoot(float mouseX, float mouseY) {
     if (this->canShoot()) {
         Vector2D mousePos(mouseX, mouseY);
-        Vector2D direction = mousePos - position;
-        Vector2D directionNormalized = direction.normalize();
-        angle = atan2(directionNormalized.y, directionNormalized.x) * (180.0 / M_PI);
         moving = false;
+        isShooting = true;
+        shootingTime = SDL_GetTicks() + 200;
         shootTimer = shootCooldown;
     }
 }
@@ -121,8 +134,6 @@ void Character::teleport(float mouseX, float mouseY) {
         }
 
         position = mousePos;
-        Vector2D directionNormalized = direction.normalize();
-        angle = atan2(directionNormalized.y, directionNormalized.x) * (180.0 / M_PI);
         updateRect();
 
         moving = false;

@@ -62,13 +62,13 @@ void TextureManager::draw(const string &id, int x, int y, int displayWidth, int 
 }
 
 void TextureManager::drawFrame(const string& id, int x, int y, int displayWidth, int displayHeight,
-                               int currentRow, int currentFrame, int frameWidth, int frameHeight,
+                               int currentRow, int currentColumn, int frameWidth, int frameHeight,
                                SDL_Renderer* renderer, SDL_RendererFlip flip,
                                double angle, SDL_Point* center) {
     SDL_Rect srcRect;
     SDL_Rect destRect;
 
-    srcRect.x = frameWidth * currentFrame;
+    srcRect.x = frameWidth * currentColumn;
     srcRect.y = frameHeight * currentRow;
     srcRect.w = frameWidth;
     srcRect.h = frameHeight;

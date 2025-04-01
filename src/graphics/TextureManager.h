@@ -24,7 +24,7 @@ public:
     void draw(const string &id, int x, int y, int displayWidth, int displayHeight, int frameWidth, int frameHeight,
                           SDL_Renderer *renderer, SDL_RendererFlip flip = SDL_FLIP_NONE);
     void drawFrame(const string& id, int x, int y, int displayWidth, int displayHeight,
-               int currentRow, int currentFrame, int frameWidth, int frameHeight,
+               int currentRow, int currentColumn, int frameWidth, int frameHeight,
                SDL_Renderer* renderer, SDL_RendererFlip flip = SDL_FLIP_NONE,
                double angle = 0.0, SDL_Point* center = nullptr);
     void clearFromTextureMap(const string& id);
