@@ -79,11 +79,7 @@ bool Game::init(const string& title, int width, int height, bool fullscreen) {
         SDL_Log("Texture manager initialized Successful");
     }
 
-
-    // nhan vat se duoc khoi tao mac dinh o chinh giua man hinh
-    const int playerWidth = 64;
-    const int playerHeight = 64;
-    player = new Character(screenWidth / 2.0f, screenHeight / 2.0f, playerWidth, playerHeight);
+    player = new Character(screenWidth / 2.0f, screenHeight / 2.0f, 64, 64);
 
     // Load assets
     if (!loadAssets()) {
@@ -148,7 +144,7 @@ void Game::renderGameOver() {
         int buttonWidth = 80;
         int buttonHeight = 83;
         SDL_Rect buttonRect = {
-            (screenWidth - buttonWidth) / 2,
+            (screenWidth - buttonWidth) / 2 - 20,
             (screenHeight - buttonHeight) / 2 + 20,
             buttonWidth,
             buttonHeight
@@ -159,6 +155,23 @@ void Game::renderGameOver() {
                                          renderer);
     } else {
         SDL_Log("Unable to load restart texture! SDL Error: %s", SDL_GetError());
+    }
+
+    if (TextureManager::Instance()->load("../assets/entities/home.png", "home_button", renderer)) {
+        int buttonWidth = 80;
+        int buttonHeight = 83;
+        SDL_Rect buttonRect = {
+            (screenWidth - buttonWidth) / 2 + 20,
+            (screenHeight - buttonHeight) / 2 + 20,
+            buttonWidth,
+            buttonHeight
+        };
+
+        TextureManager::Instance()->draw("home_button", buttonRect.x, buttonRect.y,
+                                         buttonWidth, buttonHeight, buttonWidth, buttonHeight,
+                                         renderer);
+    } else {
+        SDL_Log("Unable to load home button texture! SDL Error: %s", SDL_GetError());
     }
 
     SDL_RenderPresent(renderer);
@@ -180,7 +193,7 @@ void Game::handleGameOverEvents() {
                     int buttonWidth = 80;
                     int buttonHeight = 83;
                     SDL_Rect buttonRect = {
-                        (screenWidth - buttonWidth) / 2,
+                        (screenWidth - buttonWidth) / 2 - 100,
                         (screenHeight - buttonHeight) / 2,
                         buttonWidth,
                         buttonHeight
@@ -192,6 +205,8 @@ void Game::handleGameOverEvents() {
                         currentState = GameState::PLAYING;
                         resetGame();
                         }
+
+
                 }
             break;
         }
@@ -420,7 +435,7 @@ void Game::resetGame() {
 
     // Clear enemies
     for (auto& enemy : enemies) {
-        enemy->setActive(false);
+        delete enemy;
     }
 
     // Reset score
@@ -538,7 +553,7 @@ void Game::update() {
 
             // Update enemies
             for (auto& enemy : enemies) {
-                if (enemy->isActive()) {
+                if (!enemy->isDead()) {
                     enemy->update(timer.getDeltaTime());
                     enemy->setTarget(player->getPosition().x, player->getPosition().y);
                     // Check collision with player
@@ -553,9 +568,9 @@ void Game::update() {
             if (bullet != nullptr && bullet->isActive()) {
                 bullet->update(timer.getDeltaTime());
                 for (auto& enemy : enemies) {
-                    if (enemy->isActive() && checkCollision(enemy->getRect(), bullet->getRect())) {
+                    if (!enemy->isDead() && checkCollision(enemy->getRect(), bullet->getRect())) {
                         bullet->setActive(false);
-                        enemy->setActive(false);
+                        enemy->die();
                         score++;
                         break;
                     }
@@ -599,7 +614,7 @@ void Game::render() {
 
         // Render enemies
         for (auto& enemy : enemies) {
-            if (enemy->isActive()) {
+            if (!enemy->isDead()) {
                 enemy->render(renderer);
             }
         }
@@ -624,7 +639,7 @@ void Game::render() {
 
             // Render enemies
             for (auto& enemy : enemies) {
-                if (enemy->isActive()) {
+                if (!enemy->isDead()) {
                     enemy->render(renderer);
                 }
             }
@@ -688,7 +703,6 @@ void Game::spawnEnemy() {
         }
 
         enemy->setPosition(x, y);
-        enemy->setActive(true);
     }
 }
 

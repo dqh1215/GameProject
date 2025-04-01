@@ -80,17 +80,32 @@ Vector2D& Character::getPosition() {
     return position;
 }
 void Character::render(SDL_Renderer* renderer) {
-    // Ve texture voi frame hien tai va flip thich hop
-    TextureManager::Instance()->drawFrame(
-        textureID,
-        rect.x, rect.y,
-        width, height,
-        currentColumn, currentRow,
-        frameWidth, frameHeight,
-        renderer,
-        flip,
-        0
-    );
+    if (isShooting && SDL_GetTicks() < shootingTime) {
+        TextureManager::Instance()->drawFrame(
+            textureID,
+            rect.x, rect.y,
+            width, height,
+            1, currentRow,
+            frameWidth, frameHeight,
+            renderer,
+            flip,
+            0
+        );
+    } else {
+        if (isShooting && SDL_GetTicks() >= shootingTime) {
+            isShooting = false;
+        }
+        TextureManager::Instance()->drawFrame(
+            textureID,
+            rect.x, rect.y,
+            width, height,
+            currentColumn, currentRow,
+            frameWidth, frameHeight,
+            renderer,
+            flip,
+            0
+        );
+    }
 }
 
 void Character::setTarget(float x, float y) {
@@ -117,6 +132,24 @@ void Character::shoot(float mouseX, float mouseY) {
         Vector2D mousePos(mouseX, mouseY);
         moving = false;
         isShooting = true;
+        Vector2D direction = mousePos;
+        if (direction.x >= position.x + 64 && direction.y >= position.y + 64) { // SE
+            currentRow = 1;
+        } else if (direction.x >= position.x && direction.x <= position.x + 64 && direction.y >= position.y) { // S
+            currentRow = 0;
+        } else if (direction.x >= position.x && direction.y >= position.y && direction.y <= position.y + 64) { // E
+            currentRow = 2;
+        } else if (direction.x >= position.x + 64 && direction.y <= position.y) { // NE
+            currentRow = 3;
+        } else if (direction.x >= position.x && direction.x <= position.x + 64 && direction.y <= position.y) { // N
+            currentRow = 4;
+        } else if (direction.x <= position.x && direction.y <= position.y) { // NW
+            currentRow = 5;
+        } else if (direction.x <= position.x && direction.y >= position.y && direction.y <= position.y + 64) { // W
+            currentRow = 6;
+        } else if (direction.x <= position.x && direction.y >= position.y + 64) { // SW
+            currentRow = 7;
+        }
         shootingTime = SDL_GetTicks() + 200;
         shootTimer = shootCooldown;
     }

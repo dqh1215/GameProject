@@ -15,7 +15,8 @@ Enemy::Enemy(float x, float y, int width, int height)
     textureID(""),
     frameWidth(64),
     frameHeight(64),
-    currentColumn(0) {}
+    currentColumn(0),
+    dead(false) {}
 
 void Enemy::update(float deltaTime) {
     if (!active) {
@@ -54,7 +55,24 @@ void Enemy::update(float deltaTime) {
 }
 
 void Enemy::render(SDL_Renderer* renderer) {
-    if (!active) return;
+    if (dead) {
+        return;
+    }
+    if (!active) {
+        if (SDL_GetTicks() >= dyingTime) {
+            dead = true;
+        } else {
+            currentColumn = int((600 - (dyingTime - SDL_GetTicks())) / 150) % 4 + 9;
+            TextureManager::Instance()->drawFrame(
+                textureID,
+                rect.x, rect.y,
+                width, height,
+                currentColumn, currentRow,
+                frameWidth, frameHeight,
+                renderer,
+                SDL_FLIP_NONE);
+        }
+    }
 
     TextureManager::Instance()->drawFrame(
         textureID,
@@ -66,6 +84,11 @@ void Enemy::render(SDL_Renderer* renderer) {
         SDL_FLIP_NONE
     );
 
+}
+
+void Enemy::die() {
+    dyingTime = SDL_GetTicks() + 600;
+    active = false;
 }
 
 

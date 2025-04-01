@@ -17,7 +17,8 @@ public:
 
     void setTarget(float x, float y);
     bool isActive() const { return active; }
-    void setActive(bool active) { this->active = active; }
+    void die();
+    bool isDead() const { return dead; }
     bool loadTexture(const string& filePath, const string& id, SDL_Renderer* renderer);
 private:
     Vector2D target;
@@ -26,6 +27,8 @@ private:
     string textureID;
     int frameWidth;
     int frameHeight;
+    int dyingTime;
+    bool dead;
     int currentColumn;
     int currentRow;
 };
