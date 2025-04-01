@@ -81,8 +81,8 @@ bool Game::init(const string& title, int width, int height, bool fullscreen) {
 
 
     // nhan vat se duoc khoi tao mac dinh o chinh giua man hinh
-    const int playerWidth = 128;
-    const int playerHeight = 128;
+    const int playerWidth = 64;
+    const int playerHeight = 64;
     player = new Character(screenWidth / 2.0f, screenHeight / 2.0f, playerWidth, playerHeight);
 
     // Load assets
@@ -95,8 +95,7 @@ bool Game::init(const string& title, int width, int height, bool fullscreen) {
     timer.start();
     enemySpawnTimer.start();
 
-    // enemy se duoc spawn tu 2 den 4 giay
-    uniform_real_distribution<float> dist(2.0f, 4.0f);
+    uniform_real_distribution<float> dist(1.0f, 2.0f);
     nextEnemySpawn = dist(rng);
 
     this->running = true;
@@ -141,13 +140,16 @@ void Game::renderGameOver() {
     SDL_SetRenderDrawColor(renderer, 50, 50, 50, 1);
     SDL_RenderClear(renderer);
 
+    if (TextureManager::Instance()->load("../assets/background/gameover_background.png", "gameover_background", renderer)) {
+        TextureManager::Instance()->draw("gameover_background", 0, 0, screenWidth, screenHeight, 1300, 720, renderer);
+    }
 
     if (TextureManager::Instance()->load(restartButtonTexture, "restart_button", renderer)) {
         int buttonWidth = 80;
         int buttonHeight = 83;
         SDL_Rect buttonRect = {
             (screenWidth - buttonWidth) / 2,
-            (screenHeight - buttonHeight) / 2,
+            (screenHeight - buttonHeight) / 2 + 20,
             buttonWidth,
             buttonHeight
         };
@@ -202,6 +204,8 @@ void Game::renderMainMenu() {
     SDL_SetRenderDrawColor(renderer, 50, 50, 50, 1);
     SDL_RenderClear(renderer);
 
+    TextureManager::Instance()->load("../assets/background/home_background.png", "home_background", renderer);
+    TextureManager::Instance()->draw("home_background", 0, 0, 1600, 900, 1600, 900, renderer);
 
     if (TextureManager::Instance()->load(startButtonTexture, "start_button", renderer)) {
         int buttonWidth = 160;
@@ -273,13 +277,16 @@ void Game::renderPauseMenu() {
 }
 
 bool Game::loadAssets() {
-    if (!loadTextureBackground("../assets/background/background.png", "background", renderer)) {
+    if (!loadTextureBackground("../assets/background/mainground.png", "mainground", renderer)) {
         SDL_Log("Failed to load background");
         return false;
     } else {
         SDL_Log("Loaded background successful");
     }
-
+    TextureManager::Instance()->load("../assets/entities/flash.png", "flash", renderer);
+    TextureManager::Instance()->load("../assets/entities/shot.png", "shot", renderer);
+    TextureManager::Instance()->load("../assets/entities/flash_cooldown.png", "flash_cooldown", renderer);
+    TextureManager::Instance()->load("../assets/entities/shot_cooldown.png", "shot_cooldown", renderer);
     // Load texture cho nhan vat
     if (!player->loadTexture("../assets/entities/player.png", "player", renderer)) {
         SDL_Log("Failed to load player");
@@ -427,7 +434,7 @@ void Game::resetGame() {
     enemySpawnTimer.start();
 
     // Reset enemy spawn time
-    uniform_real_distribution<float> dist(2.0f, 4.0f);
+    uniform_real_distribution<float> dist(1.0f, 2.0f);
     nextEnemySpawn = dist(rng);
 }
 
@@ -441,21 +448,20 @@ bool Game::loadTextureBackground(const string& filePath, const string& id, SDL_R
 
 void Game::renderCooldowns() {
     SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-    SDL_Rect shootCooldownRect = {20, 20, 30, 30};
 
     if (player->canShoot()) {
-        SDL_RenderFillRect(renderer, &shootCooldownRect);
+        TextureManager::Instance()->draw("shot", screenWidth / 2 - 70, screenHeight - 100, 50, 50, 64, 64, renderer);
     } else {
-        SDL_RenderDrawRect(renderer, &shootCooldownRect);
+        TextureManager::Instance()->draw("shot_cooldown", screenWidth / 2 - 70, screenHeight - 100, 50, 50, 64, 64, renderer);
     }
 
-    SDL_Rect teleportCooldownRect = {60, 20, 30, 30};
 
     if (player->canTeleport()) {
-        SDL_RenderFillRect(renderer, &teleportCooldownRect);
+        TextureManager::Instance()->draw("flash", screenWidth / 2 + 20, screenHeight - 100, 50, 50, 64, 64, renderer);
     } else {
-        SDL_RenderDrawRect(renderer, &teleportCooldownRect);
+        TextureManager::Instance()->draw("flash_cooldown", screenWidth / 2 + 20, screenHeight - 100, 50, 50, 64, 64, renderer);
     }
+    SDL_RenderPresent(renderer);
 }
 
 void Game::shootProjectile(const Vector2D &startPos, const Vector2D &direction) {
@@ -472,6 +478,7 @@ void Game::shootProjectile(const Vector2D &startPos, const Vector2D &direction) 
 
     if(bullet != nullptr){
         bullet->fire(bulletStartPos, direction);
+
     }
 }
 
@@ -525,9 +532,7 @@ void Game::update() {
             if (enemySpawnTimer.getElapsedTime() >= nextEnemySpawn) {
                 spawnEnemy();
                 enemySpawnTimer.start();
-
-                // Set next spawn time (2-4 seconds)
-                uniform_real_distribution<float> dist(2.0f, 4.0f);
+                uniform_real_distribution<float> dist(1.0f, 2.0f);
                 nextEnemySpawn = dist(rng);
             }
 
@@ -586,7 +591,7 @@ void Game::render() {
         case GameState::PLAYING:
             // Render background
                 if (!backgroundTextureID.empty()) {
-                    TextureManager::Instance()->draw(backgroundTextureID, 0, 0, screenWidth, screenHeight,screenWidth, screenHeight, renderer);
+                    TextureManager::Instance()->draw(backgroundTextureID, 0, 0, screenWidth, screenHeight,1600, 900, renderer);
                 }
 
         // Render player
@@ -611,7 +616,7 @@ void Game::render() {
 
         case GameState::PAUSED:
             if (!backgroundTextureID.empty()) {
-                TextureManager::Instance()->draw(backgroundTextureID, 0, 0, screenWidth, screenHeight,screenWidth, screenHeight, renderer);
+                TextureManager::Instance()->draw(backgroundTextureID, 0, 0, screenWidth, screenHeight,1600, 900, renderer);
             }
 
             // Render player
@@ -650,7 +655,7 @@ void Game::spawnEnemy() {
 
     if (enemy == nullptr) {
 
-        enemy = new Enemy(0, 0, 200, 200);
+        enemy = new Enemy(0, 0, 64, 64);
         enemy->loadTexture("../assets/entities/enemy.png", "enemy", renderer);
         enemies.push_back(enemy);
     }
@@ -688,11 +693,11 @@ void Game::spawnEnemy() {
 }
 
 bool Game::checkCollision(const SDL_Rect& a, const SDL_Rect& b) {
-    // Check if two rectangles overlap
-    return (a.x < b.x + b.w - 20 &&
-            a.x + a.w - 20 > b.x &&
-            a.y < b.y + b.h - 20 &&
-            a.y + a.h - 20 > b.y);
+
+    return (a.x  < b.x + b.w &&
+            (a.x + a.w) > b.x &&
+            a.y < b.y + b.h &&
+            (a.y + a.h) > b.y);
 }
 
 void Game::gameOver() {

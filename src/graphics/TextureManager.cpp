@@ -62,12 +62,13 @@ void TextureManager::draw(const string &id, int x, int y, int displayWidth, int 
 }
 
 void TextureManager::drawFrame(const string& id, int x, int y, int displayWidth, int displayHeight,
-                             int currentRow, int currentFrame, int frameWidth, int frameHeight,
-                             SDL_Renderer* renderer, SDL_RendererFlip flip) {
+                               int currentRow, int currentColumn, int frameWidth, int frameHeight,
+                               SDL_Renderer* renderer, SDL_RendererFlip flip,
+                               double angle, SDL_Point* center) {
     SDL_Rect srcRect;
     SDL_Rect destRect;
 
-    srcRect.x = frameWidth * currentFrame;
+    srcRect.x = frameWidth * currentColumn;
     srcRect.y = frameHeight * currentRow;
     srcRect.w = frameWidth;
     srcRect.h = frameHeight;
@@ -77,7 +78,7 @@ void TextureManager::drawFrame(const string& id, int x, int y, int displayWidth,
     destRect.w = displayWidth;
     destRect.h = displayHeight;
 
-    SDL_RenderCopyEx(renderer, textureMap[id], &srcRect, &destRect, 0, nullptr, flip);
+    SDL_RenderCopyEx(renderer, textureMap[id], &srcRect, &destRect, angle, center, flip);
 }
 
 void TextureManager::clearFromTextureMap(const string& id) {

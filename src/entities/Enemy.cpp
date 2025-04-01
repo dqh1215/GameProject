@@ -11,11 +11,11 @@ Enemy::Enemy(float x, float y, int width, int height)
     : Entity(x, y, width, height),
     target(0, 0),
     active(true),
-    speed(150.0f),
+    speed(80.0f),
     textureID(""),
-    frameWidth(128),
-    frameHeight(128),
-    currentFrame(0) {}
+    frameWidth(64),
+    frameHeight(64),
+    currentColumn(0) {}
 
 void Enemy::update(float deltaTime) {
     if (!active) {
@@ -28,26 +28,26 @@ void Enemy::update(float deltaTime) {
     Vector2D directionNormalized = direction.normalize();
     position += directionNormalized * speed * deltaTime;
 
-    currentFrame = int(SDL_GetTicks() / 40) % 25;
+    currentColumn = int(SDL_GetTicks() / 200) % 5 + 1;
 
     // Xác định hướng nhìn dựa vào hướng di chuyển
     currentRow = 0;
-    if (position.x < target.x && position.y < target.y) {
-        currentRow = 5;
-    } else if (position.x < target.x && position.y > target.y && position.y < target.y + 128) {
-        currentRow = 0;
-    } else if (position.x < target.x && position.y > target.y + 128) {
-        currentRow = 2;
-    } else if (position.x > target.x && position.y < target.y && position.x < target.x + 128) {
-        currentRow = 4;
-    } else if (position.x > target.x + 128 && position.y < target.y) {
-        currentRow = 6;
-    } else if (position.x > target.x + 128 && position.y > target.y && position.y < target.y + 128) {
-        currentRow = 7;
-    } else if (position.x > target.x + 128 && position.y > target.y + 128) {
-        currentRow = 3;
-    } else if (position.x > target.x && position.x < target.x + 128 && position.y > target.y + 128) {
+    if (position.x < target.x && position.y < target.y) { // NW
         currentRow = 1;
+    } else if (position.x < target.x && position.y > target.y && position.y < target.y + 64) { // W
+        currentRow = 2;
+    } else if (position.x < target.x && position.y > target.y + 64) { // SW
+        currentRow = 3;
+    } else if (position.x > target.x && position.y < target.y && position.x < target.x + 64) { // N
+        currentRow = 0;
+    } else if (position.x > target.x + 64 && position.y < target.y) { // NE
+        currentRow = 7;
+    } else if (position.x > target.x + 64 && position.y > target.y && position.y < target.y + 64) { // E
+        currentRow = 6;
+    } else if (position.x > target.x + 64 && position.y > target.y + 64) { // SE
+        currentRow = 5;
+    } else if (position.x > target.x && position.x < target.x + 64 && position.y > target.y + 64) {
+        currentRow = 4;
     }
 
     updateRect();
@@ -60,7 +60,7 @@ void Enemy::render(SDL_Renderer* renderer) {
         textureID,
         rect.x, rect.y,
         width, height,
-        currentRow, currentFrame,
+        currentColumn, currentRow,
         frameWidth, frameHeight,
         renderer,
         SDL_FLIP_NONE

@@ -34,10 +34,13 @@ private:
     string textureID;
     int frameWidth;
     int frameHeight;
-    int currentFrame;
+    int currentColumn;
     int currentRow;
     SDL_RendererFlip flip;
 
+    float angle;
+    int shootingTime = 0;
+    bool isShooting = false;
     float shootCooldown;
     float shootTimer;
     float teleportCooldown;

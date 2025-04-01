@@ -26,7 +26,7 @@ private:
     string textureID;
     int frameWidth;
     int frameHeight;
-    int currentFrame;
+    int currentColumn;
     int currentRow;
 };
 
