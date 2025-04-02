@@ -270,6 +270,12 @@ SDL2_INCLUDE_DIR:PATH=D:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2
 SDL2_LIBRARY:STRING=mingw32;-mwindows;C:/mingw64/bin/libSDL2main.a;C:/mingw64/bin/libSDL2.dll.a
 
 //Path to a file.
+SDL2_MIXER_INCLUDE_DIR:PATH=D:/GameProject/SDL2/SDL2_mixer/x86_64-w64-mingw32/include/SDL2
+
+//Path to a library.
+SDL2_MIXER_LIBRARY:FILEPATH=D:/GameProject/SDL2/SDL2_mixer/x86_64-w64-mingw32/lib/libSDL2_mixer.dll.a
+
+//Path to a file.
 SDL2_TTF_INCLUDE_DIR:PATH=D:/GameProject/SDL2/SDL2_ttf/x86_64-w64-mingw32/include/SDL2
 
 //Path to a library.
@@ -440,6 +446,8 @@ CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
 FIND_PACKAGE_MESSAGE_DETAILS_SDL2:INTERNAL=[mingw32;-mwindows;C:/mingw64/bin/libSDL2main.a;C:/mingw64/bin/libSDL2.dll.a][D:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2][v()]
 //Details about finding SDL2_image
 FIND_PACKAGE_MESSAGE_DETAILS_SDL2_image:INTERNAL=[D:/GameProject/SDL2/SDL2_image/x86_64-w64-mingw32/lib/libSDL2_image.dll.a][D:/GameProject/SDL2/SDL2_image/x86_64-w64-mingw32/include/SDL2][v2.8.5()]
+//Details about finding SDL2_mixer
+FIND_PACKAGE_MESSAGE_DETAILS_SDL2_mixer:INTERNAL=[D:/GameProject/SDL2/SDL2_mixer/x86_64-w64-mingw32/lib/libSDL2_mixer.dll.a][D:/GameProject/SDL2/SDL2_mixer/x86_64-w64-mingw32/include/SDL2][v2.8.1()]
 //Details about finding SDL2_ttf
 FIND_PACKAGE_MESSAGE_DETAILS_SDL2_ttf:INTERNAL=[D:/GameProject/SDL2/SDL2_ttf/x86_64-w64-mingw32/lib/libSDL2_ttf.dll.a][D:/GameProject/SDL2/SDL2_ttf/x86_64-w64-mingw32/include/SDL2][v2.21.1()]
 //Details about finding Threads
@@ -448,7 +456,11 @@ FIND_PACKAGE_MESSAGE_DETAILS_Threads:INTERNAL=[TRUE][v()]
 SDL2_IMAGE_INCLUDE_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: SDL2_IMAGE_LIBRARY
 SDL2_IMAGE_LIBRARY-ADVANCED:INTERNAL=1
-SDL2_LIBRARY_TEMP:INTERNAL=mingw32;-mwindows;C:/mingw64/bin/libSDL2main.a;mingw32;-mwindows;C:/mingw64/bin/libSDL2main.a;mingw32;-mwindows;C:/mingw64/bin/libSDL2main.a;mingw32;-mwindows;C:/mingw64/bin/libSDL2main.a;mingw32;-mwindows;C:/mingw64/bin/libSDL2main.a;mingw32;-mwindows;C:/mingw64/bin/libSDL2main.a;mingw32;-mwindows;C:/mingw64/bin/libSDL2main.a;mingw32;-mwindows;C:/mingw64/bin/libSDL2main.a;mingw32;-mwindows;C:/mingw64/bin/libSDL2main.a;mingw32;-mwindows;C:/mingw64/bin/libSDL2main.a;C:/mingw64/bin/libSDL2.dll.a
+SDL2_LIBRARY_TEMP:INTERNAL=mingw32;-mwindows;C:/mingw64/bin/libSDL2main.a;mingw32;-mwindows;C:/mingw64/bin/libSDL2main.a;mingw32;-mwindows;C:/mingw64/bin/libSDL2main.a;mingw32;-mwindows;C:/mingw64/bin/libSDL2main.a;mingw32;-mwindows;C:/mingw64/bin/libSDL2main.a;mingw32;-mwindows;C:/mingw64/bin/libSDL2main.a;mingw32;-mwindows;C:/mingw64/bin/libSDL2main.a;mingw32;-mwindows;C:/mingw64/bin/libSDL2main.a;mingw32;-mwindows;C:/mingw64/bin/libSDL2main.a;mingw32;-mwindows;C:/mingw64/bin/libSDL2main.a;mingw32;-mwindows;C:/mingw64/bin/libSDL2main.a;mingw32;-mwindows;C:/mingw64/bin/libSDL2main.a;C:/mingw64/bin/libSDL2.dll.a
+//ADVANCED property for variable: SDL2_MIXER_INCLUDE_DIR
+SDL2_MIXER_INCLUDE_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: SDL2_MIXER_LIBRARY
+SDL2_MIXER_LIBRARY-ADVANCED:INTERNAL=1
 //linker supports push/pop state
 _CMAKE_LINKER_PUSHPOP_STATE_SUPPORTED:INTERNAL=TRUE
 

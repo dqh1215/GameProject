@@ -19,6 +19,7 @@ Character::Character(float x, float y, int width, int height)
       currentColumn(0),
       currentRow(0),
       flip(SDL_FLIP_NONE),
+      angle(0),
       shootCooldown(2.0f),
       shootTimer(0.0f),
       teleportCooldown(3.0f),
@@ -51,7 +52,7 @@ void Character::update(float deltaTime) {
         Vector2D directionNormalized = direction.normalize();
         position += directionNormalized * speed * deltaTime;
 
-        currentColumn = int(SDL_GetTicks() / 200) % 3 + 2;
+        currentColumn = static_cast<int>(SDL_GetTicks() / 200) % 3 + 2;
 
         if (position.x <= target.x && position.y <= target.y) {
             // NW
@@ -89,7 +90,7 @@ Vector2D &Character::getPosition() {
 
 void Character::render(SDL_Renderer *renderer) {
     if (isShooting && SDL_GetTicks() < shootingTime) {
-        TextureManager::Instance()->drawFrame(
+        TextureManager::Instance()->draw(
             textureID,
             rect.x, rect.y,
             width, height,
@@ -103,7 +104,7 @@ void Character::render(SDL_Renderer *renderer) {
         if (isShooting && SDL_GetTicks() >= shootingTime) {
             isShooting = false;
         }
-        TextureManager::Instance()->drawFrame(
+        TextureManager::Instance()->draw(
             textureID,
             rect.x, rect.y,
             width, height,

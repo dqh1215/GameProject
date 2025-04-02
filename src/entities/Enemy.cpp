@@ -9,14 +9,16 @@ using namespace std;
 
 Enemy::Enemy(float x, float y, int width, int height)
     : Entity(x, y, width, height),
-      target(0, 0),
-      active(true),
-      speed(80.0f),
-      textureID(""),
-      frameWidth(64),
-      frameHeight(64),
-      currentColumn(0),
-      dead(false) {
+    target(0, 0),
+    active(true),
+    speed(80.0f),
+    textureID(""),
+    frameWidth(64),
+    frameHeight(64),
+    dyingTime(0),
+    dead(false),
+    currentColumn(0),
+    currentRow(0) {
 }
 
 void Enemy::update(float deltaTime) {
@@ -24,13 +26,12 @@ void Enemy::update(float deltaTime) {
         return;
     }
     Vector2D direction = target - position;
-    float distance = direction.length();
 
     // di chuyen den vi tri can den theo huong la vector direction
     Vector2D directionNormalized = direction.normalize();
     position += directionNormalized * speed * deltaTime;
 
-    currentColumn = int(SDL_GetTicks() / 200) % 5 + 1;
+    currentColumn = static_cast<int>(SDL_GetTicks() / 200) % 5 + 1;
 
     // Xác định hướng nhìn dựa vào hướng di chuyển
     currentRow = 0;
@@ -70,8 +71,8 @@ void Enemy::render(SDL_Renderer *renderer) {
         if (SDL_GetTicks() >= dyingTime) {
             dead = true;
         } else {
-            currentColumn = int((600 - (dyingTime - SDL_GetTicks())) / 150) % 4 + 9;
-            TextureManager::Instance()->drawFrame(
+            currentColumn = static_cast<int>((600 - (dyingTime - SDL_GetTicks())) / 150) % 4 + 9;
+            TextureManager::Instance()->draw(
                 textureID,
                 rect.x, rect.y,
                 width, height,
@@ -82,7 +83,7 @@ void Enemy::render(SDL_Renderer *renderer) {
         }
     }
 
-    TextureManager::Instance()->drawFrame(
+    TextureManager::Instance()->draw(
         textureID,
         rect.x, rect.y,
         width, height,

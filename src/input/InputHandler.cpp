@@ -39,7 +39,7 @@ void InputHandler::handleEvents(bool& running, Character& character, Game& game,
                 else if (event.key.keysym.sym == SDLK_e && !EKeyDown) {
                     EKeyDown = true;
                     if (character.canTeleport()) {
-                        character.teleport(mouseX, mouseY);
+                        game.teleportPlayer(mouseX, mouseY);
                     }
                 }
                 break;

@@ -15,7 +15,8 @@
 	[
 		"D:\\GameProject\\SDL2\\x86_64-w64-mingw32\\include\\SDL2",
 		"D:\\GameProject\\SDL2\\SDL2_image\\x86_64-w64-mingw32\\include\\SDL2",
-		"D:\\GameProject\\SDL2\\SDL2_ttf\\x86_64-w64-mingw32\\include\\SDL2"
+		"D:\\GameProject\\SDL2\\SDL2_ttf\\x86_64-w64-mingw32\\include\\SDL2",
+		"D:\\GameProject\\SDL2\\SDL2_mixer\\x86_64-w64-mingw32\\include\\SDL2"
 	],
 	"language" : "CXX",
 	"linked-target-dirs" : [],

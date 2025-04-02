@@ -6,7 +6,6 @@
 #define TEXTUREMANAGER_H
 
 #include <SDL2/SDL.h>
-#include <SDL_image.h>
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -26,9 +25,14 @@ public:
     void draw(const string &id, int x, int y, int displayWidth, int displayHeight, int frameWidth, int frameHeight,
               SDL_Renderer *renderer, SDL_RendererFlip flip = SDL_FLIP_NONE);
 
-    void drawFrame(const string &id, int x, int y, int displayWidth, int displayHeight,
+    void draw(const string &id, int x, int y, int displayWidth, int displayHeight,
                    int currentRow, int currentColumn, int frameWidth, int frameHeight,
                    SDL_Renderer *renderer, SDL_RendererFlip flip = SDL_FLIP_NONE,
+                   double angle = 0.0, SDL_Point *center = nullptr);
+
+    void draw(const string &id, int x, int y, int displayWidth, int displayHeight,
+                   int currentRow, int currentColumn, int frameWidth, int frameHeight,
+                   SDL_Renderer *renderer, int duration, SDL_RendererFlip flip = SDL_FLIP_NONE,
                    double angle = 0.0, SDL_Point *center = nullptr);
 
     void clearFromTextureMap(const string &id);
@@ -40,11 +44,9 @@ public:
     }
 
 private:
-    TextureManager() {
-    }
+    TextureManager() = default;
 
-    ~TextureManager() {
-    }
+    ~TextureManager() = default;
 
     static TextureManager *instance;
     map<std::string, SDL_Texture *> textureMap;

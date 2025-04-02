@@ -6,7 +6,6 @@
 #define ENEMY_H
 
 #include "Entity.h"
-#include "Character.h"
 
 class Enemy : public Entity {
 public:
@@ -18,11 +17,11 @@ public:
 
     void setTarget(float x, float y);
 
-    bool isActive() const { return active; }
+    [[nodiscard]] bool isActive() const { return active; }
 
     void die();
 
-    bool isDead() const { return dead; }
+    [[nodiscard]] bool isDead() const { return dead; }
 
     bool loadTexture(const string &filePath, const string &id, SDL_Renderer *renderer);
 
@@ -33,7 +32,7 @@ private:
     string textureID;
     int frameWidth;
     int frameHeight;
-    int dyingTime;
+    Uint32 dyingTime;
     bool dead;
     int currentColumn;
     int currentRow;

@@ -17,7 +17,7 @@ public:
 
     void setTarget(float x, float y);
 
-    bool isMoving() const;
+    [[nodiscard]] bool isMoving() const;
 
     Vector2D &getPosition();
 
@@ -27,9 +27,9 @@ public:
     void teleport(float mouseX, float mouseY);
 
     // Thêm cooldown cho các chiêu thức
-    bool canShoot() const;
+    [[nodiscard]] bool canShoot() const;
 
-    bool canTeleport() const;
+    [[nodiscard]] bool canTeleport() const;
 
     bool loadTexture(const string &filePath, const string &id, SDL_Renderer *renderer);
 

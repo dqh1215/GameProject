@@ -6,6 +6,7 @@
 #define GAME_H
 
 #include <SDL2/SDL.h>
+#include <SDL_mixer.h>
 #include <bits/stdc++.h>
 #include "core/Timer.h"
 #include <SDL_ttf.h>
@@ -35,8 +36,6 @@ public:
 
     void clean();
 
-    bool loadTextureBackground(const string &filePath, const string &id, SDL_Renderer *renderer);
-
     void shootProjectile(const Vector2D &startPos, const Vector2D &direction);
 
     void teleportPlayer(float x, float y);
@@ -56,9 +55,15 @@ private:
 
     void gameOver();
 
+    void renderPlaying();
+
+    void handlePlayingEvents();
+
     void renderCooldowns();
 
     void renderScore();
+
+    bool loadAudio();
 
     void renderPauseMenu();
 
@@ -90,12 +95,6 @@ private:
 
     GameState currentState;
     int score;
-
-    string resumeButtonTexture;
-    string restartButtonTexture;
-    string quitButtonTexture;
-    string startButtonTexture;
-
     bool running;
     bool gameOverState;
     int screenWidth;

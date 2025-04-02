@@ -184,11 +184,6 @@ CMakeFiles\PROJECT_NAME.dir\src\graphics\TextureManager.cpp.obj.ddi: \
  C:/mingw64/include/SDL2/SDL_system.h C:/mingw64/include/SDL2/SDL_timer.h \
  C:/mingw64/include/SDL2/SDL_version.h \
  C:/mingw64/include/SDL2/SDL_locale.h C:/mingw64/include/SDL2/SDL_misc.h \
- D:/GameProject/SDL2/SDL2_image/x86_64-w64-mingw32/include/SDL2/SDL_image.h \
- D:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2/SDL.h \
- D:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2/SDL_version.h \
- D:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2/begin_code.h \
- D:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2/close_code.h \
  C:/mingw64/include/c++/14.2.0/x86_64-w64-mingw32/bits/stdc++.h \
  C:/mingw64/include/c++/14.2.0/cassert \
  C:/mingw64/x86_64-w64-mingw32/include/assert.h \
@@ -507,4 +502,9 @@ CMakeFiles\PROJECT_NAME.dir\src\graphics\TextureManager.cpp.obj.ddi: \
  C:/mingw64/include/c++/14.2.0/memory_resource \
  C:/mingw64/include/c++/14.2.0/barrier \
  C:/mingw64/include/c++/14.2.0/latch \
- C:/mingw64/include/c++/14.2.0/syncstream
+ C:/mingw64/include/c++/14.2.0/syncstream \
+ D:/GameProject/SDL2/SDL2_image/x86_64-w64-mingw32/include/SDL2/SDL_image.h \
+ D:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2/SDL.h \
+ D:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2/SDL_version.h \
+ D:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2/begin_code.h \
+ D:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2/close_code.h

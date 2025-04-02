@@ -20,11 +20,11 @@ public:
 
     void fire(const Vector2D &startPosition, const Vector2D &direction);
 
-    bool isActive() const { return active; }
+    [[nodiscard]] bool isActive() const { return active; }
     void setActive(bool active) { this->active = active; }
 
     // Hàm để lấy thời gian tồn tại
-    float getLifetime() const { return lifetime; }
+    [[nodiscard]] float getLifetime() const { return lifetime; }
 
 private:
     Vector2D direction;

@@ -5,6 +5,7 @@
 #include "TextureManager.h"
 #include <SDL2/SDL.h>
 #include <bits/stdc++.h>
+#include <SDL_image.h>
 using namespace std;
 TextureManager *TextureManager::instance = nullptr;
 
@@ -20,6 +21,9 @@ bool TextureManager::init() {
 }
 
 bool TextureManager::load(const string &fileName, const string &id, SDL_Renderer *renderer) {
+    if (textureMap.contains(id)) {
+        return true;
+    }
     SDL_Surface *tempSurface = IMG_Load(fileName.c_str());
 
     if (!tempSurface) {
@@ -61,7 +65,7 @@ void TextureManager::draw(const string &id, int x, int y, int displayWidth, int 
     SDL_RenderCopyEx(renderer, textureMap[id], &srcRect, &destRect, 0, nullptr, flip);
 }
 
-void TextureManager::drawFrame(const string &id, int x, int y, int displayWidth, int displayHeight,
+void TextureManager::draw(const string &id, int x, int y, int displayWidth, int displayHeight,
                                int currentRow, int currentColumn, int frameWidth, int frameHeight,
                                SDL_Renderer *renderer, SDL_RendererFlip flip,
                                double angle, SDL_Point *center) {
@@ -81,8 +85,28 @@ void TextureManager::drawFrame(const string &id, int x, int y, int displayWidth,
     SDL_RenderCopyEx(renderer, textureMap[id], &srcRect, &destRect, angle, center, flip);
 }
 
+void TextureManager::draw(const string &id, int x, int y, int displayWidth, int displayHeight, int currentRow, int currentColumn, int frameWidth, int frameHeight, SDL_Renderer *renderer, int duration, SDL_RendererFlip flip, double angle, SDL_Point *center) {
+    if (SDL_GetTicks() > duration) {
+        return;
+    }
+    SDL_Rect srcRect;
+    SDL_Rect destRect;
+
+    srcRect.x = frameWidth * currentColumn;
+    srcRect.y = frameHeight * currentRow;
+    srcRect.w = frameWidth;
+    srcRect.h = frameHeight;
+
+    destRect.x = x;
+    destRect.y = y;
+    destRect.w = displayWidth;
+    destRect.h = displayHeight;
+
+    SDL_RenderCopyEx(renderer, textureMap[id], &srcRect, &destRect, angle, center, flip);
+}
+
 void TextureManager::clearFromTextureMap(const string &id) {
-    if (textureMap.find(id) != textureMap.end()) {
+    if (textureMap.contains(id)) {
         SDL_DestroyTexture(textureMap[id]);
         textureMap.erase(id);
     }

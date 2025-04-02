@@ -53,7 +53,7 @@ build CMakeFiles/PROJECT_NAME.dir/src/main.cpp.obj.ddi: CXX_SCAN__PROJECT_NAME_D
   DEP_FILE = CMakeFiles\PROJECT_NAME.dir\src\main.cpp.obj.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles\PROJECT_NAME.dir\src\main.cpp.obj.ddi
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -ID:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_image/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_ttf/x86_64-w64-mingw32/include/SDL2
+  INCLUDES = -ID:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_image/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_ttf/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_mixer/x86_64-w64-mingw32/include/SDL2
   OBJ_FILE = CMakeFiles\PROJECT_NAME.dir\src\main.cpp.obj
   PREPROCESSED_OUTPUT_FILE = CMakeFiles\PROJECT_NAME.dir\src\main.cpp.obj.ddi.i
 
@@ -61,7 +61,7 @@ build CMakeFiles/PROJECT_NAME.dir/src/main.cpp.obj: CXX_COMPILER__PROJECT_NAME_s
   DEP_FILE = CMakeFiles\PROJECT_NAME.dir\src\main.cpp.obj.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles\PROJECT_NAME.dir\src\main.cpp.obj.modmap
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -ID:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_image/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_ttf/x86_64-w64-mingw32/include/SDL2
+  INCLUDES = -ID:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_image/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_ttf/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_mixer/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PROJECT_NAME.dir
   OBJECT_FILE_DIR = CMakeFiles\PROJECT_NAME.dir\src
   dyndep = CMakeFiles/PROJECT_NAME.dir/CXX.dd
@@ -70,7 +70,7 @@ build CMakeFiles/PROJECT_NAME.dir/src/core/Vector2D.cpp.obj.ddi: CXX_SCAN__PROJE
   DEP_FILE = CMakeFiles\PROJECT_NAME.dir\src\core\Vector2D.cpp.obj.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles\PROJECT_NAME.dir\src\core\Vector2D.cpp.obj.ddi
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -ID:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_image/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_ttf/x86_64-w64-mingw32/include/SDL2
+  INCLUDES = -ID:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_image/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_ttf/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_mixer/x86_64-w64-mingw32/include/SDL2
   OBJ_FILE = CMakeFiles\PROJECT_NAME.dir\src\core\Vector2D.cpp.obj
   PREPROCESSED_OUTPUT_FILE = CMakeFiles\PROJECT_NAME.dir\src\core\Vector2D.cpp.obj.ddi.i
 
@@ -78,7 +78,7 @@ build CMakeFiles/PROJECT_NAME.dir/src/core/Vector2D.cpp.obj: CXX_COMPILER__PROJE
   DEP_FILE = CMakeFiles\PROJECT_NAME.dir\src\core\Vector2D.cpp.obj.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles\PROJECT_NAME.dir\src\core\Vector2D.cpp.obj.modmap
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -ID:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_image/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_ttf/x86_64-w64-mingw32/include/SDL2
+  INCLUDES = -ID:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_image/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_ttf/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_mixer/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PROJECT_NAME.dir
   OBJECT_FILE_DIR = CMakeFiles\PROJECT_NAME.dir\src\core
   dyndep = CMakeFiles/PROJECT_NAME.dir/CXX.dd
@@ -87,7 +87,7 @@ build CMakeFiles/PROJECT_NAME.dir/src/core/Timer.cpp.obj.ddi: CXX_SCAN__PROJECT_
   DEP_FILE = CMakeFiles\PROJECT_NAME.dir\src\core\Timer.cpp.obj.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles\PROJECT_NAME.dir\src\core\Timer.cpp.obj.ddi
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -ID:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_image/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_ttf/x86_64-w64-mingw32/include/SDL2
+  INCLUDES = -ID:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_image/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_ttf/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_mixer/x86_64-w64-mingw32/include/SDL2
   OBJ_FILE = CMakeFiles\PROJECT_NAME.dir\src\core\Timer.cpp.obj
   PREPROCESSED_OUTPUT_FILE = CMakeFiles\PROJECT_NAME.dir\src\core\Timer.cpp.obj.ddi.i
 
@@ -95,7 +95,7 @@ build CMakeFiles/PROJECT_NAME.dir/src/core/Timer.cpp.obj: CXX_COMPILER__PROJECT_
   DEP_FILE = CMakeFiles\PROJECT_NAME.dir\src\core\Timer.cpp.obj.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles\PROJECT_NAME.dir\src\core\Timer.cpp.obj.modmap
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -ID:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_image/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_ttf/x86_64-w64-mingw32/include/SDL2
+  INCLUDES = -ID:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_image/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_ttf/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_mixer/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PROJECT_NAME.dir
   OBJECT_FILE_DIR = CMakeFiles\PROJECT_NAME.dir\src\core
   dyndep = CMakeFiles/PROJECT_NAME.dir/CXX.dd
@@ -104,7 +104,7 @@ build CMakeFiles/PROJECT_NAME.dir/src/entities/Entity.cpp.obj.ddi: CXX_SCAN__PRO
   DEP_FILE = CMakeFiles\PROJECT_NAME.dir\src\entities\Entity.cpp.obj.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles\PROJECT_NAME.dir\src\entities\Entity.cpp.obj.ddi
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -ID:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_image/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_ttf/x86_64-w64-mingw32/include/SDL2
+  INCLUDES = -ID:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_image/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_ttf/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_mixer/x86_64-w64-mingw32/include/SDL2
   OBJ_FILE = CMakeFiles\PROJECT_NAME.dir\src\entities\Entity.cpp.obj
   PREPROCESSED_OUTPUT_FILE = CMakeFiles\PROJECT_NAME.dir\src\entities\Entity.cpp.obj.ddi.i
 
@@ -112,7 +112,7 @@ build CMakeFiles/PROJECT_NAME.dir/src/entities/Entity.cpp.obj: CXX_COMPILER__PRO
   DEP_FILE = CMakeFiles\PROJECT_NAME.dir\src\entities\Entity.cpp.obj.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles\PROJECT_NAME.dir\src\entities\Entity.cpp.obj.modmap
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -ID:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_image/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_ttf/x86_64-w64-mingw32/include/SDL2
+  INCLUDES = -ID:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_image/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_ttf/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_mixer/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PROJECT_NAME.dir
   OBJECT_FILE_DIR = CMakeFiles\PROJECT_NAME.dir\src\entities
   dyndep = CMakeFiles/PROJECT_NAME.dir/CXX.dd
@@ -121,7 +121,7 @@ build CMakeFiles/PROJECT_NAME.dir/src/entities/Character.cpp.obj.ddi: CXX_SCAN__
   DEP_FILE = CMakeFiles\PROJECT_NAME.dir\src\entities\Character.cpp.obj.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles\PROJECT_NAME.dir\src\entities\Character.cpp.obj.ddi
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -ID:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_image/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_ttf/x86_64-w64-mingw32/include/SDL2
+  INCLUDES = -ID:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_image/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_ttf/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_mixer/x86_64-w64-mingw32/include/SDL2
   OBJ_FILE = CMakeFiles\PROJECT_NAME.dir\src\entities\Character.cpp.obj
   PREPROCESSED_OUTPUT_FILE = CMakeFiles\PROJECT_NAME.dir\src\entities\Character.cpp.obj.ddi.i
 
@@ -129,7 +129,7 @@ build CMakeFiles/PROJECT_NAME.dir/src/entities/Character.cpp.obj: CXX_COMPILER__
   DEP_FILE = CMakeFiles\PROJECT_NAME.dir\src\entities\Character.cpp.obj.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles\PROJECT_NAME.dir\src\entities\Character.cpp.obj.modmap
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -ID:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_image/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_ttf/x86_64-w64-mingw32/include/SDL2
+  INCLUDES = -ID:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_image/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_ttf/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_mixer/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PROJECT_NAME.dir
   OBJECT_FILE_DIR = CMakeFiles\PROJECT_NAME.dir\src\entities
   dyndep = CMakeFiles/PROJECT_NAME.dir/CXX.dd
@@ -138,7 +138,7 @@ build CMakeFiles/PROJECT_NAME.dir/src/input/InputHandler.cpp.obj.ddi: CXX_SCAN__
   DEP_FILE = CMakeFiles\PROJECT_NAME.dir\src\input\InputHandler.cpp.obj.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles\PROJECT_NAME.dir\src\input\InputHandler.cpp.obj.ddi
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -ID:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_image/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_ttf/x86_64-w64-mingw32/include/SDL2
+  INCLUDES = -ID:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_image/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_ttf/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_mixer/x86_64-w64-mingw32/include/SDL2
   OBJ_FILE = CMakeFiles\PROJECT_NAME.dir\src\input\InputHandler.cpp.obj
   PREPROCESSED_OUTPUT_FILE = CMakeFiles\PROJECT_NAME.dir\src\input\InputHandler.cpp.obj.ddi.i
 
@@ -146,7 +146,7 @@ build CMakeFiles/PROJECT_NAME.dir/src/input/InputHandler.cpp.obj: CXX_COMPILER__
   DEP_FILE = CMakeFiles\PROJECT_NAME.dir\src\input\InputHandler.cpp.obj.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles\PROJECT_NAME.dir\src\input\InputHandler.cpp.obj.modmap
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -ID:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_image/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_ttf/x86_64-w64-mingw32/include/SDL2
+  INCLUDES = -ID:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_image/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_ttf/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_mixer/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PROJECT_NAME.dir
   OBJECT_FILE_DIR = CMakeFiles\PROJECT_NAME.dir\src\input
   dyndep = CMakeFiles/PROJECT_NAME.dir/CXX.dd
@@ -155,7 +155,7 @@ build CMakeFiles/PROJECT_NAME.dir/src/Game.cpp.obj.ddi: CXX_SCAN__PROJECT_NAME_D
   DEP_FILE = CMakeFiles\PROJECT_NAME.dir\src\Game.cpp.obj.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles\PROJECT_NAME.dir\src\Game.cpp.obj.ddi
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -ID:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_image/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_ttf/x86_64-w64-mingw32/include/SDL2
+  INCLUDES = -ID:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_image/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_ttf/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_mixer/x86_64-w64-mingw32/include/SDL2
   OBJ_FILE = CMakeFiles\PROJECT_NAME.dir\src\Game.cpp.obj
   PREPROCESSED_OUTPUT_FILE = CMakeFiles\PROJECT_NAME.dir\src\Game.cpp.obj.ddi.i
 
@@ -163,7 +163,7 @@ build CMakeFiles/PROJECT_NAME.dir/src/Game.cpp.obj: CXX_COMPILER__PROJECT_NAME_s
   DEP_FILE = CMakeFiles\PROJECT_NAME.dir\src\Game.cpp.obj.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles\PROJECT_NAME.dir\src\Game.cpp.obj.modmap
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -ID:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_image/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_ttf/x86_64-w64-mingw32/include/SDL2
+  INCLUDES = -ID:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_image/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_ttf/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_mixer/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PROJECT_NAME.dir
   OBJECT_FILE_DIR = CMakeFiles\PROJECT_NAME.dir\src
   dyndep = CMakeFiles/PROJECT_NAME.dir/CXX.dd
@@ -172,7 +172,7 @@ build CMakeFiles/PROJECT_NAME.dir/src/graphics/TextureManager.cpp.obj.ddi: CXX_S
   DEP_FILE = CMakeFiles\PROJECT_NAME.dir\src\graphics\TextureManager.cpp.obj.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles\PROJECT_NAME.dir\src\graphics\TextureManager.cpp.obj.ddi
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -ID:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_image/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_ttf/x86_64-w64-mingw32/include/SDL2
+  INCLUDES = -ID:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_image/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_ttf/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_mixer/x86_64-w64-mingw32/include/SDL2
   OBJ_FILE = CMakeFiles\PROJECT_NAME.dir\src\graphics\TextureManager.cpp.obj
   PREPROCESSED_OUTPUT_FILE = CMakeFiles\PROJECT_NAME.dir\src\graphics\TextureManager.cpp.obj.ddi.i
 
@@ -180,7 +180,7 @@ build CMakeFiles/PROJECT_NAME.dir/src/graphics/TextureManager.cpp.obj: CXX_COMPI
   DEP_FILE = CMakeFiles\PROJECT_NAME.dir\src\graphics\TextureManager.cpp.obj.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles\PROJECT_NAME.dir\src\graphics\TextureManager.cpp.obj.modmap
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -ID:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_image/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_ttf/x86_64-w64-mingw32/include/SDL2
+  INCLUDES = -ID:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_image/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_ttf/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_mixer/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PROJECT_NAME.dir
   OBJECT_FILE_DIR = CMakeFiles\PROJECT_NAME.dir\src\graphics
   dyndep = CMakeFiles/PROJECT_NAME.dir/CXX.dd
@@ -189,7 +189,7 @@ build CMakeFiles/PROJECT_NAME.dir/src/entities/Bullet.cpp.obj.ddi: CXX_SCAN__PRO
   DEP_FILE = CMakeFiles\PROJECT_NAME.dir\src\entities\Bullet.cpp.obj.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles\PROJECT_NAME.dir\src\entities\Bullet.cpp.obj.ddi
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -ID:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_image/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_ttf/x86_64-w64-mingw32/include/SDL2
+  INCLUDES = -ID:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_image/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_ttf/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_mixer/x86_64-w64-mingw32/include/SDL2
   OBJ_FILE = CMakeFiles\PROJECT_NAME.dir\src\entities\Bullet.cpp.obj
   PREPROCESSED_OUTPUT_FILE = CMakeFiles\PROJECT_NAME.dir\src\entities\Bullet.cpp.obj.ddi.i
 
@@ -197,7 +197,7 @@ build CMakeFiles/PROJECT_NAME.dir/src/entities/Bullet.cpp.obj: CXX_COMPILER__PRO
   DEP_FILE = CMakeFiles\PROJECT_NAME.dir\src\entities\Bullet.cpp.obj.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles\PROJECT_NAME.dir\src\entities\Bullet.cpp.obj.modmap
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -ID:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_image/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_ttf/x86_64-w64-mingw32/include/SDL2
+  INCLUDES = -ID:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_image/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_ttf/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_mixer/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PROJECT_NAME.dir
   OBJECT_FILE_DIR = CMakeFiles\PROJECT_NAME.dir\src\entities
   dyndep = CMakeFiles/PROJECT_NAME.dir/CXX.dd
@@ -206,7 +206,7 @@ build CMakeFiles/PROJECT_NAME.dir/src/entities/Enemy.cpp.obj.ddi: CXX_SCAN__PROJ
   DEP_FILE = CMakeFiles\PROJECT_NAME.dir\src\entities\Enemy.cpp.obj.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles\PROJECT_NAME.dir\src\entities\Enemy.cpp.obj.ddi
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -ID:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_image/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_ttf/x86_64-w64-mingw32/include/SDL2
+  INCLUDES = -ID:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_image/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_ttf/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_mixer/x86_64-w64-mingw32/include/SDL2
   OBJ_FILE = CMakeFiles\PROJECT_NAME.dir\src\entities\Enemy.cpp.obj
   PREPROCESSED_OUTPUT_FILE = CMakeFiles\PROJECT_NAME.dir\src\entities\Enemy.cpp.obj.ddi.i
 
@@ -214,7 +214,7 @@ build CMakeFiles/PROJECT_NAME.dir/src/entities/Enemy.cpp.obj: CXX_COMPILER__PROJ
   DEP_FILE = CMakeFiles\PROJECT_NAME.dir\src\entities\Enemy.cpp.obj.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles\PROJECT_NAME.dir\src\entities\Enemy.cpp.obj.modmap
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -ID:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_image/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_ttf/x86_64-w64-mingw32/include/SDL2
+  INCLUDES = -ID:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_image/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_ttf/x86_64-w64-mingw32/include/SDL2 -ID:/GameProject/SDL2/SDL2_mixer/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PROJECT_NAME.dir
   OBJECT_FILE_DIR = CMakeFiles\PROJECT_NAME.dir\src\entities
   dyndep = CMakeFiles/PROJECT_NAME.dir/CXX.dd
@@ -229,9 +229,9 @@ build CMakeFiles/PROJECT_NAME.dir/CXX.dd | D$:/GameProject/cmake-build-debug/CMa
 #############################################
 # Link the executable PROJECT_NAME.exe
 
-build PROJECT_NAME.exe: CXX_EXECUTABLE_LINKER__PROJECT_NAME_Debug CMakeFiles/PROJECT_NAME.dir/src/main.cpp.obj CMakeFiles/PROJECT_NAME.dir/src/core/Vector2D.cpp.obj CMakeFiles/PROJECT_NAME.dir/src/core/Timer.cpp.obj CMakeFiles/PROJECT_NAME.dir/src/entities/Entity.cpp.obj CMakeFiles/PROJECT_NAME.dir/src/entities/Character.cpp.obj CMakeFiles/PROJECT_NAME.dir/src/input/InputHandler.cpp.obj CMakeFiles/PROJECT_NAME.dir/src/Game.cpp.obj CMakeFiles/PROJECT_NAME.dir/src/graphics/TextureManager.cpp.obj CMakeFiles/PROJECT_NAME.dir/src/entities/Bullet.cpp.obj CMakeFiles/PROJECT_NAME.dir/src/entities/Enemy.cpp.obj | C$:/mingw64/bin/libSDL2main.a C$:/mingw64/bin/libSDL2.dll.a D$:/GameProject/SDL2/SDL2_image/x86_64-w64-mingw32/lib/libSDL2_image.dll.a D$:/GameProject/SDL2/SDL2_ttf/x86_64-w64-mingw32/lib/libSDL2_ttf.dll.a
+build PROJECT_NAME.exe: CXX_EXECUTABLE_LINKER__PROJECT_NAME_Debug CMakeFiles/PROJECT_NAME.dir/src/main.cpp.obj CMakeFiles/PROJECT_NAME.dir/src/core/Vector2D.cpp.obj CMakeFiles/PROJECT_NAME.dir/src/core/Timer.cpp.obj CMakeFiles/PROJECT_NAME.dir/src/entities/Entity.cpp.obj CMakeFiles/PROJECT_NAME.dir/src/entities/Character.cpp.obj CMakeFiles/PROJECT_NAME.dir/src/input/InputHandler.cpp.obj CMakeFiles/PROJECT_NAME.dir/src/Game.cpp.obj CMakeFiles/PROJECT_NAME.dir/src/graphics/TextureManager.cpp.obj CMakeFiles/PROJECT_NAME.dir/src/entities/Bullet.cpp.obj CMakeFiles/PROJECT_NAME.dir/src/entities/Enemy.cpp.obj | C$:/mingw64/bin/libSDL2main.a C$:/mingw64/bin/libSDL2.dll.a D$:/GameProject/SDL2/SDL2_image/x86_64-w64-mingw32/lib/libSDL2_image.dll.a D$:/GameProject/SDL2/SDL2_ttf/x86_64-w64-mingw32/lib/libSDL2_ttf.dll.a D$:/GameProject/SDL2/SDL2_mixer/x86_64-w64-mingw32/lib/libSDL2_mixer.dll.a
   FLAGS = -g
-  LINK_LIBRARIES = -lmingw32  -mwindows  C:/mingw64/bin/libSDL2main.a  C:/mingw64/bin/libSDL2.dll.a  D:/GameProject/SDL2/SDL2_image/x86_64-w64-mingw32/lib/libSDL2_image.dll.a  D:/GameProject/SDL2/SDL2_ttf/x86_64-w64-mingw32/lib/libSDL2_ttf.dll.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  LINK_LIBRARIES = -lmingw32  -mwindows  C:/mingw64/bin/libSDL2main.a  C:/mingw64/bin/libSDL2.dll.a  D:/GameProject/SDL2/SDL2_image/x86_64-w64-mingw32/lib/libSDL2_image.dll.a  D:/GameProject/SDL2/SDL2_ttf/x86_64-w64-mingw32/lib/libSDL2_ttf.dll.a  D:/GameProject/SDL2/SDL2_mixer/x86_64-w64-mingw32/lib/libSDL2_mixer.dll.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\PROJECT_NAME.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
@@ -284,14 +284,14 @@ build all: phony PROJECT_NAME.exe
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeRCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/CheckCSourceCompiles.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/CheckIncludeFile.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/CheckLibraryExists.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/FindPackageHandleStandardArgs.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/FindPackageMessage.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/FindThreads.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/Internal/CheckSourceCompiles.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-Initialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/WindowsPaths.cmake CMakeCache.txt CMakeFiles/3.30.5/CMakeCCompiler.cmake CMakeFiles/3.30.5/CMakeCXXCompiler.cmake CMakeFiles/3.30.5/CMakeRCCompiler.cmake CMakeFiles/3.30.5/CMakeSystem.cmake D$:/GameProject/CMakeLists.txt D$:/GameProject/cmake/modules/FindSDL2.cmake D$:/GameProject/cmake/modules/FindSDL2_image.cmake D$:/GameProject/cmake/modules/FindSDL2_ttf.cmake
+build build.ninja: RERUN_CMAKE | C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeRCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/CheckCSourceCompiles.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/CheckIncludeFile.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/CheckLibraryExists.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/FindPackageHandleStandardArgs.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/FindPackageMessage.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/FindThreads.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/Internal/CheckSourceCompiles.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-Initialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/WindowsPaths.cmake CMakeCache.txt CMakeFiles/3.30.5/CMakeCCompiler.cmake CMakeFiles/3.30.5/CMakeCXXCompiler.cmake CMakeFiles/3.30.5/CMakeRCCompiler.cmake CMakeFiles/3.30.5/CMakeSystem.cmake D$:/GameProject/CMakeLists.txt D$:/GameProject/cmake/modules/FindSDL2.cmake D$:/GameProject/cmake/modules/FindSDL2_image.cmake D$:/GameProject/cmake/modules/FindSDL2_mixer.cmake D$:/GameProject/cmake/modules/FindSDL2_ttf.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeRCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/CheckCSourceCompiles.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/CheckIncludeFile.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/CheckLibraryExists.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/FindPackageHandleStandardArgs.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/FindPackageMessage.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/FindThreads.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/Internal/CheckSourceCompiles.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-Initialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/WindowsPaths.cmake CMakeCache.txt CMakeFiles/3.30.5/CMakeCCompiler.cmake CMakeFiles/3.30.5/CMakeCXXCompiler.cmake CMakeFiles/3.30.5/CMakeRCCompiler.cmake CMakeFiles/3.30.5/CMakeSystem.cmake D$:/GameProject/CMakeLists.txt D$:/GameProject/cmake/modules/FindSDL2.cmake D$:/GameProject/cmake/modules/FindSDL2_image.cmake D$:/GameProject/cmake/modules/FindSDL2_ttf.cmake: phony
+build C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeRCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/CheckCSourceCompiles.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/CheckIncludeFile.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/CheckLibraryExists.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/FindPackageHandleStandardArgs.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/FindPackageMessage.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/FindThreads.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/Internal/CheckSourceCompiles.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-Initialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.3.2/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/WindowsPaths.cmake CMakeCache.txt CMakeFiles/3.30.5/CMakeCCompiler.cmake CMakeFiles/3.30.5/CMakeCXXCompiler.cmake CMakeFiles/3.30.5/CMakeRCCompiler.cmake CMakeFiles/3.30.5/CMakeSystem.cmake D$:/GameProject/CMakeLists.txt D$:/GameProject/cmake/modules/FindSDL2.cmake D$:/GameProject/cmake/modules/FindSDL2_image.cmake D$:/GameProject/cmake/modules/FindSDL2_mixer.cmake D$:/GameProject/cmake/modules/FindSDL2_ttf.cmake: phony
 
 
 #############################################

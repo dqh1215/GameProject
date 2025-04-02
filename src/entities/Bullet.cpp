@@ -7,14 +7,14 @@
 
 Bullet::Bullet(float x, float y, int width, int height)
     : Entity(x, y, width, height),
-      frameWidth(251),
-      frameHeight(144),
       direction(0, 0),
       speed(800.0f),
       textureID(""),
+      frameWidth(251),
+      frameHeight(144),
       active(false),
-      angle(0),
       lifetime(0.0f),
+      angle(0),
       maxLifetime(0.75f),
       flip(SDL_FLIP_NONE) {
 }

@@ -183,6 +183,14 @@ CMakeFiles\PROJECT_NAME.dir\src\Game.cpp.obj.ddi: \
  C:/mingw64/include/SDL2/SDL_system.h C:/mingw64/include/SDL2/SDL_timer.h \
  C:/mingw64/include/SDL2/SDL_version.h \
  C:/mingw64/include/SDL2/SDL_locale.h C:/mingw64/include/SDL2/SDL_misc.h \
+ D:/GameProject/SDL2/SDL2_mixer/x86_64-w64-mingw32/include/SDL2/SDL_mixer.h \
+ D:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2/SDL_stdinc.h \
+ D:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2/SDL_rwops.h \
+ D:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2/SDL_audio.h \
+ D:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2/SDL_endian.h \
+ D:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2/SDL_version.h \
+ D:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2/begin_code.h \
+ D:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2/close_code.h \
  C:/mingw64/include/c++/14.2.0/x86_64-w64-mingw32/bits/stdc++.h \
  C:/mingw64/include/c++/14.2.0/cassert \
  C:/mingw64/x86_64-w64-mingw32/include/assert.h \
@@ -504,15 +512,10 @@ CMakeFiles\PROJECT_NAME.dir\src\Game.cpp.obj.ddi: \
  C:/mingw64/include/c++/14.2.0/syncstream D:/GameProject/src/core/Timer.h \
  D:/GameProject/SDL2/SDL2_ttf/x86_64-w64-mingw32/include/SDL2/SDL_ttf.h \
  D:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2/SDL.h \
- D:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2/begin_code.h \
- D:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2/close_code.h \
  D:/GameProject/src/entities/Bullet.h \
  D:/GameProject/src/entities/Entity.h D:/GameProject/src/core/Vector2D.h \
  D:/GameProject/src/entities/Character.h \
  D:/GameProject/src/entities/Enemy.h \
- D:/GameProject/src/entities/Character.h \
  D:/GameProject/src/input/InputHandler.h \
  D:/GameProject/src/entities/Character.h \
- D:/GameProject/src/graphics/TextureManager.h \
- D:/GameProject/SDL2/SDL2_image/x86_64-w64-mingw32/include/SDL2/SDL_image.h \
- D:/GameProject/SDL2/x86_64-w64-mingw32/include/SDL2/SDL_version.h
+ D:/GameProject/src/graphics/TextureManager.h
