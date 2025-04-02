@@ -13,13 +13,19 @@ public:
     Enemy(float x, float y, int width, int height);
 
     void update(float deltaTime) override;
-    void render(SDL_Renderer* renderer) override;
+
+    void render(SDL_Renderer *renderer) override;
 
     void setTarget(float x, float y);
+
     bool isActive() const { return active; }
+
     void die();
+
     bool isDead() const { return dead; }
-    bool loadTexture(const string& filePath, const string& id, SDL_Renderer* renderer);
+
+    bool loadTexture(const string &filePath, const string &id, SDL_Renderer *renderer);
+
 private:
     Vector2D target;
     bool active;
@@ -32,7 +38,6 @@ private:
     int currentColumn;
     int currentRow;
 };
-
 
 
 #endif //ENEMY_H

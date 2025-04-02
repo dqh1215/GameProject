@@ -8,8 +8,9 @@
 using namespace std;
 
 Game::Game() : window(nullptr), renderer(nullptr), player(nullptr), running(false), bullet(nullptr),
-screenWidth(0), screenHeight(0), nextEnemySpawn(0.0f), mouseX(0), mouseY(0), currentState(GameState::MAIN_MENU),
-score(0), scoreFont(nullptr), menuFont(nullptr){
+               screenWidth(0), screenHeight(0), nextEnemySpawn(0.0f), mouseX(0), mouseY(0),
+               currentState(GameState::MAIN_MENU),
+               score(0), scoreFont(nullptr), menuFont(nullptr) {
     rng.seed(random_device()());
 }
 
@@ -17,7 +18,7 @@ Game::~Game() {
     clean();
 }
 
-bool Game::init(const string& title, int width, int height, bool fullscreen) {
+bool Game::init(const string &title, int width, int height, bool fullscreen) {
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
         SDL_Log("SDL_Init Error: %s", SDL_GetError());
         return false;
@@ -41,7 +42,7 @@ bool Game::init(const string& title, int width, int height, bool fullscreen) {
     }
 
     this->window = SDL_CreateWindow(title.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
-                             screenWidth, screenHeight, flags);
+                                    screenWidth, screenHeight, flags);
 
     if (!this->window) {
         SDL_Log("SDL_CreateWindow Error: %s", SDL_GetError());
@@ -79,7 +80,7 @@ bool Game::init(const string& title, int width, int height, bool fullscreen) {
         SDL_Log("Texture manager initialized Successful");
     }
 
-    player = new Character(screenWidth / 2.0f, screenHeight / 2.0f, 64, 64);
+    player = new Character(screenWidth / 2.0, screenHeight / 2.0, 64, 64);
 
     // Load assets
     if (!loadAssets()) {
@@ -102,13 +103,12 @@ void Game::renderScore() {
     string scoreText = "High Score " + to_string(score);
 
 
-    SDL_Surface* scoreSurface = TTF_RenderText_Solid(scoreFont, scoreText.c_str(), textColor);
+    SDL_Surface *scoreSurface = TTF_RenderText_Solid(scoreFont, scoreText.c_str(), textColor);
     if (!scoreSurface) {
         SDL_Log("Unable to render score text surface! SDL_ttf Error: %s", TTF_GetError());
         return;
     }
-
-    SDL_Texture* scoreTexture = SDL_CreateTextureFromSurface(renderer, scoreSurface);
+    SDL_Texture *scoreTexture = SDL_CreateTextureFromSurface(renderer, scoreSurface);
     if (!scoreTexture) {
         SDL_Log("Unable to create score texture! SDL Error: %s", SDL_GetError());
         SDL_FreeSurface(scoreSurface);
@@ -132,11 +132,11 @@ void Game::renderScore() {
 }
 
 void Game::renderGameOver() {
-
     SDL_SetRenderDrawColor(renderer, 50, 50, 50, 1);
     SDL_RenderClear(renderer);
 
-    if (TextureManager::Instance()->load("../assets/background/gameover_background.png", "gameover_background", renderer)) {
+    if (TextureManager::Instance()->load("../assets/background/gameover_background.png", "gameover_background",
+                                         renderer)) {
         TextureManager::Instance()->draw("gameover_background", 0, 0, screenWidth, screenHeight, 1300, 720, renderer);
     }
 
@@ -144,12 +144,11 @@ void Game::renderGameOver() {
         int buttonWidth = 80;
         int buttonHeight = 83;
         SDL_Rect buttonRect = {
-            (screenWidth - buttonWidth) / 2 - 20,
-            (screenHeight - buttonHeight) / 2 + 20,
+            screenWidth / 2 - buttonWidth - 20,
+            screenHeight / 2,
             buttonWidth,
             buttonHeight
         };
-
         TextureManager::Instance()->draw("restart_button", buttonRect.x, buttonRect.y,
                                          buttonWidth, buttonHeight, buttonWidth, buttonHeight,
                                          renderer);
@@ -161,19 +160,17 @@ void Game::renderGameOver() {
         int buttonWidth = 80;
         int buttonHeight = 83;
         SDL_Rect buttonRect = {
-            (screenWidth - buttonWidth) / 2 + 20,
-            (screenHeight - buttonHeight) / 2 + 20,
+            screenWidth / 2 + 20,
+            screenHeight / 2,
             buttonWidth,
             buttonHeight
         };
-
         TextureManager::Instance()->draw("home_button", buttonRect.x, buttonRect.y,
                                          buttonWidth, buttonHeight, buttonWidth, buttonHeight,
                                          renderer);
     } else {
         SDL_Log("Unable to load home button texture! SDL Error: %s", SDL_GetError());
     }
-
     SDL_RenderPresent(renderer);
 }
 
@@ -183,7 +180,7 @@ void Game::handleGameOverEvents() {
         switch (event.type) {
             case SDL_QUIT:
                 running = false;
-            break;
+                break;
 
             case SDL_MOUSEBUTTONDOWN:
                 if (event.button.button == SDL_BUTTON_LEFT) {
@@ -192,35 +189,48 @@ void Game::handleGameOverEvents() {
 
                     int buttonWidth = 80;
                     int buttonHeight = 83;
-                    SDL_Rect buttonRect = {
-                        (screenWidth - buttonWidth) / 2 - 100,
-                        (screenHeight - buttonHeight) / 2,
+                    SDL_Rect buttonRect1 = {
+                        screenWidth / 2 - buttonWidth - 20,
+                        screenHeight / 2,
                         buttonWidth,
                         buttonHeight
                     };
 
-                    if (mouseX >= buttonRect.x && mouseX <= buttonRect.x + buttonRect.w &&
-                        mouseY >= buttonRect.y && mouseY <= buttonRect.y + buttonRect.h) {
-                        // Start game
+                    if (mouseX >= buttonRect1.x && mouseX <= buttonRect1.x + buttonRect1.w &&
+                        mouseY >= buttonRect1.y && mouseY <= buttonRect1.y + buttonRect1.h) {
+                        // Start playing again
                         currentState = GameState::PLAYING;
                         resetGame();
-                        }
+                    }
 
+                    SDL_Rect buttonRect2 = {
+                        screenWidth / 2 + 20,
+                        screenHeight / 2,
+                        buttonWidth,
+                        buttonHeight
+                    };
 
+                    if (mouseX >= buttonRect2.x && mouseX <= buttonRect2.x + buttonRect2.w &&
+                        mouseY >= buttonRect2.y && mouseY <= buttonRect2.y + buttonRect2.h) {
+                        // return to main menu
+                        currentState = GameState::MAIN_MENU;
+                        resetGame();
+                    }
                 }
-            break;
+                break;
+            default:
+                break;
         }
     }
 }
 
 
 void Game::renderMainMenu() {
-
     SDL_SetRenderDrawColor(renderer, 50, 50, 50, 1);
     SDL_RenderClear(renderer);
-
-    TextureManager::Instance()->load("../assets/background/home_background.png", "home_background", renderer);
-    TextureManager::Instance()->draw("home_background", 0, 0, 1600, 900, 1600, 900, renderer);
+    if (TextureManager::Instance()->load("../assets/background/home_background.png", "home_background", renderer)) {
+        TextureManager::Instance()->draw("home_background", 0, 0, 1600, 900, 1600, 900, renderer);
+    }
 
     if (TextureManager::Instance()->load(startButtonTexture, "start_button", renderer)) {
         int buttonWidth = 160;
@@ -231,14 +241,12 @@ void Game::renderMainMenu() {
             buttonWidth,
             buttonHeight
         };
-
         TextureManager::Instance()->draw("start_button", buttonRect.x, buttonRect.y,
                                          buttonWidth, buttonHeight, buttonWidth, buttonHeight,
                                          renderer);
     } else {
         SDL_Log("Unable to load start_button texture! SDL Error: %s", SDL_GetError());
     }
-
     SDL_RenderPresent(renderer);
 }
 
@@ -249,13 +257,12 @@ void Game::renderPauseMenu() {
 
     int buttonWidth = 80;
     int buttonHeight = 83;
-    int spacing = 20;
 
     // Resume button
     if (TextureManager::Instance()->load(resumeButtonTexture, "resume_button", renderer)) {
         SDL_Rect resumeRect = {
-            (screenWidth - buttonWidth) / 2,
-            (screenHeight - (buttonHeight * 3 + spacing * 2)) / 2,
+            screenWidth / 2 - 140,
+            screenHeight / 2 + 20,
             buttonWidth,
             buttonHeight
         };
@@ -267,8 +274,8 @@ void Game::renderPauseMenu() {
     // Restart button
     if (TextureManager::Instance()->load(restartButtonTexture, "restart_button", renderer)) {
         SDL_Rect restartRect = {
-            (screenWidth - buttonWidth) / 2,
-            (screenHeight - (buttonHeight * 3 + spacing * 2)) / 2 + buttonHeight + spacing,
+            screenWidth / 2 - 40,
+            screenHeight / 2 + 20,
             buttonWidth,
             buttonHeight
         };
@@ -280,8 +287,8 @@ void Game::renderPauseMenu() {
     // Quit button
     if (TextureManager::Instance()->load(quitButtonTexture, "quit_button", renderer)) {
         SDL_Rect quitRect = {
-            (screenWidth - buttonWidth) / 2,
-            (screenHeight - (buttonHeight * 3 + spacing * 2)) / 2 + (buttonHeight + spacing) * 2,
+            screenWidth / 2 + 60,
+            screenHeight / 2 + 20,
             buttonWidth,
             buttonHeight
         };
@@ -292,36 +299,26 @@ void Game::renderPauseMenu() {
 }
 
 bool Game::loadAssets() {
-    if (!loadTextureBackground("../assets/background/mainground.png", "mainground", renderer)) {
-        SDL_Log("Failed to load background");
+    if (!TextureManager::Instance()->load("../assets/background/mainground.png", "mainground", renderer)) {
+        SDL_Log("Failed to load mainground");
         return false;
-    } else {
-        SDL_Log("Loaded background successful");
     }
-    TextureManager::Instance()->load("../assets/entities/flash.png", "flash", renderer);
-    TextureManager::Instance()->load("../assets/entities/shot.png", "shot", renderer);
-    TextureManager::Instance()->load("../assets/entities/flash_cooldown.png", "flash_cooldown", renderer);
-    TextureManager::Instance()->load("../assets/entities/shot_cooldown.png", "shot_cooldown", renderer);
     // Load texture cho nhan vat
     if (!player->loadTexture("../assets/entities/player.png", "player", renderer)) {
         SDL_Log("Failed to load player");
         return false;
-    } else {
-        SDL_Log("Loaded player successful");
     }
 
     if (!TextureManager::Instance()->load("../assets/entities/enemy.png", "enemy", renderer)) {
         SDL_Log("Failed to load enemy texture");
         return false;
     }
-    SDL_Log("Loaded enemy texture successful");
 
     // Load texture cho bullet
     if (!TextureManager::Instance()->load("../assets/entities/bullet.png", "bullet", renderer)) {
         SDL_Log("Failed to load bullet texture");
         return false;
     }
-    SDL_Log("Loaded bullet texture successful");
     return true;
 }
 
@@ -331,13 +328,12 @@ void Game::handleMainMenuEvents() {
         switch (event.type) {
             case SDL_QUIT:
                 running = false;
-            break;
+                break;
 
             case SDL_MOUSEBUTTONDOWN:
                 if (event.button.button == SDL_BUTTON_LEFT) {
                     int mouseX = event.button.x;
                     int mouseY = event.button.y;
-
                     // Check if start button was clicked
                     int buttonWidth = 200;
                     int buttonHeight = 100;
@@ -347,15 +343,16 @@ void Game::handleMainMenuEvents() {
                         buttonWidth,
                         buttonHeight
                     };
-
                     if (mouseX >= buttonRect.x && mouseX <= buttonRect.x + buttonRect.w &&
                         mouseY >= buttonRect.y && mouseY <= buttonRect.y + buttonRect.h) {
-                        // Start game
+                        // Start the game
                         currentState = GameState::PLAYING;
                         resetGame();
-                        }
+                    }
                 }
-            break;
+                break;
+            default:
+                break;
         }
     }
 }
@@ -379,30 +376,29 @@ void Game::handlePauseMenuEvents() {
                     int mouseX = event.button.x;
                     int mouseY = event.button.y;
 
-                    int buttonWidth = 200;
-                    int buttonHeight = 100;
-                    int spacing = 20;
+                    int buttonWidth = 80;
+                    int buttonHeight = 83;
 
                     // Resume button
                     SDL_Rect resumeRect = {
-                        (screenWidth - buttonWidth) / 2,
-                        (screenHeight - (buttonHeight * 3 + spacing * 2)) / 2,
+                        screenWidth / 2 - 140,
+                        screenHeight / 2 + 20,
                         buttonWidth,
                         buttonHeight
                     };
 
                     // Restart button
                     SDL_Rect restartRect = {
-                        (screenWidth - buttonWidth) / 2,
-                        (screenHeight - (buttonHeight * 3 + spacing * 2)) / 2 + buttonHeight + spacing,
+                        screenWidth / 2 - 40,
+                        screenHeight / 2 + 20,
                         buttonWidth,
                         buttonHeight
                     };
 
                     // Quit button
                     SDL_Rect quitRect = {
-                        (screenWidth - buttonWidth) / 2,
-                        (screenHeight - (buttonHeight * 3 + spacing * 2)) / 2 + (buttonHeight + spacing) * 2,
+                        screenWidth / 2 + 60,
+                        screenHeight / 2 + 20,
                         buttonWidth,
                         buttonHeight
                     };
@@ -422,8 +418,11 @@ void Game::handlePauseMenuEvents() {
                     else if (mouseX >= quitRect.x && mouseX <= quitRect.x + quitRect.w &&
                              mouseY >= quitRect.y && mouseY <= quitRect.y + quitRect.h) {
                         currentState = GameState::MAIN_MENU;
+                        resetGame();
                     }
                 }
+                break;
+            default:
                 break;
         }
     }
@@ -434,8 +433,8 @@ void Game::resetGame() {
     player->setPosition(screenWidth / 2.0f, screenHeight / 2.0f);
 
     // Clear enemies
-    for (auto& enemy : enemies) {
-        delete enemy;
+    for (auto &enemy: enemies) {
+        enemy = nullptr;
     }
 
     // Reset score
@@ -453,28 +452,28 @@ void Game::resetGame() {
     nextEnemySpawn = dist(rng);
 }
 
-bool Game::loadTextureBackground(const string& filePath, const string& id, SDL_Renderer* renderer) {
-    if (TextureManager::Instance()->load(filePath, id, renderer)) {
-        backgroundTextureID = id;
-        return true;
-    }
-    return false;
-}
-
 void Game::renderCooldowns() {
     SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 
     if (player->canShoot()) {
-        TextureManager::Instance()->draw("shot", screenWidth / 2 - 70, screenHeight - 100, 50, 50, 64, 64, renderer);
+        if (TextureManager::Instance()->load("../assets/entities/skillshoot.png", "skillshoot", renderer)) {
+            TextureManager::Instance()->draw("skillshoot", screenWidth / 2 - 70, screenHeight - 100, 50, 50, 64, 64, renderer);
+        }
     } else {
-        TextureManager::Instance()->draw("shot_cooldown", screenWidth / 2 - 70, screenHeight - 100, 50, 50, 64, 64, renderer);
+        if (TextureManager::Instance()->load("../assets/entities/skillshoot_cooldown.png", "skillshoot_cooldown", renderer)) {
+            TextureManager::Instance()->draw("skillshoot_cooldown", screenWidth / 2 - 70, screenHeight - 100, 50, 50, 64, 64,
+                                         renderer);
+        }
     }
-
-
     if (player->canTeleport()) {
-        TextureManager::Instance()->draw("flash", screenWidth / 2 + 20, screenHeight - 100, 50, 50, 64, 64, renderer);
+        if (TextureManager::Instance()->load("../assets/entities/flash.png", "flash", renderer)) {
+            TextureManager::Instance()->draw("flash", screenWidth / 2 + 20, screenHeight - 100, 50, 50, 64, 64, renderer);
+        }
     } else {
-        TextureManager::Instance()->draw("flash_cooldown", screenWidth / 2 + 20, screenHeight - 100, 50, 50, 64, 64, renderer);
+        if (TextureManager::Instance()->load("../assets/entities/flash_cooldown.png", "flash_cooldown", renderer)) {
+            TextureManager::Instance()->draw("flash_cooldown", screenWidth / 2 + 20, screenHeight - 100, 50, 50, 64, 64,
+                                         renderer);
+        }
     }
     SDL_RenderPresent(renderer);
 }
@@ -491,9 +490,8 @@ void Game::shootProjectile(const Vector2D &startPos, const Vector2D &direction) 
     }
     Vector2D bulletStartPos = startPos;
 
-    if(bullet != nullptr){
+    if (bullet != nullptr) {
         bullet->fire(bulletStartPos, direction);
-
     }
 }
 
@@ -517,19 +515,19 @@ void Game::handleEvents() {
     switch (currentState) {
         case GameState::PLAYING:
             this->inputHandler.handleEvents(this->running, *this->player, *this, currentState);
-        break;
+            break;
 
         case GameState::MAIN_MENU:
             handleMainMenuEvents();
-        break;
+            break;
 
         case GameState::PAUSED:
             handlePauseMenuEvents();
-        break;
+            break;
 
         case GameState::GAME_OVER:
             handleGameOverEvents();
-        break;
+            break;
         default:
             break;
     }
@@ -542,7 +540,7 @@ void Game::update() {
             // Update player
             player->update(timer.getDeltaTime());
 
-            // Spawn enemy
+        // Spawn enemy
             enemySpawnTimer.tick();
             if (enemySpawnTimer.getElapsedTime() >= nextEnemySpawn) {
                 spawnEnemy();
@@ -551,8 +549,8 @@ void Game::update() {
                 nextEnemySpawn = dist(rng);
             }
 
-            // Update enemies
-            for (auto& enemy : enemies) {
+        // Update enemies
+            for (auto &enemy: enemies) {
                 if (!enemy->isDead()) {
                     enemy->update(timer.getDeltaTime());
                     enemy->setTarget(player->getPosition().x, player->getPosition().y);
@@ -564,10 +562,10 @@ void Game::update() {
                 }
             }
 
-            // Update bullet and check enemy collisions
+        // Update bullet and check enemy collisions
             if (bullet != nullptr && bullet->isActive()) {
                 bullet->update(timer.getDeltaTime());
-                for (auto& enemy : enemies) {
+                for (auto &enemy: enemies) {
                     if (!enemy->isDead() && checkCollision(enemy->getRect(), bullet->getRect())) {
                         bullet->setActive(false);
                         enemy->die();
@@ -594,51 +592,23 @@ void Game::update() {
 }
 
 void Game::render() {
-
-    SDL_SetRenderDrawColor(renderer, 102,102,201,0);
+    SDL_SetRenderDrawColor(renderer, 102, 102, 201, 0);
     SDL_RenderClear(renderer);
 
     switch (currentState) {
         case GameState::MAIN_MENU:
             renderMainMenu();
-        break;
+            break;
 
         case GameState::PLAYING:
-            // Render background
-                if (!backgroundTextureID.empty()) {
-                    TextureManager::Instance()->draw(backgroundTextureID, 0, 0, screenWidth, screenHeight,1600, 900, renderer);
-                }
-
-        // Render player
-        player->render(renderer);
-
-        // Render enemies
-        for (auto& enemy : enemies) {
-            if (!enemy->isDead()) {
-                enemy->render(renderer);
-            }
-        }
-
-        // Render bullet
-        if (bullet != nullptr && bullet->isActive()) {
-            bullet->render(renderer);
-        }
-
-        // Render cooldowns and score
-        renderCooldowns();
-        renderScore();
-        break;
-
-        case GameState::PAUSED:
-            if (!backgroundTextureID.empty()) {
-                TextureManager::Instance()->draw(backgroundTextureID, 0, 0, screenWidth, screenHeight,1600, 900, renderer);
-            }
+            TextureManager::Instance()->draw("mainground", 0, 0, screenWidth, screenHeight, 1600, 900,
+                                                 renderer);
 
             // Render player
             player->render(renderer);
 
             // Render enemies
-            for (auto& enemy : enemies) {
+            for (auto &enemy: enemies) {
                 if (!enemy->isDead()) {
                     enemy->render(renderer);
                 }
@@ -649,7 +619,31 @@ void Game::render() {
                 bullet->render(renderer);
             }
 
-            // Then render pause menu overlay
+            // Render cooldowns and score
+            renderCooldowns();
+            renderScore();
+            break;
+
+        case GameState::PAUSED:
+            TextureManager::Instance()->draw("mainground", 0, 0, screenWidth, screenHeight, 1600, 900,renderer);
+
+
+        // Render player
+            player->render(renderer);
+
+        // Render enemies
+            for (auto &enemy: enemies) {
+                if (!enemy->isDead()) {
+                    enemy->render(renderer);
+                }
+            }
+
+        // Render bullet
+            if (bullet != nullptr && bullet->isActive()) {
+                bullet->render(renderer);
+            }
+
+        // Then render pause menu overlay
             renderPauseMenu();
             break;
 
@@ -665,11 +659,9 @@ void Game::render() {
 }
 
 void Game::spawnEnemy() {
-
-    Enemy* enemy = nullptr;
+    Enemy *enemy = nullptr;
 
     if (enemy == nullptr) {
-
         enemy = new Enemy(0, 0, 64, 64);
         enemy->loadTexture("../assets/entities/enemy.png", "enemy", renderer);
         enemies.push_back(enemy);
@@ -683,7 +675,7 @@ void Game::spawnEnemy() {
         float x = 0, y = 0;
 
         // Determine spawn position based on side
-        switch(side) {
+        switch (side) {
             case 0: // Top
                 x = std::uniform_real_distribution<float>(0.0f, static_cast<float>(screenWidth))(rng);
                 y = -50.0f;
@@ -706,9 +698,8 @@ void Game::spawnEnemy() {
     }
 }
 
-bool Game::checkCollision(const SDL_Rect& a, const SDL_Rect& b) {
-
-    return (a.x  < b.x + b.w &&
+bool Game::checkCollision(const SDL_Rect &a, const SDL_Rect &b) {
+    return (a.x < b.x + b.w &&
             (a.x + a.w) > b.x &&
             a.y < b.y + b.h &&
             (a.y + a.h) > b.y);

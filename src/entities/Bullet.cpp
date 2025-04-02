@@ -16,8 +16,8 @@ Bullet::Bullet(float x, float y, int width, int height)
       angle(0),
       lifetime(0.0f),
       maxLifetime(0.75f),
-      flip(SDL_FLIP_NONE)
-{}
+      flip(SDL_FLIP_NONE) {
+}
 
 void Bullet::update(float deltaTime) {
     if (!active) return;
@@ -33,7 +33,7 @@ void Bullet::update(float deltaTime) {
     }
 }
 
-void Bullet::render(SDL_Renderer* renderer) {
+void Bullet::render(SDL_Renderer *renderer) {
     if (!active) return;
     SDL_Rect srcRect;
     SDL_Rect destRect;
@@ -59,7 +59,7 @@ void Bullet::render(SDL_Renderer* renderer) {
     );
 }
 
-bool Bullet::loadTexture(const string& filePath, const string& id, SDL_Renderer* renderer) {
+bool Bullet::loadTexture(const string &filePath, const string &id, SDL_Renderer *renderer) {
     if (TextureManager::Instance()->load(filePath, id, renderer)) {
         textureID = id;
         return true;
@@ -67,7 +67,7 @@ bool Bullet::loadTexture(const string& filePath, const string& id, SDL_Renderer*
     return false;
 }
 
-void Bullet::fire(const Vector2D& startPosition, const Vector2D& direction) {
+void Bullet::fire(const Vector2D &startPosition, const Vector2D &direction) {
     active = true;
     lifetime = 0.0f;
 

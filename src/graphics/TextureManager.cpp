@@ -6,7 +6,7 @@
 #include <SDL2/SDL.h>
 #include <bits/stdc++.h>
 using namespace std;
-TextureManager* TextureManager::instance = nullptr;
+TextureManager *TextureManager::instance = nullptr;
 
 
 bool TextureManager::init() {
@@ -20,7 +20,7 @@ bool TextureManager::init() {
 }
 
 bool TextureManager::load(const string &fileName, const string &id, SDL_Renderer *renderer) {
-    SDL_Surface* tempSurface = IMG_Load(fileName.c_str());
+    SDL_Surface *tempSurface = IMG_Load(fileName.c_str());
 
     if (!tempSurface) {
         SDL_Log("Failed to load image: %s", fileName.c_str());
@@ -30,7 +30,7 @@ bool TextureManager::load(const string &fileName, const string &id, SDL_Renderer
         SDL_Log("Successfully loaded image: %s", fileName.c_str());
     }
 
-    SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, tempSurface);
+    SDL_Texture *texture = SDL_CreateTextureFromSurface(renderer, tempSurface);
     SDL_FreeSurface(tempSurface);
 
     if (!texture) {
@@ -44,7 +44,7 @@ bool TextureManager::load(const string &fileName, const string &id, SDL_Renderer
 }
 
 void TextureManager::draw(const string &id, int x, int y, int displayWidth, int displayHeight,
-                             int frameWidth, int frameHeight,
+                          int frameWidth, int frameHeight,
                           SDL_Renderer *renderer, SDL_RendererFlip flip) {
     SDL_Rect srcRect;
     SDL_Rect destRect;
@@ -61,10 +61,10 @@ void TextureManager::draw(const string &id, int x, int y, int displayWidth, int 
     SDL_RenderCopyEx(renderer, textureMap[id], &srcRect, &destRect, 0, nullptr, flip);
 }
 
-void TextureManager::drawFrame(const string& id, int x, int y, int displayWidth, int displayHeight,
+void TextureManager::drawFrame(const string &id, int x, int y, int displayWidth, int displayHeight,
                                int currentRow, int currentColumn, int frameWidth, int frameHeight,
-                               SDL_Renderer* renderer, SDL_RendererFlip flip,
-                               double angle, SDL_Point* center) {
+                               SDL_Renderer *renderer, SDL_RendererFlip flip,
+                               double angle, SDL_Point *center) {
     SDL_Rect srcRect;
     SDL_Rect destRect;
 
@@ -81,7 +81,7 @@ void TextureManager::drawFrame(const string& id, int x, int y, int displayWidth,
     SDL_RenderCopyEx(renderer, textureMap[id], &srcRect, &destRect, angle, center, flip);
 }
 
-void TextureManager::clearFromTextureMap(const string& id) {
+void TextureManager::clearFromTextureMap(const string &id) {
     if (textureMap.find(id) != textureMap.end()) {
         SDL_DestroyTexture(textureMap[id]);
         textureMap.erase(id);
@@ -89,7 +89,7 @@ void TextureManager::clearFromTextureMap(const string& id) {
 }
 
 void TextureManager::clean() {
-    for (auto& texture : textureMap) {
+    for (auto &texture: textureMap) {
         SDL_DestroyTexture(texture.second);
     }
     textureMap.clear();

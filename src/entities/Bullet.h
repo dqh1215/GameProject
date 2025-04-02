@@ -8,16 +8,18 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class Bullet : public Entity{
+class Bullet : public Entity {
 public:
     Bullet(float x, float y, int width, int height);
 
     void update(float deltaTime) override;
-    void render(SDL_Renderer* renderer) override;
 
-    bool loadTexture(const string& filePath, const string& id, SDL_Renderer* renderer);
+    void render(SDL_Renderer *renderer) override;
 
-    void fire(const Vector2D& startPosition, const Vector2D& direction);
+    bool loadTexture(const string &filePath, const string &id, SDL_Renderer *renderer);
+
+    void fire(const Vector2D &startPosition, const Vector2D &direction);
+
     bool isActive() const { return active; }
     void setActive(bool active) { this->active = active; }
 
@@ -36,7 +38,6 @@ private:
     float maxLifetime;
     SDL_RendererFlip flip;
 };
-
 
 
 #endif //BULLET_H

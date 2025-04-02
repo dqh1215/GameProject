@@ -10,20 +10,21 @@ using namespace std;
 
 Character::Character(float x, float y, int width, int height)
     : Entity(x, y, width, height),
-    target(x, y),
-    moving(false),
-    speed(250.0f),
-    textureID(""),
-    frameWidth(64),
-    frameHeight(64),
-    currentColumn(0),
-    currentRow(0),
-    flip(SDL_FLIP_NONE),
-    shootCooldown(2.0f),
-    shootTimer(0.0f),
-    teleportCooldown(3.0f),
-    teleportTimer(0.0f),
-    teleportDistance(100.0f) {}
+      target(x, y),
+      moving(false),
+      speed(250.0f),
+      textureID(""),
+      frameWidth(64),
+      frameHeight(64),
+      currentColumn(0),
+      currentRow(0),
+      flip(SDL_FLIP_NONE),
+      shootCooldown(2.0f),
+      shootTimer(0.0f),
+      teleportCooldown(3.0f),
+      teleportTimer(0.0f),
+      teleportDistance(100.0f) {
+}
 
 void Character::update(float deltaTime) {
     if (shootTimer > 0) {
@@ -34,8 +35,7 @@ void Character::update(float deltaTime) {
     }
     if (!moving) {
         currentColumn = 0;
-    }
-    else {
+    } else {
         Vector2D direction = target - position;
         float distance = direction.length();
 
@@ -53,33 +53,41 @@ void Character::update(float deltaTime) {
 
         currentColumn = int(SDL_GetTicks() / 200) % 3 + 2;
 
-        if (position.x <= target.x && position.y <= target.y) { // NW
+        if (position.x <= target.x && position.y <= target.y) {
+            // NW
             currentRow = 1;
-        } else if (position.x <= target.x && position.y >= target.y && position.y <= target.y + 64) { // W
+        } else if (position.x <= target.x && position.y >= target.y && position.y <= target.y + 64) {
+            // W
             currentRow = 2;
-        } else if (position.x <= target.x && position.y >= target.y + 64) { // SW
+        } else if (position.x <= target.x && position.y >= target.y + 64) {
+            // SW
             currentRow = 3;
-        } else if (position.x >= target.x && position.y <= target.y && position.x <= target.x + 64) { // N
+        } else if (position.x >= target.x && position.y <= target.y && position.x <= target.x + 64) {
+            // N
             currentRow = 0;
-        } else if (position.x >= target.x + 64 && position.y <= target.y) { // NE
+        } else if (position.x >= target.x + 64 && position.y <= target.y) {
+            // NE
             currentRow = 7;
-        } else if (position.x >= target.x + 64 && position.y >= target.y && position.y <= target.y + 64) { // E
+        } else if (position.x >= target.x + 64 && position.y >= target.y && position.y <= target.y + 64) {
+            // E
             currentRow = 6;
-        } else if (position.x >= target.x + 64 && position.y >= target.y + 64) { // SE
+        } else if (position.x >= target.x + 64 && position.y >= target.y + 64) {
+            // SE
             currentRow = 5;
-        } else if (position.x >= target.x && position.x <= target.x + 64 && position.y >= target.y + 64) { // S
+        } else if (position.x >= target.x && position.x <= target.x + 64 && position.y >= target.y + 64) {
+            // S
             currentRow = 4;
         }
 
         updateRect();
     }
-
 }
 
-Vector2D& Character::getPosition() {
+Vector2D &Character::getPosition() {
     return position;
 }
-void Character::render(SDL_Renderer* renderer) {
+
+void Character::render(SDL_Renderer *renderer) {
     if (isShooting && SDL_GetTicks() < shootingTime) {
         TextureManager::Instance()->drawFrame(
             textureID,
@@ -119,7 +127,7 @@ bool Character::isMoving() const {
 }
 
 
-bool Character::loadTexture(const string& filePath, const string& id, SDL_Renderer* renderer) {
+bool Character::loadTexture(const string &filePath, const string &id, SDL_Renderer *renderer) {
     if (TextureManager::Instance()->load(filePath, id, renderer)) {
         textureID = id;
         return true;
@@ -133,21 +141,29 @@ void Character::shoot(float mouseX, float mouseY) {
         moving = false;
         isShooting = true;
         Vector2D direction = mousePos;
-        if (direction.x >= position.x + 64 && direction.y >= position.y + 64) { // SE
+        if (direction.x >= position.x + 64 && direction.y >= position.y + 64) {
+            // SE
             currentRow = 1;
-        } else if (direction.x >= position.x && direction.x <= position.x + 64 && direction.y >= position.y) { // S
+        } else if (direction.x >= position.x && direction.x <= position.x + 64 && direction.y >= position.y) {
+            // S
             currentRow = 0;
-        } else if (direction.x >= position.x && direction.y >= position.y && direction.y <= position.y + 64) { // E
+        } else if (direction.x >= position.x && direction.y >= position.y && direction.y <= position.y + 64) {
+            // E
             currentRow = 2;
-        } else if (direction.x >= position.x + 64 && direction.y <= position.y) { // NE
+        } else if (direction.x >= position.x + 64 && direction.y <= position.y) {
+            // NE
             currentRow = 3;
-        } else if (direction.x >= position.x && direction.x <= position.x + 64 && direction.y <= position.y) { // N
+        } else if (direction.x >= position.x && direction.x <= position.x + 64 && direction.y <= position.y) {
+            // N
             currentRow = 4;
-        } else if (direction.x <= position.x && direction.y <= position.y) { // NW
+        } else if (direction.x <= position.x && direction.y <= position.y) {
+            // NW
             currentRow = 5;
-        } else if (direction.x <= position.x && direction.y >= position.y && direction.y <= position.y + 64) { // W
+        } else if (direction.x <= position.x && direction.y >= position.y && direction.y <= position.y + 64) {
+            // W
             currentRow = 6;
-        } else if (direction.x <= position.x && direction.y >= position.y + 64) { // SW
+        } else if (direction.x <= position.x && direction.y >= position.y + 64) {
+            // SW
             currentRow = 7;
         }
         shootingTime = SDL_GetTicks() + 200;

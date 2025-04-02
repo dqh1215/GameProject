@@ -9,14 +9,15 @@ using namespace std;
 
 Enemy::Enemy(float x, float y, int width, int height)
     : Entity(x, y, width, height),
-    target(0, 0),
-    active(true),
-    speed(80.0f),
-    textureID(""),
-    frameWidth(64),
-    frameHeight(64),
-    currentColumn(0),
-    dead(false) {}
+      target(0, 0),
+      active(true),
+      speed(80.0f),
+      textureID(""),
+      frameWidth(64),
+      frameHeight(64),
+      currentColumn(0),
+      dead(false) {
+}
 
 void Enemy::update(float deltaTime) {
     if (!active) {
@@ -33,19 +34,26 @@ void Enemy::update(float deltaTime) {
 
     // Xác định hướng nhìn dựa vào hướng di chuyển
     currentRow = 0;
-    if (position.x < target.x && position.y < target.y) { // NW
+    if (position.x < target.x && position.y < target.y) {
+        // NW
         currentRow = 1;
-    } else if (position.x < target.x && position.y > target.y && position.y < target.y + 64) { // W
+    } else if (position.x < target.x && position.y > target.y && position.y < target.y + 64) {
+        // W
         currentRow = 2;
-    } else if (position.x < target.x && position.y > target.y + 64) { // SW
+    } else if (position.x < target.x && position.y > target.y + 64) {
+        // SW
         currentRow = 3;
-    } else if (position.x > target.x && position.y < target.y && position.x < target.x + 64) { // N
+    } else if (position.x > target.x && position.y < target.y && position.x < target.x + 64) {
+        // N
         currentRow = 0;
-    } else if (position.x > target.x + 64 && position.y < target.y) { // NE
+    } else if (position.x > target.x + 64 && position.y < target.y) {
+        // NE
         currentRow = 7;
-    } else if (position.x > target.x + 64 && position.y > target.y && position.y < target.y + 64) { // E
+    } else if (position.x > target.x + 64 && position.y > target.y && position.y < target.y + 64) {
+        // E
         currentRow = 6;
-    } else if (position.x > target.x + 64 && position.y > target.y + 64) { // SE
+    } else if (position.x > target.x + 64 && position.y > target.y + 64) {
+        // SE
         currentRow = 5;
     } else if (position.x > target.x && position.x < target.x + 64 && position.y > target.y + 64) {
         currentRow = 4;
@@ -54,7 +62,7 @@ void Enemy::update(float deltaTime) {
     updateRect();
 }
 
-void Enemy::render(SDL_Renderer* renderer) {
+void Enemy::render(SDL_Renderer *renderer) {
     if (dead) {
         return;
     }
@@ -83,7 +91,6 @@ void Enemy::render(SDL_Renderer* renderer) {
         renderer,
         SDL_FLIP_NONE
     );
-
 }
 
 void Enemy::die() {
@@ -92,14 +99,13 @@ void Enemy::die() {
 }
 
 
-
 void Enemy::setTarget(float x, float y) {
     target.x = x;
     target.y = y;
 }
 
 
-bool Enemy::loadTexture(const string& filePath, const string& id, SDL_Renderer* renderer) {
+bool Enemy::loadTexture(const string &filePath, const string &id, SDL_Renderer *renderer) {
     if (TextureManager::Instance()->load(filePath, id, renderer)) {
         textureID = id;
         return true;

@@ -12,21 +12,27 @@ public:
     Character(float x, float y, int width, int height);
 
     void update(float deltaTime) override;
-    void render(SDL_Renderer* renderer) override;
+
+    void render(SDL_Renderer *renderer) override;
 
     void setTarget(float x, float y);
+
     bool isMoving() const;
 
-    Vector2D& getPosition();
+    Vector2D &getPosition();
 
     // Các chiêu thức mới
     void shoot(float mouseX, float mouseY);
+
     void teleport(float mouseX, float mouseY);
 
     // Thêm cooldown cho các chiêu thức
     bool canShoot() const;
+
     bool canTeleport() const;
-    bool loadTexture(const string& filePath, const string& id, SDL_Renderer* renderer);
+
+    bool loadTexture(const string &filePath, const string &id, SDL_Renderer *renderer);
+
 private:
     Vector2D target;
     bool moving;
