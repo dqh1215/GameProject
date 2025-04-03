@@ -144,7 +144,7 @@ void Game::renderText(const string& text, int x, int y, SDL_Color color, int fon
     } else {
         TTF_Font* currentFont = getFontWithSize(fontSize);
 
-        SDL_Surface* textSurface = TTF_RenderText_Blended(currentFont, text.c_str(), color);
+        SDL_Surface* textSurface = TTF_RenderText_Solid(currentFont, text.c_str(), color);
         if (!textSurface) {
             SDL_Log("Unable to render text surface! SDL_ttf Error: %s", TTF_GetError());
             return;
@@ -189,7 +189,7 @@ void Game::renderGameOverText() {
 }
 
 void Game::renderMainMenuText() {
-    renderText("ZOMBIE DODGE", -1, screenHeight / 2 - 150, {58, 91, 0, 0}, 100);
+    renderText("ZOMBIE DODGE", -1, screenHeight / 2 - 150, {58, 91, 0, 225}, 100);
 }
 
 void Game::renderPauseText() {
@@ -231,7 +231,6 @@ void Game::renderGameOver() {
     } else {
         SDL_Log("Unable to load home button texture! SDL Error: %s", SDL_GetError());
     }
-    SDL_RenderPresent(renderer);
 }
 
 void Game::handleGameOverEvents() {
@@ -305,7 +304,6 @@ void Game::renderMainMenu() {
     } else {
         SDL_Log("Unable to load start_button texture! SDL Error: %s", SDL_GetError());
     }
-    SDL_RenderPresent(renderer);
 }
 
 void Game::renderPauseMenu() {
@@ -532,7 +530,6 @@ void Game::renderCooldowns() {
                                          renderer);
         }
     }
-    SDL_RenderPresent(renderer);
 }
 
 void Game::shootProjectile(const Vector2D &startPos, const Vector2D &direction) {
