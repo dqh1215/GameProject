@@ -8,7 +8,7 @@
 using namespace std;
 
 Game::Game() : window(nullptr), renderer(nullptr), player(nullptr), bullet(nullptr),
-               textColor(), currentState(GameState::MAIN_MENU), score(0), running(false), gameOverState(false),
+               currentState(GameState::MAIN_MENU), score(0), running(false), gameOverState(false),
                screenWidth(0),
                screenHeight(0), nextEnemySpawn(0.0f), mouseX(0), mouseY(0) {
     rng.seed(random_device()());
@@ -62,12 +62,10 @@ bool Game::init(const string &title, int width, int height, bool fullscreen) {
     }
 
     font = TTF_OpenFont("../assets/fonts/ChangaOne-Regular.ttf", 24);
-    if (TTF_Init() == -1) {
+    if (!font) {
         SDL_Log("Failed to load font! SDL_ttf Error: %s", TTF_GetError());
         return false;
     }
-
-    textColor = {255, 0, 0, 0};
 
     if (!TextureManager::Instance()->init()) {
         SDL_Log("Texture manager could not be initialized");
@@ -96,7 +94,6 @@ bool Game::init(const string &title, int width, int height, bool fullscreen) {
 
     this->running = true;
     return this->running;
-    SDL_RenderPresent(renderer);
 
 }
 
@@ -116,125 +113,87 @@ bool Game::loadAudio() {
     return true;
 }
 
-void Game::renderScore() {
-    string scoreText = "High Score " + to_string(score);
-
-
-    SDL_Surface *scoreSurface = TTF_RenderText_Solid(font, scoreText.c_str(), textColor);
-    if (!scoreSurface) {
-        SDL_Log("Unable to render score text surface! SDL_ttf Error: %s", TTF_GetError());
-        return;
-    }
-    SDL_Texture *scoreTexture = SDL_CreateTextureFromSurface(renderer, scoreSurface);
-    if (!scoreTexture) {
-        SDL_Log("Unable to create score texture! SDL Error: %s", SDL_GetError());
-        SDL_FreeSurface(scoreSurface);
-        return;
+TTF_Font* Game::getFontWithSize(int size) {
+    if (fontMap.find(size) != fontMap.end()) {
+        return fontMap[size];
     }
 
-    int textWidth = scoreSurface->w;
-    int textHeight = scoreSurface->h;
-    SDL_Rect rect = {
-        screenWidth - textWidth - 20,
-        20,
+    TTF_Font* newFont = TTF_OpenFont("../assets/fonts/ChangaOne-Regular.ttf", size);
+    if (!newFont) {
+        SDL_Log("Failed to load font with size %d! SDL_ttf Error: %s", size, TTF_GetError());
+        return font;
+    }
+
+    fontMap[size] = newFont;
+    return newFont;
+}
+
+void Game::renderText(const string& text, int x, int y, SDL_Color color, int fontSize) {
+    if (text.empty()) return;
+    string cacheKey = text + "_" + to_string(fontSize) + "_" +
+                      to_string(color.r) + "_" + to_string(color.g) + "_" +
+                      to_string(color.b) + "_" + to_string(color.a);
+
+    SDL_Texture* textTexture = nullptr;
+    int textWidth = 0, textHeight = 0;
+
+    auto it = textTextureCache.find(cacheKey);
+    if (it != textTextureCache.end()) {
+        textTexture = it->second;
+        SDL_QueryTexture(textTexture, nullptr, nullptr, &textWidth, &textHeight);
+    } else {
+        TTF_Font* currentFont = getFontWithSize(fontSize);
+
+        SDL_Surface* textSurface = TTF_RenderText_Blended(currentFont, text.c_str(), color);
+        if (!textSurface) {
+            SDL_Log("Unable to render text surface! SDL_ttf Error: %s", TTF_GetError());
+            return;
+        }
+
+        textWidth = textSurface->w;
+        textHeight = textSurface->h;
+
+        textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
+        SDL_FreeSurface(textSurface);
+
+        if (!textTexture) {
+            SDL_Log("Unable to create texture from rendered text! SDL Error: %s", SDL_GetError());
+            return;
+        }
+
+        textTextureCache[cacheKey] = textTexture;
+    }
+
+    int posX = x;
+    int posY = y;
+
+    if (x < 0) posX = (screenWidth - textWidth) / 2;
+    if (y < 0) posY = (screenHeight - textHeight) / 2;
+
+    SDL_Rect destRect = {
+        posX,
+        posY,
         textWidth,
         textHeight
     };
+    SDL_RenderCopy(renderer, textTexture, nullptr, &destRect);
+}
 
-    SDL_RenderCopy(renderer, scoreTexture, nullptr, &rect);
-
-    SDL_FreeSurface(scoreSurface);
-    SDL_DestroyTexture(scoreTexture);
+void Game::renderScore() {
+    string scoreText = "High Score " + to_string(score);
+    renderText(scoreText, screenWidth - 170, 20, {255, 0, 0, 255}, 28);
 }
 
 void Game::renderGameOverText() {
-    string text = "Game Over";
-
-    SDL_Surface *surface = TTF_RenderText_Solid(font, text.c_str(), {0, 70, 0, 1});
-    if (!surface) {
-        SDL_Log("Unable to render game over text surface! SDL_ttf Error: %s", TTF_GetError());
-        return;
-    }
-    SDL_Texture *texture = SDL_CreateTextureFromSurface(renderer, surface);
-    if (!texture) {
-        SDL_Log("Unable to create game over texture! SDL Error: %s", SDL_GetError());
-        SDL_FreeSurface(surface);
-        return;
-    }
-
-    int textWidth = surface->w;
-    int textHeight = surface->h;
-    SDL_Rect rect = {
-        screenWidth - textWidth - 20,
-        20,
-        textWidth,
-        textHeight
-    };
-
-    SDL_RenderCopy(renderer, texture, nullptr, &rect);
-
-    SDL_FreeSurface(surface);
-    SDL_DestroyTexture(texture);
+    renderText("GAME OVER", -1, screenHeight / 2 - 50, {0, 60, 0, 1}, 100);
 }
 
 void Game::renderMainMenuText() {
-    string scoreText = "ZOMBIE DODGE";
-
-    SDL_Surface *surface = TTF_RenderText_Solid(font, scoreText.c_str(), {0, 70, 0, 1});
-    if (!surface) {
-        SDL_Log("Unable to render main menu text surface! SDL_ttf Error: %s", TTF_GetError());
-        return;
-    }
-    SDL_Texture *texture = SDL_CreateTextureFromSurface(renderer, surface);
-    if (!texture) {
-        SDL_Log("Unable to create main menu texture! SDL Error: %s", SDL_GetError());
-        SDL_FreeSurface(surface);
-        return;
-    }
-
-    int textWidth = 100;
-    int textHeight = 100;
-    SDL_Rect rect = {
-        screenWidth - textWidth - 20,
-        20,
-        textWidth,
-        textHeight
-    };
-
-    SDL_RenderCopy(renderer, texture, nullptr, &rect);
-
-    SDL_FreeSurface(surface);
-    SDL_DestroyTexture(texture);
+    renderText("ZOMBIE DODGE", -1, screenHeight / 2 - 150, {58, 91, 0, 0}, 100);
 }
 
 void Game::renderPauseText() {
-    string scoreText = "PAUSE";
-
-    SDL_Surface *surface = TTF_RenderText_Solid(font, scoreText.c_str(), {0, 70, 0, 1});
-    if (!surface) {
-        SDL_Log("Unable to render pause text surface! SDL_ttf Error: %s", TTF_GetError());
-        return;
-    }
-    SDL_Texture *texture = SDL_CreateTextureFromSurface(renderer, surface);
-    if (!texture) {
-        SDL_Log("Unable to create pause texture! SDL Error: %s", SDL_GetError());
-        SDL_FreeSurface(surface);
-        return;
-    }
-
-    int textWidth = surface->w;
-    int textHeight = surface->h;
-    SDL_Rect rect = {
-        screenWidth - textWidth - 20,
-        20,
-        textWidth,
-        textHeight
-    };
-
-    SDL_RenderCopy(renderer, texture, nullptr, &rect);
-
-    SDL_FreeSurface(surface);
-    SDL_DestroyTexture(texture);
+    renderText("PAUSE", -1, screenHeight / 2 - 50, {0, 60, 0, 255}, 100);
 }
 
 void Game::renderGameOver() {
@@ -823,5 +782,18 @@ void Game::clean() {
     Mix_CloseAudio();
     Mix_Quit();
     TTF_Quit();
+    for (auto& pair : textTextureCache) {
+        if (pair.second != nullptr) {
+            SDL_DestroyTexture(pair.second);
+        }
+    }
+    textTextureCache.clear();
+
+    for (auto& pair : fontMap) {
+        if (pair.second != nullptr && pair.second != font) {
+            TTF_CloseFont(pair.second);
+        }
+    }
+    fontMap.clear();
     SDL_Quit();
 }

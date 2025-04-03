@@ -61,6 +61,10 @@ private:
 
     void renderCooldowns();
 
+    TTF_Font* getFontWithSize(int size);
+
+    void renderText(const string& text, int x, int y, SDL_Color color, int fontSize = 24);
+
     void renderScore();
 
     void renderGameOverText();
@@ -96,7 +100,8 @@ private:
     Bullet *bullet;
 
     TTF_Font *font;
-    SDL_Color textColor;
+    map<int, TTF_Font*> fontMap;
+    map<string, SDL_Texture*> textTextureCache;
 
     GameState currentState;
     int score;
