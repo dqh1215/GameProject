@@ -7,8 +7,7 @@
 
 using namespace std;
 
-Game::Game() : window(nullptr), renderer(nullptr), player(nullptr), bullet(nullptr), scoreFont(nullptr),
-               menuFont(nullptr),
+Game::Game() : window(nullptr), renderer(nullptr), player(nullptr), bullet(nullptr),
                textColor(), currentState(GameState::MAIN_MENU), score(0), running(false), gameOverState(false),
                screenWidth(0),
                screenHeight(0), nextEnemySpawn(0.0f), mouseX(0), mouseY(0) {
@@ -20,6 +19,8 @@ Game::~Game() {
 }
 
 bool Game::init(const string &title, int width, int height, bool fullscreen) {
+    SDL_SetRenderDrawColor(renderer, 50, 50, 50, 1);
+    SDL_RenderClear(renderer);
     if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0) {
         SDL_Log("SDL_Init Error: %s", SDL_GetError());
         return false;
@@ -60,14 +61,13 @@ bool Game::init(const string &title, int width, int height, bool fullscreen) {
         SDL_Log("Renderer created Successful");
     }
 
-    scoreFont = TTF_OpenFont("../assets/entities/arial.ttf", 24);
-    menuFont = TTF_OpenFont("../assets/entities/arial.ttf", 36);
-    if (!scoreFont || !menuFont) {
+    font = TTF_OpenFont("../assets/fonts/ChangaOne-Regular.ttf", 24);
+    if (TTF_Init() == -1) {
         SDL_Log("Failed to load font! SDL_ttf Error: %s", TTF_GetError());
         return false;
     }
 
-    textColor = {255, 255, 255, 255};
+    textColor = {255, 0, 0, 0};
 
     if (!TextureManager::Instance()->init()) {
         SDL_Log("Texture manager could not be initialized");
@@ -94,11 +94,10 @@ bool Game::init(const string &title, int width, int height, bool fullscreen) {
     timer.start();
     enemySpawnTimer.start();
 
-    uniform_real_distribution<float> dist(2.0f, 3.0f);
-    nextEnemySpawn = dist(rng);
-
     this->running = true;
     return this->running;
+    SDL_RenderPresent(renderer);
+
 }
 
 bool Game::loadAudio() {
@@ -121,7 +120,7 @@ void Game::renderScore() {
     string scoreText = "High Score " + to_string(score);
 
 
-    SDL_Surface *scoreSurface = TTF_RenderText_Solid(scoreFont, scoreText.c_str(), textColor);
+    SDL_Surface *scoreSurface = TTF_RenderText_Solid(font, scoreText.c_str(), textColor);
     if (!scoreSurface) {
         SDL_Log("Unable to render score text surface! SDL_ttf Error: %s", TTF_GetError());
         return;
@@ -135,28 +134,112 @@ void Game::renderScore() {
 
     int textWidth = scoreSurface->w;
     int textHeight = scoreSurface->h;
-
-    SDL_Rect renderQuad = {
+    SDL_Rect rect = {
         screenWidth - textWidth - 20,
         20,
         textWidth,
         textHeight
     };
 
-    SDL_RenderCopy(renderer, scoreTexture, nullptr, &renderQuad);
+    SDL_RenderCopy(renderer, scoreTexture, nullptr, &rect);
 
     SDL_FreeSurface(scoreSurface);
     SDL_DestroyTexture(scoreTexture);
 }
 
+void Game::renderGameOverText() {
+    string text = "Game Over";
+
+    SDL_Surface *surface = TTF_RenderText_Solid(font, text.c_str(), {0, 70, 0, 1});
+    if (!surface) {
+        SDL_Log("Unable to render game over text surface! SDL_ttf Error: %s", TTF_GetError());
+        return;
+    }
+    SDL_Texture *texture = SDL_CreateTextureFromSurface(renderer, surface);
+    if (!texture) {
+        SDL_Log("Unable to create game over texture! SDL Error: %s", SDL_GetError());
+        SDL_FreeSurface(surface);
+        return;
+    }
+
+    int textWidth = surface->w;
+    int textHeight = surface->h;
+    SDL_Rect rect = {
+        screenWidth - textWidth - 20,
+        20,
+        textWidth,
+        textHeight
+    };
+
+    SDL_RenderCopy(renderer, texture, nullptr, &rect);
+
+    SDL_FreeSurface(surface);
+    SDL_DestroyTexture(texture);
+}
+
+void Game::renderMainMenuText() {
+    string scoreText = "ZOMBIE DODGE";
+
+    SDL_Surface *surface = TTF_RenderText_Solid(font, scoreText.c_str(), {0, 70, 0, 1});
+    if (!surface) {
+        SDL_Log("Unable to render main menu text surface! SDL_ttf Error: %s", TTF_GetError());
+        return;
+    }
+    SDL_Texture *texture = SDL_CreateTextureFromSurface(renderer, surface);
+    if (!texture) {
+        SDL_Log("Unable to create main menu texture! SDL Error: %s", SDL_GetError());
+        SDL_FreeSurface(surface);
+        return;
+    }
+
+    int textWidth = 100;
+    int textHeight = 100;
+    SDL_Rect rect = {
+        screenWidth - textWidth - 20,
+        20,
+        textWidth,
+        textHeight
+    };
+
+    SDL_RenderCopy(renderer, texture, nullptr, &rect);
+
+    SDL_FreeSurface(surface);
+    SDL_DestroyTexture(texture);
+}
+
+void Game::renderPauseText() {
+    string scoreText = "PAUSE";
+
+    SDL_Surface *surface = TTF_RenderText_Solid(font, scoreText.c_str(), {0, 70, 0, 1});
+    if (!surface) {
+        SDL_Log("Unable to render pause text surface! SDL_ttf Error: %s", TTF_GetError());
+        return;
+    }
+    SDL_Texture *texture = SDL_CreateTextureFromSurface(renderer, surface);
+    if (!texture) {
+        SDL_Log("Unable to create pause texture! SDL Error: %s", SDL_GetError());
+        SDL_FreeSurface(surface);
+        return;
+    }
+
+    int textWidth = surface->w;
+    int textHeight = surface->h;
+    SDL_Rect rect = {
+        screenWidth - textWidth - 20,
+        20,
+        textWidth,
+        textHeight
+    };
+
+    SDL_RenderCopy(renderer, texture, nullptr, &rect);
+
+    SDL_FreeSurface(surface);
+    SDL_DestroyTexture(texture);
+}
+
 void Game::renderGameOver() {
     SDL_SetRenderDrawColor(renderer, 50, 50, 50, 1);
     SDL_RenderClear(renderer);
-
-    if (TextureManager::Instance()->load("../assets/background/gameover_background.png", "gameover_background",
-                                         renderer)) {
-        TextureManager::Instance()->draw("gameover_background", 0, 0, screenWidth, screenHeight, 1300, 720, renderer);
-    }
 
     if (TextureManager::Instance()->load("../assets/buttons/restart.png", "restart_button", renderer)) {
         int buttonWidth = 80;
@@ -301,14 +384,14 @@ void Game::renderPauseMenu() {
     }
 
     // Quit button
-    if (TextureManager::Instance()->load("../assets/home.png", "quit_button", renderer)) {
+    if (TextureManager::Instance()->load("../assets/buttons/home.png", "home_button", renderer)) {
         SDL_Rect quitRect = {
             screenWidth / 2 + 60,
             screenHeight / 2 + 20,
             buttonWidth,
             buttonHeight
         };
-        TextureManager::Instance()->draw("quit_button", quitRect.x, quitRect.y,
+        TextureManager::Instance()->draw("home_button", quitRect.x, quitRect.y,
                                          buttonWidth, buttonHeight, buttonWidth, buttonHeight,
                                          renderer);
     }
@@ -465,10 +548,6 @@ void Game::resetGame() {
     // Reset timers
     timer.start();
     enemySpawnTimer.start();
-
-    // Reset enemy spawn time
-    uniform_real_distribution<float> dist(2.0f, 3.0f);
-    nextEnemySpawn = dist(rng);
 }
 
 void Game::renderCooldowns() {
@@ -581,7 +660,7 @@ void Game::handlePlayingEvents() {
     if (enemySpawnTimer.getElapsedTime() >= nextEnemySpawn) {
         spawnEnemy();
         enemySpawnTimer.start();
-        uniform_real_distribution<float> dist(2.0f, 3.0f);
+        uniform_real_distribution<float> dist(1.0f, 3.0f);
         nextEnemySpawn = dist(rng);
     }
 
@@ -619,6 +698,7 @@ void Game::render() {
     switch (currentState) {
         case GameState::MAIN_MENU:
             renderMainMenu();
+            renderMainMenuText();
             break;
 
         case GameState::PLAYING:
@@ -629,10 +709,12 @@ void Game::render() {
 
         case GameState::PAUSED:
             renderPauseMenu();
+            renderPauseText();
             break;
 
         case GameState::GAME_OVER:
             renderGameOver();
+            renderGameOverText();
             break;
 
         default:
@@ -724,15 +806,7 @@ void Game::clean() {
         }
     }
     enemies.clear();
-    if (scoreFont) {
-        TTF_CloseFont(scoreFont);
-        scoreFont = nullptr;
-    }
 
-    if (menuFont) {
-        TTF_CloseFont(menuFont);
-        menuFont = nullptr;
-    }
 
     TextureManager::Instance()->clean();
 

@@ -63,6 +63,12 @@ private:
 
     void renderScore();
 
+    void renderGameOverText();
+
+    void renderMainMenuText();
+
+    void renderPauseText();
+
     bool loadAudio();
 
     void renderPauseMenu();
@@ -89,8 +95,7 @@ private:
     vector<Enemy *> enemies;
     Bullet *bullet;
 
-    TTF_Font *scoreFont;
-    TTF_Font *menuFont;
+    TTF_Font *font;
     SDL_Color textColor;
 
     GameState currentState;

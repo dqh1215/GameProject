@@ -182,9 +182,36 @@ void Character::teleport(float mouseX, float mouseY) {
             Vector2D normalizedDirection = direction.normalize();
             mousePos = position + (normalizedDirection * teleportDistance);
         }
-
+        Vector2D oldPosition = position;
         position = mousePos;
         updateRect();
+
+        direction = mousePos;
+        if (direction.x >= oldPosition.x + 64 && direction.y >= oldPosition.y + 64) {
+            // SE
+            currentRow = 1;
+        } else if (direction.x >= oldPosition.x && direction.x <= oldPosition.x + 64 && direction.y >= oldPosition.y) {
+            // S
+            currentRow = 0;
+        } else if (direction.x >= oldPosition.x && direction.y >= oldPosition.y && direction.y <= oldPosition.y + 64) {
+            // E
+            currentRow = 2;
+        } else if (direction.x >= oldPosition.x + 64 && direction.y <= oldPosition.y) {
+            // NE
+            currentRow = 3;
+        } else if (direction.x >= oldPosition.x && direction.x <= oldPosition.x + 64 && direction.y <= oldPosition.y) {
+            // N
+            currentRow = 4;
+        } else if (direction.x <= oldPosition.x && direction.y <= oldPosition.y) {
+            // NW
+            currentRow = 5;
+        } else if (direction.x <= oldPosition.x && direction.y >= oldPosition.y && direction.y <= oldPosition.y + 64) {
+            // W
+            currentRow = 6;
+        } else if (direction.x <= oldPosition.x && direction.y >= oldPosition.y + 64) {
+            // SW
+            currentRow = 7;
+        }
 
         moving = false;
         target = position;
