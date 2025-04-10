@@ -1,8 +1,11 @@
 Họ và tên: Đinh Quang Huy
+
 MSSV: 24020157
+
 Lớp: IT4-K69
 
 Tên game: Zombie Dodge Game
+
 Nội Dung: Game lấy bối cảnh thế giới hậu tận thế khi đại dịch zombie đã càn quét khắp nơi trên thế giới và ai ai cũng đều đã biến thành zombie. Bạn đóng vai nhân vật chính, một người may mắn còn sống sót nhưng đang bị bao vây giữa cánh rừng bởi bọn zombie. 
 
 Link assets: 
