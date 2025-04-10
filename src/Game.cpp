@@ -19,8 +19,6 @@ Game::~Game() {
 }
 
 bool Game::init(const string &title, int width, int height, bool fullscreen) {
-    SDL_SetRenderDrawColor(renderer, 50, 50, 50, 1);
-    SDL_RenderClear(renderer);
     if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0) {
         SDL_Log("SDL_Init Error: %s", SDL_GetError());
         return false;
@@ -60,12 +58,16 @@ bool Game::init(const string &title, int width, int height, bool fullscreen) {
     } else {
         SDL_Log("Renderer created Successful");
     }
-
     font = TTF_OpenFont("../assets/fonts/ChangaOne-Regular.ttf", 24);
     if (!font) {
         SDL_Log("Failed to load font! SDL_ttf Error: %s", TTF_GetError());
         return false;
     }
+    SDL_SetRenderDrawColor(renderer, 49, 45, 46, 225);
+    SDL_Rect overlayRect = {0, 0, screenWidth, screenHeight};
+    SDL_RenderFillRect(renderer, &overlayRect);
+    renderText("Loading ...", -1, -1, {164, 171, 106, 225}, 150);
+    SDL_RenderPresent(renderer);
 
     if (!TextureManager::Instance()->init()) {
         SDL_Log("Texture manager could not be initialized");
@@ -94,7 +96,6 @@ bool Game::init(const string &title, int width, int height, bool fullscreen) {
 
     this->running = true;
     return this->running;
-
 }
 
 bool Game::loadAudio() {
@@ -109,6 +110,10 @@ bool Game::loadAudio() {
     if (!Mix_LoadWAV("../assets/sounds/flash.wav")) {
         SDL_Log("Unable to load flash sound: %s", Mix_GetError());
         return false;
+    }
+    themeMusic = Mix_LoadMUS("../assets/sounds/theme_music.wav");
+    if (!themeMusic) {
+        SDL_Log("Unable to load theme music: %s", Mix_GetError());
     }
     return true;
 }
@@ -144,7 +149,7 @@ void Game::renderText(const string& text, int x, int y, SDL_Color color, int fon
     } else {
         TTF_Font* currentFont = getFontWithSize(fontSize);
 
-        SDL_Surface* textSurface = TTF_RenderText_Solid(currentFont, text.c_str(), color);
+        SDL_Surface* textSurface = TTF_RenderText_Blended(currentFont, text.c_str(), color);
         if (!textSurface) {
             SDL_Log("Unable to render text surface! SDL_ttf Error: %s", TTF_GetError());
             return;
@@ -181,23 +186,23 @@ void Game::renderText(const string& text, int x, int y, SDL_Color color, int fon
 
 void Game::renderScore() {
     string scoreText = "High Score " + to_string(score);
-    renderText(scoreText, screenWidth - 170, 20, {255, 0, 0, 255}, 28);
+    renderText(scoreText, screenWidth - 170, 20, {172, 0, 0, 255}, 28);
 }
 
 void Game::renderGameOverText() {
-    renderText("GAME OVER", -1, screenHeight / 2 - 50, {0, 60, 0, 1}, 100);
+    renderText("GAME OVER", -1, screenHeight / 2 - 150, {164, 171, 106, 225}, 100);
 }
 
 void Game::renderMainMenuText() {
-    renderText("ZOMBIE DODGE", -1, screenHeight / 2 - 150, {58, 91, 0, 225}, 100);
+    renderText("ZOMBIE DODGE", -1, screenHeight / 2 - 150, {164, 171, 106, 225}, 100);
 }
 
 void Game::renderPauseText() {
-    renderText("PAUSE", -1, screenHeight / 2 - 50, {0, 60, 0, 255}, 100);
+    renderText("PAUSE", -1, screenHeight / 2 - 100, {164, 171, 106, 255}, 100);
 }
 
 void Game::renderGameOver() {
-    SDL_SetRenderDrawColor(renderer, 50, 50, 50, 1);
+    SDL_SetRenderDrawColor(renderer, 49, 45, 46, 225);
     SDL_RenderClear(renderer);
 
     if (TextureManager::Instance()->load("../assets/buttons/restart.png", "restart_button", renderer)) {
@@ -307,7 +312,7 @@ void Game::renderMainMenu() {
 }
 
 void Game::renderPauseMenu() {
-    SDL_SetRenderDrawColor(renderer, 50, 50, 50, 1);
+    SDL_SetRenderDrawColor(renderer, 49, 45, 46, 225);
     SDL_Rect overlayRect = {0, 0, screenWidth, screenHeight};
     SDL_RenderFillRect(renderer, &overlayRect);
 
@@ -591,15 +596,27 @@ void Game::handleEvents() {
 void Game::update() {
     switch (currentState) {
         case GameState::PLAYING:
+            if (Mix_PlayingMusic()) {
+                Mix_HaltMusic();
+            }
             handlePlayingEvents();
             break;
         case GameState::MAIN_MENU:
+            if (themeMusic && !Mix_PlayingMusic()) {
+                Mix_PlayMusic(themeMusic, -1);
+            }
             handleMainMenuEvents();
             break;
         case GameState::PAUSED:
+            if (Mix_PlayingMusic()) {
+                Mix_HaltMusic();
+            }
             handlePauseMenuEvents();
             break;
         case GameState::GAME_OVER:
+            if (Mix_PlayingMusic()) {
+                Mix_HaltMusic();
+            }
             handleGameOverEvents();
             break;
         default:
@@ -779,18 +796,5 @@ void Game::clean() {
     Mix_CloseAudio();
     Mix_Quit();
     TTF_Quit();
-    for (auto& pair : textTextureCache) {
-        if (pair.second != nullptr) {
-            SDL_DestroyTexture(pair.second);
-        }
-    }
-    textTextureCache.clear();
-
-    for (auto& pair : fontMap) {
-        if (pair.second != nullptr && pair.second != font) {
-            TTF_CloseFont(pair.second);
-        }
-    }
-    fontMap.clear();
     SDL_Quit();
 }

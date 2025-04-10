@@ -98,7 +98,7 @@ private:
     InputHandler inputHandler;
     vector<Enemy *> enemies;
     Bullet *bullet;
-
+    Mix_Music *themeMusic;
     TTF_Font *font;
     map<int, TTF_Font*> fontMap;
     map<string, SDL_Texture*> textTextureCache;
